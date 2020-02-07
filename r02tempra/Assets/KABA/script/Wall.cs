@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-   public Player player;
+   public GameObject player;
+    Collider2D m_objectWall;
     // Start is called before the first frame update
     void Start()
     {
+      
         
     }
 
@@ -16,11 +18,13 @@ public class Wall : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collider2D other)
     {
-        if (player.gameObject.tag=="Popcorn")
+        if (other.gameObject.tag=="Player")
         {
-
+           other.isTrigger = false;
+            Debug.Log("通れるよ");
         }
+        
     }
 }
