@@ -11,21 +11,18 @@ public class Player : MonoBehaviour
 
     bool jumpFlag;
     SpriteRenderer sprite;
-<<<<<<< HEAD
     Player player;
-=======
     Rigidbody2D rig;
->>>>>>> origin/kikuchi
     // Start is called before the first frame update
     void Start()
     {
         sprite = gameObject.GetComponent<SpriteRenderer>();
-<<<<<<< HEAD
+
       
-=======
+
         rig = gameObject.GetComponent<Rigidbody2D>();
         jumpFlag = false;
->>>>>>> origin/kikuchi
+
     }
 
 
