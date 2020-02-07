@@ -5,30 +5,55 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed =0.1f;
+    private float moveSpeed =10f;
+    [SerializeField]
+    private float jumpSpeed = 1000f;
+
+    bool jumpFlag;
     SpriteRenderer sprite;
+<<<<<<< HEAD
     Player player;
+=======
+    Rigidbody2D rig;
+>>>>>>> origin/kikuchi
     // Start is called before the first frame update
     void Start()
     {
         sprite = gameObject.GetComponent<SpriteRenderer>();
+<<<<<<< HEAD
       
+=======
+        rig = gameObject.GetComponent<Rigidbody2D>();
+        jumpFlag = false;
+>>>>>>> origin/kikuchi
     }
 
 
     void Move()
     {
-        Vector2 position = transform.position;
-        if (Input.GetKey(KeyCode.D))
+        float hor = Input.GetAxis("Horizontal");
+        float mov = hor * moveSpeed;
+  
+       Vector2 force = new Vector2(mov, 0);   
+        if (hor != 0 && !jumpFlag)
         {
-            position.x += moveSpeed;
-        }
-        if (Input.GetKey(KeyCode.A))
+            rig.velocity = force;
+        }   
+        else if(hor != 0 && jumpFlag)
         {
-            position.x -= moveSpeed;
+            rig.AddForce(force);
         }
-        transform.position = position;
+        
     }
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && jumpFlag == false)
+        {
+            rig.AddForce(Vector2.up * jumpSpeed);
+            jumpFlag = true;
+        }
+    }
+
     void ModeChange()
     {
         sprite.color = new Color(0, 0, 0, 1);
@@ -40,6 +65,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        Jump();
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -48,5 +74,15 @@ public class Player : MonoBehaviour
         {
             ModeChange();
         }
+
+        
     } 
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Stage"))
+        {
+            jumpFlag = false;
+        }
+    }
 }

@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Abura
+<<<<<<< HEAD
   - Popcorn
+=======
+  - Stage
+>>>>>>> origin/kikuchi
   layers:
   - Default
   - TransparentFX
