@@ -18,13 +18,5 @@ public class Wall : MonoBehaviour
     {
         
     }
-    void OnCollisionEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag=="Player")
-        {
-           other.isTrigger = false;
-            Debug.Log("通れるよ");
-        }
-        
-    }
+   
 }
