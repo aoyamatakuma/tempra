@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private float moveSpeed =0.5f;
     [SerializeField]
     private float jumpSpeed = 1000f;
+    [SerializeField]
+    private float jumpMoveSpeed = 0.2f;
     bool jumpFlag;
     SpriteRenderer sprite;
     Rigidbody2D rig;
@@ -26,7 +28,15 @@ public class Player : MonoBehaviour
         Vector2 position = transform.position;
         if (hor != 0)
         {
-            position.x += moveSpeed * hor;
+            if (!jumpFlag)
+            {
+                position.x += moveSpeed * hor;
+            }
+            else
+            {
+                position.x += jumpMoveSpeed * hor;
+            }
+            
         }
         transform.position = position;
     }
