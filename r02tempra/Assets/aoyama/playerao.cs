@@ -11,10 +11,12 @@ public class playerao : MonoBehaviour
     public float jumpForce = 250.0f;//ジャンプの力
     public float speed = 2.0f;//地上での移動速度
     bool jumpFlag;
+    SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
     }
     // Update is called once per frame
@@ -44,5 +46,17 @@ public class playerao : MonoBehaviour
         {
             jumpFlag = false;
         }
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Abura"))
+        {
+            ModeChange();
+        }
+    }
+    void ModeChange()
+    {
+        sprite.color = new Color(0, 0, 0, 1);
+
     }
 }
