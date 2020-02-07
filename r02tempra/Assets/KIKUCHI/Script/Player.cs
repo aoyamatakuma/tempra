@@ -5,11 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed =0.5f;
+    private float moveSpeed =10f;
     [SerializeField]
     private float jumpSpeed = 1000f;
-    [SerializeField]
-    private float jumpMoveSpeed = 0.2f;
+
     bool jumpFlag;
     SpriteRenderer sprite;
     Rigidbody2D rig;
@@ -25,20 +24,18 @@ public class Player : MonoBehaviour
     void Move()
     {
         float hor = Input.GetAxis("Horizontal");
-        Vector2 position = transform.position;
-        if (hor != 0)
+        float mov = hor * moveSpeed;
+  
+       Vector2 force = new Vector2(mov, 0);   
+        if (hor != 0 && !jumpFlag)
         {
-            if (!jumpFlag)
-            {
-                position.x += moveSpeed * hor;
-            }
-            else
-            {
-                position.x += jumpMoveSpeed * hor;
-            }
-            
+            rig.velocity = force;
+        }   
+        else if(hor != 0 && jumpFlag)
+        {
+            rig.AddForce(force);
         }
-        transform.position = position;
+        
     }
     void Jump()
     {
