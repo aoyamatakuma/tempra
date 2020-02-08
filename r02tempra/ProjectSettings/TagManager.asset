@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Stage
   - Abura
-  - Wall
-  - C1
-  - C2
-  - C3
-  - Ground
   layers:
   - Default
   - TransparentFX
@@ -19,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - Stage
-  - Ground
+  - 
+  - 
   - 
   - 
   - 
