@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class playerao : MonoBehaviour
 
 {
+    //追加　小野
+    public GameObject HaretuEffect;
+    //public GameObject HaretuEffect2;
+
 
     Rigidbody2D rigidPlayer;//物理演算
     public float jumpForce = 250.0f;//ジャンプの力
@@ -57,6 +61,9 @@ public class playerao : MonoBehaviour
     void ModeChange()
     {
         sprite.color = new Color(0, 0, 0, 1);
+        //追加　小野
+        Instantiate(HaretuEffect, transform.position, transform.rotation);
+        //Instantiate(HaretuEffect2, transform.position, transform.rotation);
 
     }
 }
