@@ -25,12 +25,12 @@ public class CameraControl : MonoBehaviour
         switch (intA)
         {
             case 0:
-                isCameraPos1 = true;
-                isCameraPos2 = false;
-                break;
-            case 1:
                 isCameraPos1 = false;
                 isCameraPos2 = true;
+                break;
+            case 1:
+                isCameraPos1 = true;
+                isCameraPos2 = false;
                 break;
         }
 
