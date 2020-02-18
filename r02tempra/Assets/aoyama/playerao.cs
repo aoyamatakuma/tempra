@@ -33,7 +33,13 @@ public class playerao : MonoBehaviour
     void Move()//移動系
     {
         float h = Input.GetAxis("Horizontal");
-        rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
+        Vector2 position = transform.localPosition;
+        if(h != 0)
+        {
+            position.x += h * speed * 0.1f;
+        }
+        transform.localPosition = position;
+       // rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
     }
     void Jump()//ジャンプ系
     {
