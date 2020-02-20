@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3282508192513108403}
   - component: {fileID: 3282508192513108402}
-  - component: {fileID: 3282508192513108413}
   - component: {fileID: 3282508192513108400}
   - component: {fileID: 3282508192513108401}
+  - component: {fileID: 1488250905}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -82,20 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3282508192513108413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3282508192513108412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 894391b20c7c81947b3c55db5f001563, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.5
-  jumpSpeed: 1000
 --- !u!50 &3282508192513108400
 Rigidbody2D:
   serializedVersion: 4
@@ -133,3 +119,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.099999994
+--- !u!114 &1488250905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282508192513108412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f683563a28e59d24483d0836ff80fe0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HaretuEffect: {fileID: 1856004530783780, guid: 6964cb021b639c144971c274a0dedd33,
+    type: 3}
+  jumpForce: 750
+  speed: 1
