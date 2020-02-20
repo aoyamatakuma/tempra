@@ -37,7 +37,7 @@ public class playerao : MonoBehaviour
     }
     void Jump()//ジャンプ系
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpFlag == false)//ジャンプボタンを押してなおかつジャンプ中じゃないとき
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A_BUTTON") && jumpFlag == false)//ジャンプボタンを押してなおかつジャンプ中じゃないとき
         {
             //rigidPlayer.velocity = Vector2.zero;
             rigidPlayer.AddForce(Vector2.up * jumpForce);

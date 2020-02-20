@@ -32,9 +32,10 @@ public class CameraControl : MonoBehaviour
                 isCameraPos1 = true;
                 isCameraPos2 = false;
                 break;
+                //  こうだ先生変更
         }
 
-        if (Input.GetKeyDown(KeyCode.Y))// ||Input.GetButtonDown("Ybutton")
+        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON"))
         {
             intA++;
             if(intA>=2){ intA = 0;}
