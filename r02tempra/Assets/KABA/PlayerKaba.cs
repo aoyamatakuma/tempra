@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerao : MonoBehaviour
 
+public class PlayerKaba : MonoBehaviour
 {
     //追加　小野
     public GameObject HaretuEffect;
@@ -39,12 +39,12 @@ public class playerao : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         Vector2 position = transform.localPosition;
-        if(h != 0)
+        if (h != 0)
         {
             position.x += h * speed * 0.1f;
         }
         transform.localPosition = position;
-       // rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
+        // rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
     }
     void Jump()//ジャンプ系
     {
@@ -60,9 +60,12 @@ public class playerao : MonoBehaviour
         //マウス入力で左クリックしたとき
         if (Input.GetButtonDown("B_BUTTON"))
         {
-            //BaburuPosition = transform.position;
-            //BaburuPosition.z = 10f;
-            Instantiate(foam,transform.position, Quaternion.identity);
+            BaburuPosition = transform.position;
+
+            BaburuPosition.z = 10f;
+
+            var parent = this.transform;
+            Instantiate(foam, transform.position, Quaternion.identity, parent);
         }
     }
     void OnCollisionEnter2D(Collision2D col)
