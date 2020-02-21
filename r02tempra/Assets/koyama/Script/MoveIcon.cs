@@ -6,29 +6,32 @@ using UnityEngine.UI;
 public class MoveIcon : MonoBehaviour
 {
     [SerializeField]
+    public CameraControl CameraCO;
     //アイコンが１秒間に何ピクセル移動するか
     private float iconSpeed = Screen.width;
 
     //アイコンのサイズを取得
-    private RectTransform rect;
+    private static RectTransform rect;
 
     //アイコンが画面内に収まる
-    private Vector2 Offset;
+    private static Vector2 Offset;
     
     //動くフラグ
-    private bool MoveFlag;
+    private static bool MoveFlag;
+
 
     Image Icon;
     // Start is called before the first frame update
     void Start()
     {
+     
         rect = GetComponent<RectTransform>();
         //アイコンのサイズの半分で設定
         Offset = new Vector2(rect.sizeDelta.x / 2f, rect.sizeDelta.y / 2f);
         
         //動かないように設定
-        MoveFlag = false;
-        Debug.Log(MoveFlag);
+        //MoveFlag = false;
+        //Debug.Log(MoveFlag);
 
         //アイコンを取得
         Icon = GameObject.Find("Canvas/Panel/Icon").GetComponent<Image>();
@@ -39,27 +42,29 @@ public class MoveIcon : MonoBehaviour
     void Update()
     {
         IconMove();
+     
     }
 
     //アイコンの操作
     public void IconMove()
     {
+        
         //アイコンの表示非表示のフラグ設定
-        if (Input.GetKeyDown("joystick button 2")&&MoveFlag== false)
+        if (Input.GetKeyDown("joystick button 2")&&CameraCO.isCameraPos1)
         {
-            MoveFlag =true;
+            //MoveFlag =true;
             Debug.Log(MoveFlag);
             Icon.enabled = true;
 
         }
-        else if (Input.GetKeyDown("joystick button 2")&&MoveFlag==true)
+        else if (Input.GetKeyDown("joystick button 2")&&CameraCO.isCameraPos2)
         {
-            MoveFlag = false;
+            //MoveFlag = false;
             Debug.Log(MoveFlag);
             Icon.enabled = false;
         }
 
-        if(MoveFlag==true)
+        if(CameraCO.isCameraPos2)
         {
             //移動キーが押されてなければ何もしない
             if (Mathf.Approximately(Input.GetAxis("Horizontal"), 0f) && Mathf.Approximately(Input.GetAxis("Vertical"), 0f))

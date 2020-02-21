@@ -8,8 +8,8 @@ public class CameraControl : MonoBehaviour
      public float speed = 7.0f;//切り替え速度
     //初期位置
     private static Vector3 basePosition;//メイン時のカメラ位置
-    private static bool isCameraPos1;
-    private static bool isCameraPos2;
+    public bool isCameraPos1;
+    public bool isCameraPos2;
     private static int intA;
     void Start()
     {
