@@ -4,9 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Stage
   - Abura
+<<<<<<< HEAD
   - Popcorn
   - Icon
+=======
+>>>>>>> 664b36fdecdefb8e3ecbebde439bb4bc6cb72bd2
   layers:
   - Default
   - TransparentFX
@@ -16,11 +20,11 @@ TagManager:
   - UI
   - 
   - 
-  - Stage
-  - Wall
-  - Popcorn
-  - Lake
-  - Seed
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

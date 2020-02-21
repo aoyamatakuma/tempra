@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class playerao : MonoBehaviour
 
 {
+    //追加　小野
+    public GameObject HaretuEffect;
+    //public GameObject HaretuEffect2;
+
 
     Rigidbody2D rigidPlayer;//物理演算
     public float jumpForce = 250.0f;//ジャンプの力
@@ -29,11 +33,17 @@ public class playerao : MonoBehaviour
     void Move()//移動系
     {
         float h = Input.GetAxis("Horizontal");
-        rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
+        Vector2 position = transform.localPosition;
+        if(h != 0)
+        {
+            position.x += h * speed * 0.1f;
+        }
+        transform.localPosition = position;
+       // rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
     }
     void Jump()//ジャンプ系
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpFlag == false)//ジャンプボタンを押してなおかつジャンプ中じゃないとき
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A_BUTTON") && jumpFlag == false)//ジャンプボタンを押してなおかつジャンプ中じゃないとき
         {
             //rigidPlayer.velocity = Vector2.zero;
             rigidPlayer.AddForce(Vector2.up * jumpForce);
@@ -57,6 +67,9 @@ public class playerao : MonoBehaviour
     void ModeChange()
     {
         sprite.color = new Color(0, 0, 0, 1);
+        //追加　小野
+        Instantiate(HaretuEffect, transform.position, transform.rotation);
+        //Instantiate(HaretuEffect2, transform.position, transform.rotation);
 
     }
 }
