@@ -52,14 +52,5 @@ public class CameraControl : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, move, speed * Time.deltaTime);
     }
 
-    public static bool IsCameraPos1()
-    {
-        return isCameraPos1;
-    }
-    public static bool IsCameraPos2()
-    {
-        return isCameraPos2;
-    }
-
 
 }

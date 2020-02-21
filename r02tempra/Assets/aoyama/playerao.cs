@@ -35,17 +35,7 @@ public class playerao : MonoBehaviour
         Baburu();
     }
 
-    void Move()//移動系
-    {
-        float h = Input.GetAxis("Horizontal");
-        Vector2 position = transform.localPosition;
-        if(h != 0)
-        {
-            position.x += h * speed * 0.1f;
-        }
-        transform.localPosition = position;
-       // rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
-    }
+   
     void Jump()//ジャンプ系
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A_BUTTON") && jumpFlag == false)//ジャンプボタンを押してなおかつジャンプ中じゃないとき
@@ -85,6 +75,21 @@ public class playerao : MonoBehaviour
         //追加　小野
         Instantiate(HaretuEffect, transform.position, transform.rotation);
         //Instantiate(HaretuEffect2, transform.position, transform.rotation);
+
+    }
+    void Move()//移動系
+    {
+        float h = Input.GetAxis("Horizontal");
+        rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
+        //Debug.Log(h);
+        if (Input.GetKey(KeyCode.LeftArrow) && transform.localScale.x > 0 || Input.GetKey(KeyCode.RightArrow) && transform.localScale.x < 0)
+        {
+            Vector2 pos = transform.localScale;
+            pos.x *= -1;
+            transform.localScale = pos;
+
+        }
+
 
     }
 }

@@ -206,7 +206,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e6b8f43a5f4ac042a0d0852ebc3e7f3, type: 2}
+  - {fileID: 2100000, guid: a751e20c37579fa438b2b74298ba5476, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -732,7 +732,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -791,6 +791,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  isCameraPos1: 0
+  isCameraPos2: 0
 --- !u!1001 &1708700674
 PrefabInstance:
   m_ObjectHideFlags: 0

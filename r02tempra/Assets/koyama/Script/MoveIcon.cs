@@ -50,21 +50,21 @@ public class MoveIcon : MonoBehaviour
     {
         
         //アイコンの表示非表示のフラグ設定
-        if (Input.GetKeyDown("joystick button 2")&&CameraCO.isCameraPos1)
+        if (Input.GetButtonDown("Y_BUTTON") &&CameraCO.isCameraPos2)
         {
             //MoveFlag =true;
             Debug.Log(MoveFlag);
             Icon.enabled = true;
 
         }
-        else if (Input.GetKeyDown("joystick button 2")&&CameraCO.isCameraPos2)
+        else if(Input.GetButtonDown("Y_BUTTON") &&CameraCO.isCameraPos2 == false)
         {
             //MoveFlag = false;
             Debug.Log(MoveFlag);
             Icon.enabled = false;
         }
 
-        if(CameraCO.isCameraPos2)
+        if(CameraCO.isCameraPos2 == false)
         {
             //移動キーが押されてなければ何もしない
             if (Mathf.Approximately(Input.GetAxis("Horizontal"), 0f) && Mathf.Approximately(Input.GetAxis("Vertical"), 0f))
