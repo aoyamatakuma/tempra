@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         sprite = gameObject.GetComponent<SpriteRenderer>();
-      
     }
 
 
