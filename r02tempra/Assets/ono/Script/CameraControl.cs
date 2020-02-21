@@ -11,6 +11,7 @@ public class CameraControl : MonoBehaviour
     public bool isCameraPos1;
     public bool isCameraPos2;
     private static int intA;
+   
     void Start()
     {
         isCameraPos1 = true;
@@ -32,7 +33,6 @@ public class CameraControl : MonoBehaviour
                 isCameraPos1 = true;
                 isCameraPos2 = false;
                 break;
-                //  こうだ先生変更
         }
 
         if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON"))
