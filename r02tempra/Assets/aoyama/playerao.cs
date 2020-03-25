@@ -20,12 +20,16 @@ public class playerao : MonoBehaviour
     public GameObject foam;
     //バブル座標
     private Vector3 BaburuPosition;
+
+    [HideInInspector]
+    public bool awaCreate;
     // Start is called before the first frame update
     void Start()
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
+        awaCreate = false;
     }
     // Update is called once per frame
     void Update()
@@ -50,6 +54,7 @@ public class playerao : MonoBehaviour
         //マウス入力で左クリックしたとき
         if (Input.GetButtonDown("B_BUTTON"))
         {
+            awaCreate = true;
             //BaburuPosition = transform.position;
             //BaburuPosition.z = 10f;
             Instantiate(foam,transform.position, Quaternion.identity);
