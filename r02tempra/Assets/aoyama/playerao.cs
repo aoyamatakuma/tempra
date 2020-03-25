@@ -20,6 +20,9 @@ public class playerao : MonoBehaviour
     public GameObject foam;
     //バブル座標
     private Vector3 BaburuPosition;
+    //泡生成回数（仮）
+    private float count = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +35,11 @@ public class playerao : MonoBehaviour
     {
         Move();
         Jump();
-        Baburu();
+
+        if (count < 10)
+        {
+            Baburu();
+        }
     }
 
    
@@ -53,6 +60,7 @@ public class playerao : MonoBehaviour
             //BaburuPosition = transform.position;
             //BaburuPosition.z = 10f;
             Instantiate(foam,transform.position, Quaternion.identity);
+            count++;
         }
     }
     void OnCollisionEnter2D(Collision2D col)
