@@ -8,10 +8,21 @@ public class awamove : MonoBehaviour
     public float range = 1f;//幅
     float speed = 0.04f;//はやさ
 
+    [SerializeField]
+    private GameObject explosionEffect;
+    
+    GameObject camera;
+    vibrationScript vib;
+
+    public float vibrationTime;
+    public float vibrationScale;
+
+
     // Start is called before the first frame update
     void Start()
     {
-
+        camera = GameObject.Find("Main Camera");
+        vib = camera.GetComponent<vibrationScript>();
     }
 
     // Update is called once per frame
@@ -24,5 +35,17 @@ public class awamove : MonoBehaviour
         angle += speed;
         transform.position = sin;
 
+        if (Input.GetKey(KeyCode.Q))
+        {
+            Explosion();
+        }
+
+    }
+
+    public void Explosion()
+    {
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+        vib.vibration(vibrationTime, vibrationScale);
     }
 }

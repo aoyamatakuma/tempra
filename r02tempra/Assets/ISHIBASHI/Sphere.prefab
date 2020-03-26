@@ -105,3 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0.01
+  explosionEffect: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
+    type: 3}
+  camera: {fileID: 0}
+  vib: {fileID: 0}
+  vibrationTime: 1
+  vibrationScale: 10
