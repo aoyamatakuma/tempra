@@ -55,7 +55,6 @@ public class MoveIcon : MonoBehaviour
             //MoveFlag =true;
             Debug.Log(MoveFlag);
             Icon.enabled = true;
-
         }
         else if(Input.GetButtonDown("Y_BUTTON") &&CameraCO.isCameraPos2 == false)
         {
@@ -72,7 +71,6 @@ public class MoveIcon : MonoBehaviour
                return;
             }
            
-
             //移動先を計算
             var pos = rect.anchoredPosition + new Vector2(Input.GetAxis("Horizontal") * iconSpeed, Input.GetAxis("Vertical") * iconSpeed) * Time.deltaTime;
 
@@ -83,8 +81,6 @@ public class MoveIcon : MonoBehaviour
             //　アイコン位置を設定
             rect.anchoredPosition = pos;
 
-           
-          
         }
     }
 }
