@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 114665893089825054}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,5 @@ MonoBehaviour:
   range: 0.01
   explosionEffect: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
     type: 3}
-  camera: {fileID: 0}
-  vib: {fileID: 0}
   vibrationTime: 1
   vibrationScale: 10

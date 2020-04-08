@@ -9,6 +9,8 @@ TagManager:
   - Stage
   - Icon
   - UIBox
+  - Border
+  - bubble
   layers:
   - Default
   - TransparentFX
