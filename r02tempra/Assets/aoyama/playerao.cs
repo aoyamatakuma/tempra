@@ -23,6 +23,10 @@ public class playerao : MonoBehaviour
 
     [HideInInspector]
     public bool awaCreate;
+
+    //泡の生成場所
+    GameObject stage;
+    [SerializeField] Transform stageParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +61,7 @@ public class playerao : MonoBehaviour
             awaCreate = true;
             //BaburuPosition = transform.position;
             //BaburuPosition.z = 10f;
-            Instantiate(foam,transform.position, Quaternion.identity);
+            stage = (GameObject)Instantiate(foam,transform.position, Quaternion.identity,stageParent);
         }
     }
     void OnCollisionEnter2D(Collision2D col)
