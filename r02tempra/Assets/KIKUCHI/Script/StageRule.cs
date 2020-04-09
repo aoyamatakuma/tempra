@@ -14,11 +14,19 @@ public class StageRule : MonoBehaviour
     public int current_bubble;
 
     
+    private Vector2 firstPos;
+    [SerializeField]
+    private Vector2 nextPos;
+
+    bool flyBool;
+    
     // Start is called before the first frame update
     void Start()
 
     {
-        
+        flyBool = false;
+        current_bubble = 0;
+        firstPos = transform.position;
     }
 
     // Update is called once per frame
@@ -26,6 +34,7 @@ public class StageRule : MonoBehaviour
     {
         BubbleCount();
         FlyRule();
+        FlyMove(nextPos);
     }
 
     //ステージ内のbubbleタグのついた子オブジェクトの数取得
@@ -58,11 +67,21 @@ public class StageRule : MonoBehaviour
     //浮く
     void FlyRule()
     {
-       if(limit_bubble <= current_bubble)
+      
+        if (limit_bubble <= current_bubble)
         {
-            Debug.Log("浮いたあああああああああああああああああ");
-            current_bubble = 0;
+            flyBool = true;
         }
 
+    }
+
+    void FlyMove(Vector2 nextPos)
+    {
+        if (!flyBool) return;
+        if (transform.position.y <= nextPos.y)
+        {
+            transform.position = Vector2.Lerp(transform.position, nextPos, Time.deltaTime * 1f);
+        }
+        current_bubble = 0;
     }
 }
