@@ -8,6 +8,14 @@ public class CameraControl : MonoBehaviour
      public float speed = 7.0f;//切り替え速度
     //初期位置
     private static Vector3 basePosition;//メイン時のカメラ位置
+    [SerializeField]
+    private float posY =-6;
+    [SerializeField]
+    private float posZ = 45;
+    [SerializeField]
+    Transform playerTrans;
+    [SerializeField]
+    Vector3 cameraVec;
     public bool isCameraPos1;
     public bool isCameraPos2;
     private static int intA;
@@ -30,6 +38,7 @@ public class CameraControl : MonoBehaviour
                 isCameraPos2 = true;
                 break;
             case 1:
+                basePosition = Vector3.Lerp(basePosition, playerTrans.position + cameraVec, 2.0f * Time.deltaTime);
                 isCameraPos1 = true;
                 isCameraPos2 = false;
                 break;
@@ -41,7 +50,7 @@ public class CameraControl : MonoBehaviour
             if(intA>=2){ intA = 0;}
         }
         if (isCameraPos1)
-            CameraLerp(new Vector3(transform.position.x, -6, -45));
+            CameraLerp(new Vector3(transform.position.x, posY, posZ));
         else if (isCameraPos2)
             CameraLerp(basePosition);
     }
