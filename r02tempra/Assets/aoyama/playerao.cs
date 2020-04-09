@@ -26,7 +26,7 @@ public class playerao : MonoBehaviour
 
     //泡の生成場所
     GameObject stage;
-    [SerializeField] Transform stageParent;
+    [SerializeField]Transform stageParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +76,13 @@ public class playerao : MonoBehaviour
         if (col.gameObject.CompareTag("Abura"))
         {
             ModeChange();
+        }
+
+        if (col.gameObject.CompareTag("Border"))
+        {
+            stageParent = col.gameObject.transform.root;
+
+            Debug.Log("うんち");
         }
     }
     void ModeChange()
