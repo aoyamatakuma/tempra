@@ -27,6 +27,7 @@ public class StageRule : MonoBehaviour
         flyBool = false;
         current_bubble = 0;
         firstPos = transform.position;
+        nextPos.x = transform.position.x;
     }
 
     // Update is called once per frame
