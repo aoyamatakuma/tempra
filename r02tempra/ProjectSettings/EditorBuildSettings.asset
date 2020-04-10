@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Master/MasterGame.unity
     guid: 8911fe0c7aeebde4c8cbcc6303932562
   - enabled: 0
     path: Assets/Master/MasterTitle.unity
     guid: fa6b78826cdef5d4ea4d553d1fa51118
+  - enabled: 1
+    path: Assets/koyama/Stage.unity
+    guid: c3b2d4ce71d3e1a47ab445c85412ac76
   m_configObjects: {}
