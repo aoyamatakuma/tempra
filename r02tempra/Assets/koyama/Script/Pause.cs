@@ -7,7 +7,7 @@ using UnityEngine;
 public class RigidbodyVelocity {
     public Vector3 velocity;
     public Vector3 angularVeloccity;
-    public RigidbodyVelocity(Rigidbody rigidbody) {
+    public RigidbodyVelocity (Rigidbody rigidbody) {
         velocity = rigidbody.velocity;
         angularVeloccity = rigidbody.angularVelocity;
     }
@@ -36,12 +36,18 @@ public class Pause : MonoBehaviour {
 
     void PauseandResumeCall () {
         // ポーズ状態が変更されていたら、Pause/Resumeを呼び出す。
-        if (prevPausing != pausing) {
-            if (pausing) Pausing ();
-            else Resume ();
-            prevPausing = pausing;
+        if (Input.GetKeyDown ("joystick button 7") && pausing == false) {
+            Debug.Log ("ウンコモラスメン");
+            pausing = true;
+            Pausing ();
+        } else if (Input.GetKeyDown ("joystick button 7") && pausing == true) {
+            Debug.Log ("ウンコモラサナイメン");
+            pausing = false;
+            Resume ();
         }
+
     }
+
     void Pausing () {
         //Rigidbodyの停止処理
         //IgnoreGameObjectsに含まれていないRigidbodyを抽出
@@ -60,6 +66,7 @@ public class Pause : MonoBehaviour {
         Predicate<MonoBehaviour> monoBehaviourPredicate = obj => obj.enabled && obj != this && Array.FindIndex (ignoreGameObjects, gameObject => gameObject == obj.gameObject) < 0;
         //FindAllで数字のみ取り出す
         pausingMonoBehaviours = Array.FindAll (transform.GetComponentsInChildren<MonoBehaviour> (), monoBehaviourPredicate);
+        //一つずつ変数を取り出して無効にしてる
         foreach (var monoBehaviour in pausingMonoBehaviours) {
             monoBehaviour.enabled = false;
         }
@@ -75,6 +82,7 @@ public class Pause : MonoBehaviour {
         }
 
         // MonoBehaviourの再開
+        //一つずつ変数を取り出して有効にしてる
         foreach (var monoBehaviour in pausingMonoBehaviours) {
             monoBehaviour.enabled = true;
         }
