@@ -81,7 +81,7 @@ public class playerao : MonoBehaviour
         if (col.gameObject.CompareTag("StageArea"))
         {
             stageParent = col.gameObject.transform.root;
-            transform.parent = col.gameObject.transform.root;
+           // transform.parent = col.gameObject.transform.root;
 
             Debug.Log("うんち");
         }
