@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Rigidbodyの速度を保存しておくクラス
 public class RigidbodyVelocity {
@@ -15,6 +16,9 @@ public class RigidbodyVelocity {
 
 public class Pause : MonoBehaviour {
 
+  [SerializeField]
+    public GameObject manuCanvas;
+ 
     //現在セーブ中か？
     public bool pausing;
 
@@ -29,6 +33,10 @@ public class Pause : MonoBehaviour {
     Rigidbody[] pausingRigidbodies;
     //ポーズ中のMonoBehaviourの配列
     MonoBehaviour[] pausingMonoBehaviours;
+   
+   void Start() {
+       
+   }
     // Update is called once per frame
     void Update () {
         PauseandResumeCall ();
@@ -40,10 +48,13 @@ public class Pause : MonoBehaviour {
             Debug.Log ("ウンコモラスメン");
             pausing = true;
             Pausing ();
+            manuCanvas.SetActive (true);
+            
         } else if (Input.GetKeyDown ("joystick button 7") && pausing == true) {
             Debug.Log ("ウンコモラサナイメン");
             pausing = false;
             Resume ();
+            manuCanvas.SetActive (false);
         }
 
     }
