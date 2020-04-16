@@ -20,10 +20,14 @@ public class playerao : MonoBehaviour
     public GameObject foam;
     //バブル座標
     private Vector3 BaburuPosition;
-
+    awamove awascript;
     [HideInInspector]
     public bool awaCreate;
-
+    //ムーブ
+    [SerializeField]
+    public CameraControl CameraCO;
+    
+    
     //泡の生成場所
     GameObject stage;
     [SerializeField]Transform stageParent;
@@ -32,6 +36,7 @@ public class playerao : MonoBehaviour
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
+        awascript = gameObject.GetComponent<awamove>();
         jumpFlag = false;
         awaCreate = false;
     }
@@ -41,6 +46,7 @@ public class playerao : MonoBehaviour
         Move();
         Jump();
         Baburu();
+        
     }
 
    
@@ -63,7 +69,9 @@ public class playerao : MonoBehaviour
             //BaburuPosition.z = 10f;
             stage = (GameObject)Instantiate(foam,transform.position, Quaternion.identity,stageParent);
         }
+      
     }
+   
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Stage"))
