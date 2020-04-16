@@ -8,8 +8,8 @@ public class StageRule : MonoBehaviour
     private playerao player;
 
     //ステージが浮く時の泡の数
-    [SerializeField]
-    private int limit_bubble =3;
+    
+    public int limit_bubble =3;
     //現在の泡の数
     public int current_bubble;
 
