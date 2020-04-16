@@ -62,6 +62,7 @@ public class StageRule : MonoBehaviour
             if(allChildren[i].tag == "bubble")
             {
                 countBubble++;
+                downBool = false;
                
             }
         }
