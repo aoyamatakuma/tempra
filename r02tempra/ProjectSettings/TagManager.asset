@@ -12,6 +12,7 @@ TagManager:
   - Border
   - bubble
   - StageArea
+  - Squares
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - 
   - 
   - BackGround
-  - 
+  - Squares
   - 
   - 
   - 
