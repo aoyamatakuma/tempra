@@ -43,10 +43,12 @@ public class playerao : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
-        Baburu();
-        
+        if (CameraCO.isCameraPos2)
+        {
+            Move();
+            Jump();
+            Baburu();
+        }
     }
 
    
