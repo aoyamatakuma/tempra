@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f1f85d2403cb24ab11c9bf42f58903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manuCanvas: {fileID: 0}
   pausing: 0
   ignoreGameObjects: []
 --- !u!4 &213407400
@@ -1031,6 +1032,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.0625
       objectReference: {fileID: 0}
+    - target: {fileID: 7092128720120749275, guid: d89295b0e690bf543ae541218db2d42c,
+        type: 3}
+      propertyPath: stageParent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092128720120749275, guid: d89295b0e690bf543ae541218db2d42c,
+        type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 3282508192513108413, guid: d89295b0e690bf543ae541218db2d42c, type: 3}
     - {fileID: 3282508192513108400, guid: d89295b0e690bf543ae541218db2d42c, type: 3}

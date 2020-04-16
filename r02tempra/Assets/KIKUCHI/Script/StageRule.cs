@@ -68,6 +68,7 @@ public class StageRule : MonoBehaviour
 
         if(countBubble == 0)
         {
+           
             downBool = true;
         }
         current_bubble = countBubble;
@@ -79,14 +80,15 @@ public class StageRule : MonoBehaviour
     {
       
         if (limit_bubble <= current_bubble)
-        {
-
+        { 
             flyBool = true;
         }
 
-        if(flyBool && downBool)
+        if( downBool)
         {
-            FlyMove(firstPos);
+            current_bubble = 0;
+            flyBool = false;
+            DownMove(firstPos);
         }
 
     }
@@ -94,11 +96,20 @@ public class StageRule : MonoBehaviour
     void FlyMove(Vector2 nextPos)
     {
         if (!flyBool) return;
-        if (transform.position.y <= nextPos.y)
+        if (transform.position.y <= nextPos.y && flyBool)
         {
             transform.position = Vector2.Lerp(transform.position, nextPos, Time.deltaTime * 1f);
         }
         
+    }
+
+    void DownMove(Vector2 nextPos)
+    {
+        if (!downBool) return;
+        if (transform.position.y >= nextPos.y && downBool)
+        {
+            transform.position = Vector2.Lerp(transform.position, nextPos, Time.deltaTime * 1f);
+        }
     }
 
 

@@ -10,6 +10,8 @@ public class playerao : MonoBehaviour
     public GameObject HaretuEffect;
     //public GameObject HaretuEffect2;
 
+ 
+
 
     Rigidbody2D rigidPlayer;//物理演算
     public float jumpForce = 250.0f;//ジャンプの力
@@ -63,6 +65,11 @@ public class playerao : MonoBehaviour
             //BaburuPosition.z = 10f;
             stage = (GameObject)Instantiate(foam,transform.position, Quaternion.identity,stageParent);
         }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            awaCreate = true;
+            
+        }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -81,9 +88,8 @@ public class playerao : MonoBehaviour
         if (col.gameObject.CompareTag("StageArea"))
         {
             stageParent = col.gameObject.transform.root;
-           // transform.parent = col.gameObject.transform.root;
+           transform.parent = col.gameObject.transform.root;
 
-            Debug.Log("うんち");
         }
     }
     void ModeChange()
@@ -109,4 +115,6 @@ public class playerao : MonoBehaviour
 
 
     }
+
+
 }
