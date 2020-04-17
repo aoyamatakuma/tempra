@@ -6,6 +6,7 @@ public class StageRule : MonoBehaviour
 {
     [SerializeField]
     private playerao player;
+   
 
     //ステージが浮く時の泡の数
     [SerializeField]

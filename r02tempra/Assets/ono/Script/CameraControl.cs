@@ -19,7 +19,10 @@ public class CameraControl : MonoBehaviour
     public bool isCameraPos1;
     public bool isCameraPos2;
     private static int intA;
-   
+
+    GameObject stage;
+    
+
     void Start()
     {
         isCameraPos1 = true;
@@ -38,7 +41,6 @@ public class CameraControl : MonoBehaviour
                 isCameraPos2 = true;
                 break;
             case 1:
-                basePosition = Vector3.Lerp(basePosition, playerTrans.position + cameraVec, 2.0f * Time.deltaTime);
                 isCameraPos1 = true;
                 isCameraPos2 = false;
                 break;
