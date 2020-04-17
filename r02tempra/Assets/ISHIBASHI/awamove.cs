@@ -10,13 +10,13 @@ public class awamove : MonoBehaviour
 
     [SerializeField]
     private GameObject explosionEffect;
-    
+
     GameObject camera;
     vibrationScript vib;
 
     public float vibrationTime;
     public float vibrationScale;
-
+   
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +35,12 @@ public class awamove : MonoBehaviour
         angle += speed;
         transform.position = sin;
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) || Input.GetButtonDown("X_BUTTON"))
         {
             Explosion();
         }
-
     }
+
 
     public void Explosion()
     {

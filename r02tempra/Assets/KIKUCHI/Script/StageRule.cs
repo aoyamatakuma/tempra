@@ -9,26 +9,30 @@ public class StageRule : MonoBehaviour
    
 
     //ステージが浮く時の泡の数
-    [SerializeField]
-    private int limit_bubble =3;
+    
+    public int limit_bubble =3;
     //現在の泡の数
     public int current_bubble;
 
     
     private Vector2 firstPos;
     [SerializeField]
-    private Vector2 nextPos;
+    private Vector2 up_position;
+ 
 
     bool flyBool;
+    bool downBool;
     
     // Start is called before the first frame update
     void Start()
 
     {
+        
         flyBool = false;
+        downBool = false;
         current_bubble = 0;
         firstPos = transform.position;
-        nextPos.x = transform.position.x;
+        up_position.x = transform.position.x;
     }
 
     // Update is called once per frame
@@ -36,7 +40,7 @@ public class StageRule : MonoBehaviour
     {
         BubbleCount();
         FlyRule();
-        FlyMove(nextPos);
+        FlyMove(up_position);
     }
 
     //ステージ内のbubbleタグのついた子オブジェクトの数取得
@@ -59,8 +63,15 @@ public class StageRule : MonoBehaviour
             if(allChildren[i].tag == "bubble")
             {
                 countBubble++;
+                downBool = false;
                
             }
+        }
+
+        if(countBubble == 0)
+        {
+           
+            downBool = true;
         }
         current_bubble = countBubble;
         player.awaCreate = false;
@@ -71,8 +82,15 @@ public class StageRule : MonoBehaviour
     {
       
         if (limit_bubble <= current_bubble)
-        {
+        { 
             flyBool = true;
+        }
+
+        if( downBool)
+        {
+            current_bubble = 0;
+            flyBool = false;
+            DownMove(firstPos);
         }
 
     }
@@ -80,10 +98,21 @@ public class StageRule : MonoBehaviour
     void FlyMove(Vector2 nextPos)
     {
         if (!flyBool) return;
-        if (transform.position.y <= nextPos.y)
+        if (transform.position.y <= nextPos.y && flyBool)
         {
             transform.position = Vector2.Lerp(transform.position, nextPos, Time.deltaTime * 1f);
         }
-        current_bubble = 0;
+        
     }
+
+    void DownMove(Vector2 nextPos)
+    {
+        if (!downBool) return;
+        if (transform.position.y >= nextPos.y && downBool)
+        {
+            transform.position = Vector2.Lerp(transform.position, nextPos, Time.deltaTime * 1f);
+        }
+    }
+
+
 }

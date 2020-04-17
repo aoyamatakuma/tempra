@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class playerao : MonoBehaviour
-
+public enum PlayerState
 {
+    Normal,
+    Division
+}
+
+public class PlayerMove : MonoBehaviour
+{
+    //現在の状態
+    private PlayerState currentPlayerState;
+
     //追加　小野
     public GameObject HaretuEffect;
     //public GameObject HaretuEffect2;
-
- 
 
 
     Rigidbody2D rigidPlayer;//物理演算
@@ -18,6 +23,7 @@ public class playerao : MonoBehaviour
     public float speed = 2.0f;//地上での移動速度
     bool jumpFlag;
     SpriteRenderer sprite;
+
     //生成するもの
     public GameObject foam;
     //バブル座標
@@ -28,7 +34,8 @@ public class playerao : MonoBehaviour
 
     //泡の生成場所
     GameObject stage;
-    [SerializeField]Transform stageParent;
+    [SerializeField] Transform stageParent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,16 +43,61 @@ public class playerao : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
         awaCreate = false;
+
+        SetCurrentState(PlayerState.Normal);
     }
+
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
-        Baburu();
+        OnPlayerStateChanged(currentPlayerState);
+        if(Input.GetButtonDown("Y_BUTTON"))
+        {
+            if (currentPlayerState != PlayerState.Normal)
+            {
+                SetCurrentState(PlayerState.Normal);
+            }
+            else if(currentPlayerState != PlayerState.Division)
+            {
+                SetCurrentState(PlayerState.Division);
+            }
+        }
     }
 
-   
+    // 状態が変わったら何をするか
+    void OnPlayerStateChanged(PlayerState state)
+    {
+        switch (state)
+        {
+            case PlayerState.Normal:
+                NormalMove();
+                break;
+            case PlayerState.Division:
+                DivisionMove();
+                break;
+            default:
+                break;
+        }
+    }
+
+    // 外からこのメソッドを使って状態を変更
+    public void SetCurrentState(PlayerState state)
+    {
+        currentPlayerState = state;
+        OnPlayerStateChanged(currentPlayerState);
+    }
+    void NormalMove()
+    {
+        Jump();
+        Baburu();
+        Move();
+    }
+
+    void DivisionMove()
+    {
+
+    }
+
     void Jump()//ジャンプ系
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A_BUTTON") && jumpFlag == false)//ジャンプボタンを押してなおかつジャンプ中じゃないとき
@@ -63,42 +115,8 @@ public class playerao : MonoBehaviour
             awaCreate = true;
             //BaburuPosition = transform.position;
             //BaburuPosition.z = 10f;
-            stage = (GameObject)Instantiate(foam,transform.position, Quaternion.identity,stageParent);
+            stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity, stageParent);
         }
-        if (Input.GetButtonDown("X_BUTTON"))
-        {
-            awaCreate = true;
-            
-        }
-    }
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Stage"))
-        {
-            jumpFlag = false;
-        }
-    }
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Abura"))
-        {
-            ModeChange();
-        }
-
-        if (col.gameObject.CompareTag("StageArea"))
-        {
-            stageParent = col.gameObject.transform.root;
-           transform.parent = col.gameObject.transform.root;
-
-        }
-    }
-    void ModeChange()
-    {
-        sprite.color = new Color(0, 0, 0, 1);
-        //追加　小野
-        Instantiate(HaretuEffect, transform.position, transform.rotation);
-        //Instantiate(HaretuEffect2, transform.position, transform.rotation);
-
     }
     void Move()//移動系
     {
@@ -116,5 +134,21 @@ public class playerao : MonoBehaviour
 
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Stage"))
+        {
+            jumpFlag = false;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("StageArea"))
+        {
+            stageParent = col.gameObject.transform.root;
+            // transform.parent = col.gameObject.transform.root;
 
+            Debug.Log("うんち");
+        }
+    }
 }

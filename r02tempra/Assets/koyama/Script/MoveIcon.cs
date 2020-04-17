@@ -79,6 +79,7 @@ public class MoveIcon : MonoBehaviour {
 
             //アイコン位置を設定
             rect.anchoredPosition = pos;
+            
             Teleport ();
 
         }
@@ -87,25 +88,28 @@ public class MoveIcon : MonoBehaviour {
     //プレイヤーテレポート
     public void Teleport () {
         //Bボタンを押したときに発動
-        //if (Input.GetButtonDown ("B_BUTTON")) {
+        if (Input.GetButtonDown ("B_BUTTON")) {
         //Iconの位置を取得する
         var IconPos = GameObject.Find ("Icon").transform.position;
+        IconPos.z=0;
         //アイコンの位置にプレイヤーの位置を移動させる
         m_Player.transform.position = IconPos;
-        //Debug.Log (m_Player.transform.position);
+        Debug.Log (m_Player.transform.position);
+        
+        
 
-        //}
+        }
     }
 
     //枠内での当たり判定
-    public void OnCollisionStay2D (Collision2D collision) {
-        if (collision.gameObject.tag == "UIBox") {
-            Debug.Log ("当たった");
-            if (Input.GetButtonDown ("B_BUTTON")) {
-                Teleport ();
-                Debug.Log ("移動");
-            }
-        }
-    }
+    //public void OnCollisionStay2D (Collision2D collision) {
+        //if (collision.gameObject.tag == "UIBox") {
+           // Debug.Log ("当たった");
+            //if (Input.GetButtonDown ("B_BUTTON")) {
+              //  Teleport ();
+               // Debug.Log ("移動");
+           // }
+       // }
+  //  }
 
 }

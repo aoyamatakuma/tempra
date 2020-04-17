@@ -11,9 +11,14 @@ public class CameraControl : MonoBehaviour
     [SerializeField]
     private float posY =-6;
     [SerializeField]
-    private float posZ = 45;
+    private float posZ = -90;
+
     [SerializeField]
     Transform playerTrans;
+
+    [SerializeField]
+    private Vector3 offset= new Vector3(0,2,0);
+
     [SerializeField]
     Vector3 cameraVec;
     public bool isCameraPos1;
@@ -27,7 +32,7 @@ public class CameraControl : MonoBehaviour
     {
         isCameraPos1 = true;
         isCameraPos2 = false; 
-        basePosition = transform.position;
+        basePosition = playerTrans.position;
         intA = 0;
     }
 
@@ -49,18 +54,25 @@ public class CameraControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON"))
         {
             intA++;
-            if(intA>=2){ intA = 0;}
+            if (intA >= 2) { intA = 0; }
         }
         if (isCameraPos1)
+        {
             CameraLerp(new Vector3(transform.position.x, posY, posZ));
+        }
+            
         else if (isCameraPos2)
-            CameraLerp(basePosition);
+        {
+           
+            CameraLerp(new Vector3(playerTrans.position.x, playerTrans.position.y + offset.y, -11));
+        }
     }
 
     //カメラが動く処理
     void CameraLerp(Vector3 move)
     {
-        transform.position = Vector3.Lerp(transform.position, move, speed * Time.deltaTime);
+        // transform.position = Vector3.Lerp(transform.position, move, speed * Time.deltaTime);
+        transform.position = move;
     }
 
 
