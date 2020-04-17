@@ -65,7 +65,7 @@ public class playerao : MonoBehaviour
             //BaburuPosition.z = 10f;
             stage = (GameObject)Instantiate(foam,transform.position, Quaternion.identity,stageParent);
         }
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetButtonDown("X_BUTTON"))
         {
             awaCreate = true;
             
