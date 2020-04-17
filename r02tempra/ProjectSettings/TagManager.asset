@@ -13,6 +13,7 @@ TagManager:
   - bubble
   - StageArea
   - Squares
+  - PlayerHead
   layers:
   - Default
   - TransparentFX

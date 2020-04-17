@@ -5,7 +5,8 @@ using UnityEngine;
 public enum PlayerState
 {
     Normal,
-    Division
+    Division,
+    Head
 }
 
 public class PlayerMove : MonoBehaviour
@@ -36,6 +37,10 @@ public class PlayerMove : MonoBehaviour
     GameObject stage;
     [SerializeField] Transform stageParent;
 
+    //プレイヤーの子取得
+    [SerializeField] private Transform _playerHead;
+    CircleCollider2D playerHeadCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +56,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         OnPlayerStateChanged(currentPlayerState);
-        if(Input.GetButtonDown("Y_BUTTON"))
+        if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head)
         {
             if (currentPlayerState != PlayerState.Normal)
             {
@@ -75,6 +80,9 @@ public class PlayerMove : MonoBehaviour
             case PlayerState.Division:
                 DivisionMove();
                 break;
+            case PlayerState.Head:
+                HeadMove();
+                break;
             default:
                 break;
         }
@@ -86,6 +94,8 @@ public class PlayerMove : MonoBehaviour
         currentPlayerState = state;
         OnPlayerStateChanged(currentPlayerState);
     }
+
+    //通常状態の処理
     void NormalMove()
     {
         Jump();
@@ -93,9 +103,25 @@ public class PlayerMove : MonoBehaviour
         Move();
     }
 
+    //ズームアウト時の処理
     void DivisionMove()
     {
+        if (Input.GetButtonDown("X_BUTTON"))
+        {
+            SetCurrentState(PlayerState.Head);
+            _playerHead.gameObject.AddComponent<Rigidbody2D>();
+            playerHeadCollider = _playerHead.GetComponent<CircleCollider2D>();
+            playerHeadCollider.enabled = true;
+        }
+    }
 
+    //分裂後の頭？のみの処理予定
+    void HeadMove()
+    {
+        if (Input.GetButtonDown("Y_BUTTON"))
+        {
+            SetCurrentState(PlayerState.Division);
+        }
     }
 
     void Jump()//ジャンプ系
