@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8176581596981492175}
   - component: {fileID: 8176581596981492172}
   - component: {fileID: 114665893089825054}
+  - component: {fileID: 114842132120052256}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: bubble
@@ -109,3 +110,15 @@ MonoBehaviour:
     type: 3}
   vibrationTime: 1
   vibrationScale: 10
+--- !u!114 &114842132120052256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176581596981492173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43da635ffff6e6346b5a2f0084211734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
