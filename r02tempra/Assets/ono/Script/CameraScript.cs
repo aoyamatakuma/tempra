@@ -15,6 +15,8 @@ public class CameraScript : MonoBehaviour
     }
     void LateUpdate()
     {
+
+
         cameraTrans.position = Vector3.Lerp(cameraTrans.position, playerTrans.position + cameraVec, 2.0f * Time.deltaTime);
     }
 }

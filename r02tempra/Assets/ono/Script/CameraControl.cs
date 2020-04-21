@@ -24,7 +24,10 @@ public class CameraControl : MonoBehaviour
     public bool isCameraPos1;
     public bool isCameraPos2;
     private static int intA;
-   
+
+    GameObject stage;
+    
+
     void Start()
     {
         isCameraPos1 = true;
