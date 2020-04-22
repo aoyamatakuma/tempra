@@ -18,16 +18,16 @@ public class StageRule : MonoBehaviour
     private Vector2 firstPos;
     [SerializeField]
     private Vector2 up_position;
- 
 
     bool flyBool;
     bool downBool;
-    
+
+
     // Start is called before the first frame update
     void Start()
 
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<playerao>();
         flyBool = false;
         downBool = false;
         current_bubble = 0;
@@ -47,20 +47,24 @@ public class StageRule : MonoBehaviour
     void BubbleCount()
     {
         if (!player.awaCreate) return;
+
+
         List<GameObject> allChildren = new List<GameObject>();
         GameObject child;
         int countBubble = 0;
+        
        
-     
-        for(int i=0;i< gameObject.transform.childCount; i++)
+        for(int i=0;i< transform.childCount; i++)
         {
-            child = gameObject.transform.GetChild(i).gameObject;
+            child = transform.GetChild(i).gameObject;
             allChildren.Add(child);
+           
         }
+        Debug.Log(transform);
         
         for(int i = 0; i < allChildren.Count; i++)
         {
-            if(allChildren[i].tag == "bubble")
+            if (allChildren[i].tag == "bubble")
             {
                 countBubble++;
                 downBool = false;
@@ -73,6 +77,7 @@ public class StageRule : MonoBehaviour
            
             downBool = true;
         }
+        
         current_bubble = countBubble;
         player.awaCreate = false;
     }

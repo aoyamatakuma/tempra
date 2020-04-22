@@ -1,49 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class StageCreate : MonoBehaviour
 {
-    public enum eStageState
-    {
-        EMPTY,
-        STAGE
-    };
+    public StageData stageData;
+ 
+    private  int width;//盤上の行
+    private  int height;//盤上の列
+    [SerializeField] 
+    private float magnification = 36;
+    private int[,]posStage;
+    Dictionary<int, GameObject> stageObject = new Dictionary<int, GameObject>();
 
-    public GameObject Squares;
-    [SerializeField]
-    private  int width = 8;//盤上の行
-    [SerializeField]
-    private  int height = 8;//盤上の列
-    private float magnification;
-   // private int[][] posStage = new int[][];
 
     void Awake()
     {
-        SquaresCreate();
-    }
-    void Start()
-    {
-        
-    }
 
-    void Update()
-    {
-
-    }
-
-
-    void SquaresCreate()
-    {
-        for(int i = 0; i < width; i++)
+        width = stageData.Xmax;
+        height = stageData.Ymax;
+        posStage = new int[3,3];
+        for(int i = 0; i < height; i++)
         {
-            for(int j = 0; j < height; j++)
+            for(int j = 0; j < width; j++)
             {
-                GameObject.Instantiate(Squares);
-                magnification = Squares.transform.localScale.x;
-                Squares.transform.position = new Vector3(i * magnification, j * magnification,0);
+                posStage[i,j] = 0;
             }
         }
+        for(int i = 0; i < stageData.StageObjList.Count; i++)
+        {
+            stageObject.Add(i + 1, stageData.StageObjList[i]);
+        }
+
+        ArraryNum(2,2,2);
+        ArraryNum(1, 0, 1);
+        ArraryNum(0, 0, 1);
+        
+        Create();
+    }
+    void Update()
+    {
+       
+    }
+
+
+    void Create()
+    {
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                if(posStage[i,j] != 0)
+                {
+                    Instantiate(stageObject[posStage[i,j]]);
+                    stageObject[posStage[i, j]].transform.position = new Vector3(j * magnification, i*magnification, 0);
+
+                }
+            }
+        }
+    }
+
+    void ArraryNum(int x,int y,int value)
+    {
+        posStage[y, x] = value;
     }
 
 
