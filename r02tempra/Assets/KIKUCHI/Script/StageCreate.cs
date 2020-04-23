@@ -33,7 +33,7 @@ public class StageCreate : MonoBehaviour
             stageObject.Add(i + 1, stageData.StageObjList[i]);
         }
 
-        ArraryNum(2,2,2);
+        ArraryNum(2, 2, 2);
         ArraryNum(1, 0, 1);
         ArraryNum(0, 0, 1);
         
