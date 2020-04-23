@@ -25,7 +25,11 @@ TagManager:
   - 
   - BackGround
   - Squares
+<<<<<<< HEAD
   - UI GameObject
+=======
+  - Stage
+>>>>>>> origin/koyama
   - 
   - 
   - 
