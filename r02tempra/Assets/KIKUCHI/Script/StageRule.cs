@@ -76,14 +76,14 @@ public class StageRule : MonoBehaviour
             }
         }
 
-        if(countBubble == 0)
+        if(countBubble < limit_bubble)
         {
            
             downBool = true;
         }
         
         current_bubble = countBubble;
-        player.awaCreate = false;
+       // player.awaCreate = false;
     }
 
     //浮く
@@ -97,7 +97,6 @@ public class StageRule : MonoBehaviour
 
         if( downBool)
         {
-            current_bubble = 0;
             flyBool = false;
             DownMove(firstPos);
         }
