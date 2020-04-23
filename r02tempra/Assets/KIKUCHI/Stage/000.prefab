@@ -812,7 +812,9 @@ MonoBehaviour:
   player: {fileID: 0}
   limit_bubble: 3
   current_bubble: 0
-  up_position: {x: 0, y: 0}
+  up_position: {x: 0, y: 72}
+  flyBool: 0
+  downBool: 0
 --- !u!1 &941142824065718408
 GameObject:
   m_ObjectHideFlags: 0

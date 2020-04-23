@@ -33,9 +33,16 @@ public class CameraControl : MonoBehaviour
         isCameraPos1 = true;
         isCameraPos2 = false; 
         basePosition = playerTrans.position;
+        //   intA = 0;
+        //始まったらズームアウト
+        intA = 1;
+        Invoke("Time", 2f);
+    }
+    //始まったらズームアウト
+    void Time()
+    {
         intA = 0;
     }
-
     // Update is called once per frame
     void Update()
     {

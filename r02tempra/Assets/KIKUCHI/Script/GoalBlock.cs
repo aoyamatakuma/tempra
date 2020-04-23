@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GoalBlock : MonoBehaviour
 {
     void Start()
@@ -16,6 +16,7 @@ public class GoalBlock : MonoBehaviour
         if (col.gameObject.tag =="Player")
         {
             Debug.Log("GOAL!!!!!");
+            //SceneManager.LoadScene("");
         }
     }
 }

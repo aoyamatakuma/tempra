@@ -19,9 +19,9 @@ public class StageRule : MonoBehaviour
     [SerializeField]
     private Vector2 up_position;
 
-    bool flyBool;
-    bool downBool;
-
+  public   bool flyBool;
+   public  bool downBool;
+ //   public bool playerbool;
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +46,12 @@ public class StageRule : MonoBehaviour
     //ステージ内のbubbleタグのついた子オブジェクトの数取得
     void BubbleCount()
     {
-        if (!player.awaCreate) return;
+      //  if (!player.awaCreate) return;
 
+        //if(player = GameObject.FindGameObjectWithTag("Player").GetComponent<playerao>())
+        //{
+        //    playerbool = true;
+        //}
 
         List<GameObject> allChildren = new List<GameObject>();
         GameObject child;
