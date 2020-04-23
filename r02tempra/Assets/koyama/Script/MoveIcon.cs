@@ -18,6 +18,8 @@ public class MoveIcon : MonoBehaviour {
 
     //動くフラグ
     private static bool MoveFlag;
+    //瞬間移動フラグ
+    private static bool TeleportFlag;
     //アイコン取得
     Image Icon;
     // Start is called before the first frame update
@@ -30,13 +32,13 @@ public class MoveIcon : MonoBehaviour {
         //動かないように設定
         //MoveFlag = false;
         //Debug.Log(MoveFlag);
+        TeleportFlag=false;
 
         //アイコンを取得
         Icon = GameObject.Find ("Canvas/Panel/Icon").GetComponent<Image> ();
         Icon.enabled = false;
 
-        //プレイヤーを取得
-        m_Player = GameObject.Find ("Player");
+        
     }
 
     // Update is called once per frame
@@ -44,6 +46,25 @@ public class MoveIcon : MonoBehaviour {
         IconMove ();
 
     }
+      //枠内での当たり判定
+    void OnTriggerEnter2D (Collider2D collider) {
+    if (collider.gameObject.tag == "StageArea") {
+        TeleportFlag=true;
+             Debug.Log("atari");
+             Debug.Log(TeleportFlag);
+           
+        }
+    }
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "StageArea") {
+        TeleportFlag=false;
+             Debug.Log("No");
+             Debug.Log(TeleportFlag);
+           
+        }
+    }
+    
 
     //アイコンの操作
     public void IconMove () {
@@ -80,7 +101,10 @@ public class MoveIcon : MonoBehaviour {
             //アイコン位置を設定
             rect.anchoredPosition = pos;
             
-            Teleport ();
+            if (Input.GetButtonDown ("B_BUTTON")&&TeleportFlag) {
+                Teleport ();
+                 Debug.Log("テレポート");
+            }
 
         }
     }
@@ -94,22 +118,13 @@ public class MoveIcon : MonoBehaviour {
         IconPos.z=0;
         //アイコンの位置にプレイヤーの位置を移動させる
         m_Player.transform.position = IconPos;
-        Debug.Log (m_Player.transform.position);
+        //Debug.Log (m_Player.transform.position);
         
         
 
         }
     }
 
-    //枠内での当たり判定
-    //public void OnCollisionStay2D (Collision2D collision) {
-        //if (collision.gameObject.tag == "UIBox") {
-           // Debug.Log ("当たった");
-            //if (Input.GetButtonDown ("B_BUTTON")) {
-              //  Teleport ();
-               // Debug.Log ("移動");
-           // }
-       // }
-  //  }
+  
 
 }
