@@ -36,7 +36,7 @@ public class MoveIcon : MonoBehaviour {
         Icon.enabled = false;
 
         //プレイヤーを取得
-        m_Player = GameObject.Find ("Player");
+        //m_Player = GameObject.Find ("Player");
     }
 
     // Update is called once per frame

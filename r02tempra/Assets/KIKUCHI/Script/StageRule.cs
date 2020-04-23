@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class StageRule : MonoBehaviour
 {
+    //[SerializeField]
+    //private playerao player;
+
     [SerializeField]
-    private playerao player;
+    private PlayerMove player;
 
     //ステージが浮く時の泡の数
-    
+
     public int limit_bubble =3;
     //現在の泡の数
     public int current_bubble;
