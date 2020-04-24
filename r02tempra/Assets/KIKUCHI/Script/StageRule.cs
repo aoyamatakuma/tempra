@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class StageRule : MonoBehaviour
 {
+    //[SerializeField]
+    //private playerao player;
+
     [SerializeField]
+<<<<<<< HEAD
     private playerao player;
    
+=======
+    private PlayerMove player;
+>>>>>>> origin/ishibashi
 
     //ステージが浮く時の泡の数
-    
+
     public int limit_bubble =3;
     //現在の泡の数
     public int current_bubble;
@@ -76,14 +83,14 @@ public class StageRule : MonoBehaviour
             }
         }
 
-        if(countBubble == 0)
+        if(countBubble < limit_bubble)
         {
            
             downBool = true;
         }
         
         current_bubble = countBubble;
-        player.awaCreate = false;
+       // player.awaCreate = false;
     }
 
     //浮く
@@ -97,7 +104,6 @@ public class StageRule : MonoBehaviour
 
         if( downBool)
         {
-            current_bubble = 0;
             flyBool = false;
             DownMove(firstPos);
         }
