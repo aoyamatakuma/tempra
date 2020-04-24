@@ -20,6 +20,7 @@ public class StageCreate : MonoBehaviour
 
         width = stageData.Xmax;
         height = stageData.Ymax;
+      
         posStage = new int[3,3];
         for(int i = 0; i < height; i++)
         {
@@ -32,10 +33,8 @@ public class StageCreate : MonoBehaviour
         {
             stageObject.Add(i + 1, stageData.StageObjList[i]);
         }
-
-        ArraryNum(2, 2, 2);
-        ArraryNum(1, 0, 1);
-        ArraryNum(0, 0, 1);
+        //ステージ管理
+        Arrrayswitch();
         
         Create();
     }
@@ -60,7 +59,28 @@ public class StageCreate : MonoBehaviour
             }
         }
     }
-
+    void Arrrayswitch()
+    {
+        string stageName;
+        stageName = stageData.name;
+        //ステージ管理
+        switch (stageName)
+        {
+            //名前が「Sphere」のとき
+            case "stage1":
+                ArraryNum(2, 2, 2);
+                ArraryNum(1, 0, 1);
+                ArraryNum(0, 0, 1);
+                //break文
+                break;
+            case "stage2":
+                ArraryNum(2, 2, 1);
+                ArraryNum(1, 0, 1);
+                ArraryNum(0, 0, 1);
+                //break文
+                break;
+        }
+    }
     void ArraryNum(int x,int y,int value)
     {
         posStage[y, x] = value;

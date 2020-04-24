@@ -4,16 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Goal
-  - Abura
-  - Stage
-  - Icon
-  - UIBox
-  - Border
   - bubble
   - StageArea
-  - Squares
-  - PlayerHead
+  - Border
+  - Stage
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -23,13 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - BackGround
-  - Squares
-<<<<<<< HEAD
-  - UI GameObject
-=======
-  - Stage
->>>>>>> origin/koyama
+  - 
+  - 
+  - 
   - 
   - 
   - 
