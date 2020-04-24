@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerHeadMove : MonoBehaviour
 {
-    bool playerHitFlag;
     public float speed;
     Rigidbody2D rigidPlayer;
     CircleCollider2D playerHeadCollider;
@@ -14,7 +13,6 @@ public class PlayerHeadMove : MonoBehaviour
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         playerHeadCollider = GetComponent<CircleCollider2D>();
-        playerHitFlag = false;
     }
 
     // Update is called once per frame
@@ -39,11 +37,10 @@ public class PlayerHeadMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("StageArea") && playerHitFlag == false)
+        if (col.gameObject.CompareTag("StageArea"))
         {
             stageParent = col.gameObject.transform.root;
             transform.parent = stageParent;
-            playerHitFlag = true;
         }
     }
 
@@ -53,7 +50,7 @@ public class PlayerHeadMove : MonoBehaviour
         {
             rigidPlayer.simulated = false;
             playerHeadCollider.enabled = false;
-            transform.parent = GameObject.Find("Player").transform;
+            transform.parent = GameObject.Find("Player1").transform.parent;
             GetComponent<PlayerHeadMove>().enabled = false;
         }
     }

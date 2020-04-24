@@ -41,16 +41,8 @@ public class MoveIcon : MonoBehaviour {
         //アイコンを取得
         Icon = GameObject.Find ("Canvas/Panel/Icon").GetComponent<Image> ();
         Icon.enabled = false;
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-=======
->>>>>>> origin/koyama
-        
-=======
         //プレイヤーを取得
         //m_Player = GameObject.Find ("Player");
->>>>>>> origin/ishibashi
     }
 
     // Update is called once per frame
