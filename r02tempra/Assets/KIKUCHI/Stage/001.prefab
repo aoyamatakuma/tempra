@@ -496,6 +496,8 @@ MonoBehaviour:
   limit_bubble: 3
   current_bubble: 0
   up_position: {x: 0, y: 0}
+  flyBool: 0
+  downBool: 0
 --- !u!1 &7351110584580813220
 GameObject:
   m_ObjectHideFlags: 0

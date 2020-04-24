@@ -10,6 +10,7 @@ using UnityEngine;
 public class StageData : ScriptableObject
 {
     public List<GameObject> StageObjList = new List<GameObject>();
+    public int Number_S;
     public int Xmax;
     public int Ymax;
 }
