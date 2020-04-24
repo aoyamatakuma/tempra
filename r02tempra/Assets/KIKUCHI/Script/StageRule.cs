@@ -8,12 +8,7 @@ public class StageRule : MonoBehaviour
     //private playerao player;
 
     [SerializeField]
-<<<<<<< HEAD
-    private playerao player;
-   
-=======
     private PlayerMove player;
->>>>>>> origin/ishibashi
 
     //ステージが浮く時の泡の数
 
@@ -34,7 +29,7 @@ public class StageRule : MonoBehaviour
     void Start()
 
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<playerao>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
         flyBool = false;
         downBool = false;
         current_bubble = 0;
