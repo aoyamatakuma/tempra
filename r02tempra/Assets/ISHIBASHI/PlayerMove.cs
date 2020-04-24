@@ -40,6 +40,12 @@ public class PlayerMove : MonoBehaviour
     //プレイヤーの子取得
     [SerializeField] private Transform _playerHead;
     CircleCollider2D playerHeadCollider;
+    Rigidbody2D playerHeadRigidbody;
+    [SerializeField]
+    private PlayerHeadMove playerHead;
+
+    //分裂体の初期値保管
+    public Vector3 headPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +54,11 @@ public class PlayerMove : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
         awaCreate = false;
+
+        playerHeadCollider = _playerHead.GetComponent<CircleCollider2D>();
+        playerHead = _playerHead.GetComponent<PlayerHeadMove>();
+        playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
+        headPosition = _playerHead.transform.localPosition;
 
         SetCurrentState(PlayerState.Normal);
     }
@@ -106,22 +117,22 @@ public class PlayerMove : MonoBehaviour
     //ズームアウト時の処理
     void DivisionMove()
     {
-        if (Input.GetButtonDown("X_BUTTON"))
+        if (Input.GetButtonDown("B_BUTTON"))
         {
             SetCurrentState(PlayerState.Head);
-            _playerHead.gameObject.AddComponent<Rigidbody2D>();
-            playerHeadCollider = _playerHead.GetComponent<CircleCollider2D>();
             playerHeadCollider.enabled = true;
+            playerHeadRigidbody.simulated = true;
+            playerHead.enabled = true;
         }
     }
 
     //分裂後の頭？のみの処理予定
     void HeadMove()
     {
-        if (Input.GetButtonDown("Y_BUTTON"))
-        {
-            SetCurrentState(PlayerState.Division);
-        }
+        //if (Input.GetButtonDown("Y_BUTTON"))
+        //{
+        //    SetCurrentState(PlayerState.Division);
+        //}
     }
 
     void Jump()//ジャンプ系
@@ -166,15 +177,19 @@ public class PlayerMove : MonoBehaviour
         {
             jumpFlag = false;
         }
+
+        if(col.gameObject.CompareTag("PlayerHead"))
+        {
+            SetCurrentState(PlayerState.Division);
+            _playerHead.transform.localPosition = headPosition;
+        }
     }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("StageArea"))
         {
             stageParent = col.gameObject.transform.root;
-            // transform.parent = col.gameObject.transform.root;
-
-            Debug.Log("うんち");
+            transform.parent = col.gameObject.transform.root;
         }
     }
 }

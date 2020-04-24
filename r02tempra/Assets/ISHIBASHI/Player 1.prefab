@@ -16,6 +16,41 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.099999994
+--- !u!50 &698046305
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050363881399709337}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &698046300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050363881399709337}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848568cc079b6c643947b64653d8e7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
+  stageParent: {fileID: 0}
 --- !u!1 &4050363881878584438
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +63,6 @@ GameObject:
   - component: {fileID: 4050363881878584440}
   - component: {fileID: 4050363881878584443}
   - component: {fileID: 1565009333761543775}
-  - component: {fileID: 1565009333761543761}
   - component: {fileID: 5325986166927985321}
   - component: {fileID: 8091774443052228108}
   m_Layer: 0
@@ -138,25 +172,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1565009333761543761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4050363881878584438}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f683563a28e59d24483d0836ff80fe0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HaretuEffect: {fileID: 1856004530783780, guid: 6964cb021b639c144971c274a0dedd33,
-    type: 3}
-  jumpForce: 1000
-  speed: 8
-  foam: {fileID: 8176581596981492173, guid: 24b839b193a39444e930b191bb49cbb9, type: 3}
-  awaCreate: 0
-  stageParent: {fileID: 0}
 --- !u!114 &5325986166927985321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +192,8 @@ MonoBehaviour:
   awaCreate: 0
   stageParent: {fileID: 0}
   _playerHead: {fileID: 4050363881399709334}
+  playerHead: {fileID: 0}
+  headPosition: {x: 0, y: 0, z: 0}
 --- !u!70 &8091774443052228108
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -288,6 +305,8 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6757103911227962898, guid: ad20d608ac272404f8590f9472202215, type: 3}
     - {fileID: 8091774442576004150, guid: ad20d608ac272404f8590f9472202215, type: 3}
+    - {fileID: 6757103911227962908, guid: ad20d608ac272404f8590f9472202215, type: 3}
+    - {fileID: 114768901484655332, guid: ad20d608ac272404f8590f9472202215, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ad20d608ac272404f8590f9472202215, type: 3}
 --- !u!1 &4050363881399709337 stripped
 GameObject:
