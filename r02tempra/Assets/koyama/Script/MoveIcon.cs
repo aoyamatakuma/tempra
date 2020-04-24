@@ -7,6 +7,8 @@ public class MoveIcon : MonoBehaviour {
     [SerializeField]
     public CameraControl CameraCO;
     public GameObject m_Player;
+    //テキスト取得
+    public Text text;
     //アイコンが１秒間に何ピクセル移動するか
     private float iconSpeed = Screen.width;
 
@@ -20,6 +22,7 @@ public class MoveIcon : MonoBehaviour {
     private static bool MoveFlag;
     //瞬間移動フラグ
     private static bool TeleportFlag;
+    
     //アイコン取得
     Image Icon;
     // Start is called before the first frame update
@@ -33,12 +36,16 @@ public class MoveIcon : MonoBehaviour {
         //MoveFlag = false;
         //Debug.Log(MoveFlag);
         TeleportFlag=false;
-
+        //テキスト非表示
+        text.enabled=false;
         //アイコンを取得
         Icon = GameObject.Find ("Canvas/Panel/Icon").GetComponent<Image> ();
         Icon.enabled = false;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
+=======
+>>>>>>> origin/koyama
         
 =======
         //プレイヤーを取得
@@ -55,6 +62,8 @@ public class MoveIcon : MonoBehaviour {
     void OnTriggerEnter2D (Collider2D collider) {
     if (collider.gameObject.tag == "StageArea") {
         TeleportFlag=true;
+        text.enabled=true;
+        text.text="テレポート可能";
              Debug.Log("atari");
              Debug.Log(TeleportFlag);
            
@@ -64,8 +73,11 @@ public class MoveIcon : MonoBehaviour {
     {
         if (collider.gameObject.tag == "StageArea") {
         TeleportFlag=false;
+        text.enabled=true;
+        text.text="テレポート不可能";
              Debug.Log("No");
              Debug.Log(TeleportFlag);
+
            
         }
     }
