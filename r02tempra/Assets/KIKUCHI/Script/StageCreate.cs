@@ -32,6 +32,7 @@ public class StageCreate : MonoBehaviour
                 posStage[i, j] = 0;
             }
         } 
+
         for (int i = 0; i < stageData.StageObjList.Count; i++)
         {
             stageObject.Add(i + 1, stageData.StageObjList[i]);
@@ -58,8 +59,10 @@ public class StageCreate : MonoBehaviour
             {
                 if(posStage[i, j] != 0)
                 {
-                    Instantiate(stageObject[posStage[i, j]]);
+                    //重要
                     stageObject[posStage[i, j]].transform.position = new Vector3(j * magnification, i*magnification, 0);
+                    Instantiate(stageObject[posStage[i, j]]);
+                  
                 }
             }
         }
