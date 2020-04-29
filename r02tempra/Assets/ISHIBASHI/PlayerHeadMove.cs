@@ -8,11 +8,13 @@ public class PlayerHeadMove : MonoBehaviour
     Rigidbody2D rigidPlayer;
     CircleCollider2D playerHeadCollider;
     [SerializeField] Transform stageParent;
+    bool flag;
     // Start is called before the first frame update
     void Start()
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         playerHeadCollider = GetComponent<CircleCollider2D>();
+        flag = false;
     }
 
     // Update is called once per frame
@@ -37,10 +39,11 @@ public class PlayerHeadMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("StageArea"))
+        if (col.gameObject.CompareTag("StageArea") && flag == false)
         {
             stageParent = col.gameObject.transform.root;
             transform.parent = stageParent;
+            flag = true;
         }
     }
 
@@ -50,7 +53,7 @@ public class PlayerHeadMove : MonoBehaviour
         {
             rigidPlayer.simulated = false;
             playerHeadCollider.enabled = false;
-            transform.parent = GameObject.Find("Player1").transform.parent;
+            transform.parent = col.gameObject.transform;
             GetComponent<PlayerHeadMove>().enabled = false;
         }
     }
