@@ -13,6 +13,7 @@ public class CameraControl : MonoBehaviour
     [SerializeField]
     private float posZ = -90;
 
+
     [SerializeField]
     Transform playerTrans;
 
@@ -71,7 +72,7 @@ public class CameraControl : MonoBehaviour
         else if (isCameraPos2)
         {
            
-            CameraLerp(new Vector3(playerTrans.position.x, playerTrans.position.y + offset.y, -11));
+            CameraLerp(new Vector3(playerTrans.position.x, playerTrans.position.y + offset.y, -11 + offset.z));
         }
     }
 
