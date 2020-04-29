@@ -25,7 +25,8 @@ public class PlayerMove : MonoBehaviour
     bool jumpFlag;
     SpriteRenderer sprite;
 
-    //生成するもの
+    //生成するものと数
+    public int foamCount;
     public GameObject foam;
     //バブル座標
     private Vector3 BaburuPosition;
@@ -147,12 +148,13 @@ public class PlayerMove : MonoBehaviour
     void Baburu()
     {
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("B_BUTTON"))
+        if (Input.GetButtonDown("B_BUTTON") && foamCount < 10)
         {
             awaCreate = true;
             //BaburuPosition = transform.position;
             //BaburuPosition.z = 10f;
             stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity, stageParent);
+            foamCount++;
         }
     }
     void Move()//移動系
