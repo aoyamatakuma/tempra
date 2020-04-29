@@ -21,6 +21,6 @@ public class ReStert : MonoBehaviour {
     // }
 
     public void OnClick () {
-        SceneManager.LoadScene ("Stage");
+        SceneManager.LoadScene ("StageDemo");
     }
 }
