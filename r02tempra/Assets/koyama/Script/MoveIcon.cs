@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +10,7 @@ public class MoveIcon : MonoBehaviour {
     //テキスト取得
     public Text text;
     //アイコンが１秒間に何ピクセル移動するか
-    private float iconSpeed = Screen.width;
+    public float iconSpeed = Screen.width;
 
     //アイコンのサイズを取得
     private static RectTransform rect;
@@ -22,7 +22,7 @@ public class MoveIcon : MonoBehaviour {
     private static bool MoveFlag;
     //瞬間移動フラグ
     private static bool TeleportFlag;
-    
+
     //アイコン取得
     Image Icon;
     // Start is called before the first frame update
@@ -35,9 +35,9 @@ public class MoveIcon : MonoBehaviour {
         //動かないように設定
         //MoveFlag = false;
         //Debug.Log(MoveFlag);
-        TeleportFlag=false;
+        TeleportFlag = false;
         //テキスト非表示
-        text.enabled=false;
+        text.enabled = false;
         //アイコンを取得
         Icon = GameObject.Find ("Canvas/Panel/Icon").GetComponent<Image> ();
         Icon.enabled = false;
@@ -50,30 +50,25 @@ public class MoveIcon : MonoBehaviour {
         IconMove ();
 
     }
-      //枠内での当たり判定
+    //枠内での当たり判定
     void OnTriggerEnter2D (Collider2D collider) {
-    if (collider.gameObject.tag == "StageArea") {
-        TeleportFlag=true;
-        text.enabled=true;
-        text.text="テレポート可能";
-             Debug.Log("atari");
-             Debug.Log(TeleportFlag);
-           
-        }
-    }
-    void OnTriggerExit2D(Collider2D collider)
-    {
         if (collider.gameObject.tag == "StageArea") {
-        TeleportFlag=false;
-        text.enabled=true;
-        text.text="テレポート不可能";
-             Debug.Log("No");
-             Debug.Log(TeleportFlag);
+            TeleportFlag = true;
+            text.text = "テレポート可能";
 
-           
+            Debug.Log (TeleportFlag);
+
         }
     }
-    
+    void OnTriggerExit2D (Collider2D collider) {
+        if (collider.gameObject.tag == "StageArea") {
+            TeleportFlag = false;
+            text.text = "テレポート不可能";
+            //Debug.Log ("No");
+            Debug.Log (TeleportFlag);
+
+        }
+    }
 
     //アイコンの操作
     public void IconMove () {
@@ -85,6 +80,7 @@ public class MoveIcon : MonoBehaviour {
 
             //アイコンの存在をONにする
             Icon.enabled = true;
+            text.enabled = true;
 
         } else if (Input.GetButtonDown ("Y_BUTTON") && CameraCO.isCameraPos2 == false) {
             //MoveFlag = false;
@@ -92,11 +88,18 @@ public class MoveIcon : MonoBehaviour {
 
             //アイコンの存在をOFFにする
             Icon.enabled = false;
+            text.enabled = false;
         }
 
         if (CameraCO.isCameraPos2 == false) {
             //移動キーが押されてなければ何もしない 2 つの浮動小数点値を比較し、近似している場合は true を返します
             if (Mathf.Approximately (Input.GetAxis ("Horizontal"), 0f) && Mathf.Approximately (Input.GetAxis ("Vertical"), 0f)) {
+                
+
+                if (Input.GetButtonDown ("B_BUTTON") && TeleportFlag) {
+                    Teleport ();
+                    Debug.Log ("テレポート");
+                }
                 return;
             }
 
@@ -109,31 +112,22 @@ public class MoveIcon : MonoBehaviour {
 
             //アイコン位置を設定
             rect.anchoredPosition = pos;
-            
-            if (Input.GetButtonDown ("B_BUTTON")&&TeleportFlag) {
+            if (Input.GetButtonDown ("B_BUTTON") && TeleportFlag) {
                 Teleport ();
-                 Debug.Log("テレポート");
-            }
+                Debug.Log ("テレポート");
 
+            }
         }
     }
-
     //プレイヤーテレポート
     public void Teleport () {
-        //Bボタンを押したときに発動
-        if (Input.GetButtonDown ("B_BUTTON")) {
+
         //Iconの位置を取得する
         var IconPos = GameObject.Find ("Icon").transform.position;
-        IconPos.z=0;
+        IconPos.z = 0;
         //アイコンの位置にプレイヤーの位置を移動させる
         m_Player.transform.position = IconPos;
         //Debug.Log (m_Player.transform.position);
-        
-        
 
-        }
     }
-
-  
-
 }

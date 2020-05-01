@@ -298,6 +298,11 @@ PrefabInstance:
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 1288556323}
+    - target: {fileID: 6282284144228693819, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: iconSpeed
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8555079448635019808, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -327,6 +332,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_HorizontalOverflow
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555079448635019808, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u30C6\u30EC\u30DD\u30FC\u30C8"
       objectReference: {fileID: 0}
     - target: {fileID: 8555079448635019839, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
