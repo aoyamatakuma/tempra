@@ -46,6 +46,6 @@ public class awamove : MonoBehaviour
     {
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
-        vib.vibration(vibrationTime, vibrationScale);
+       // vib.vibration(vibrationTime, vibrationScale);
     }
 }

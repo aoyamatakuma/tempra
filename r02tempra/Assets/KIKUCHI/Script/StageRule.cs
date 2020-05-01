@@ -66,7 +66,7 @@ public class StageRule : MonoBehaviour
             allChildren.Add(child);
            
         }
-        Debug.Log(transform);
+
         
         for(int i = 0; i < allChildren.Count; i++)
         {
