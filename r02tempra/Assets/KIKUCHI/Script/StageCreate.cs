@@ -80,14 +80,14 @@ public class StageCreate : MonoBehaviour
             case 0:
                 ArraryNum(2, 2, 2);
                 ArraryNum(1, 0, 1);
-                ArraryNum(0, 0, 1);
+                ArraryNum(0, 2, 1);
                 Debug.Log("0の場合");
                 //break文
                 break;
             case 1:
                 ArraryNum(2, 2, 2);
-                ArraryNum(1, 2, 1);
-                ArraryNum(0, 0, 1);
+                ArraryNum(1, 0, 1);
+                ArraryNum(0, 1, 1);
                 Debug.Log("１の場合");
                 //break文
                 break;

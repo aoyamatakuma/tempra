@@ -148,13 +148,13 @@ public class PlayerMove : MonoBehaviour
     void Baburu()
     {
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("B_BUTTON") && foamCount < 10)
+        if (Input.GetButtonDown("X_BUTTON"))
         {
             awaCreate = true;
             //BaburuPosition = transform.position;
             //BaburuPosition.z = 10f;
             stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity, stageParent);
-            foamCount++;
+            //foamCount++;
         }
     }
     void Move()//移動系
@@ -182,7 +182,7 @@ public class PlayerMove : MonoBehaviour
 
         if(col.gameObject.CompareTag("PlayerHead"))
         {
-            SetCurrentState(PlayerState.Division);
+            SetCurrentState(PlayerState.Normal);
             _playerHead.transform.localPosition = headPosition;
         }
     }

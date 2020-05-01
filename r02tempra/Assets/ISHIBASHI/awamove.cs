@@ -35,7 +35,7 @@ public class awamove : MonoBehaviour
         angle += speed;
         transform.position = sin;
 
-        if (Input.GetKey(KeyCode.Q) || Input.GetButtonDown("X_BUTTON"))
+        if (Input.GetKey(KeyCode.Q))
         {
             Explosion();
         }
