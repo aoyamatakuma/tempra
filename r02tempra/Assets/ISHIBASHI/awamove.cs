@@ -6,7 +6,8 @@ public class awamove : MonoBehaviour
 {
     float angle = 0;
     public float range = 1f;//幅
-    float speed = 0.04f;//はやさ
+    [SerializeField]
+   private float speed = 0.04f;//はやさ
 
     [SerializeField]
     private GameObject explosionEffect;
