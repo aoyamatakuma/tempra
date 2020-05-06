@@ -21,19 +21,26 @@ public class StageRule : MonoBehaviour
     [SerializeField]
     private Vector2 up_position;
 
-  public   bool flyBool;
-   public  bool downBool;
+    private int limit_touchBubble;
+    [SerializeField]
+    private int current_touchBubble;
+
+    bool flyBool;
+    bool downBool;
+
  //   public bool playerbool;
 
     // Start is called before the first frame update
     void Start()
-
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
         flyBool = false;
+        limit_touchBubble = limit_bubble;
+        current_bubble = 0;
         downBool = false;
         current_bubble = 0;
         firstPos = transform.position;
+        firstPos.y = 0;
         up_position.x = transform.position.x;
     }
 
@@ -48,13 +55,6 @@ public class StageRule : MonoBehaviour
     //ステージ内のbubbleタグのついた子オブジェクトの数取得
     void BubbleCount()
     {
-      //  if (!player.awaCreate) return;
-
-        //if(player = GameObject.FindGameObjectWithTag("Player").GetComponent<playerao>())
-        //{
-        //    playerbool = true;
-        //}
-
         List<GameObject> allChildren = new List<GameObject>();
         GameObject child;
         int countBubble = 0;
@@ -73,12 +73,11 @@ public class StageRule : MonoBehaviour
             if (allChildren[i].tag == "bubble")
             {
                 countBubble++;
-                downBool = false;
-               
+                downBool = false;             
             }
         }
 
-        if(countBubble < limit_bubble)
+        if(countBubble < limit_bubble && flyBool)
         {
            
             downBool = true;
@@ -108,7 +107,7 @@ public class StageRule : MonoBehaviour
     void FlyMove(Vector2 nextPos)
     {
         if (!flyBool) return;
-        if (transform.position.y <= nextPos.y && flyBool)
+        if (transform.position.y <= nextPos.y && flyBool && limit_touchBubble <= current_touchBubble)
         {
             transform.position = Vector2.Lerp(transform.position, nextPos, Time.deltaTime * 1f);
         }
@@ -121,6 +120,14 @@ public class StageRule : MonoBehaviour
         if (transform.position.y >= nextPos.y && downBool)
         {
             transform.position = Vector2.Lerp(transform.position, nextPos, Time.deltaTime * 1f);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("bubble"))
+        {
+            current_touchBubble++;
         }
     }
 
