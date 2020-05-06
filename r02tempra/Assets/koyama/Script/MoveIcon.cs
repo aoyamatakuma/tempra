@@ -9,9 +9,9 @@ public class MoveIcon : MonoBehaviour {
     public GameObject m_Player;
     [SerializeField]
     private StageRule Stage;
-   
+
     [SerializeField]
-     private GameObject explosionEffect;
+    private GameObject explosionEffect;
 
     //テキスト取得
     public Text text;
@@ -28,6 +28,8 @@ public class MoveIcon : MonoBehaviour {
     private static bool MoveFlag;
     //瞬間移動フラグ
     private static bool TeleportFlag;
+    //泡破裂フラグ
+    private static bool AwaExplosion;
 
     //アイコン取得
     Image Icon;
@@ -44,6 +46,8 @@ public class MoveIcon : MonoBehaviour {
         TeleportFlag = false;
         //テキスト非表示
         text.enabled = false;
+        //awaFalse
+        AwaExplosion = false;
         //アイコンを取得
         Icon = GameObject.Find ("Canvas/Panel/Icon").GetComponent<Image> ();
         Icon.enabled = false;
@@ -62,12 +66,13 @@ public class MoveIcon : MonoBehaviour {
         if (collider.gameObject.tag == "StageBox") {
             //テレポートフラグを立てる
             TeleportFlag = true;
+            AwaExplosion = true;
             text.text = "テレポート可能";
 
             Debug.Log (TeleportFlag);
             //ステージスクリプトを取得する
             Stage = collider.gameObject.GetComponent<StageRule> ();
-            
+
             //Debug.Log (Stage.current_bubble);
 
         }
@@ -77,6 +82,7 @@ public class MoveIcon : MonoBehaviour {
     void OnTriggerExit2D (Collider2D collider) {
         if (collider.gameObject.tag == "StageBox") {
             TeleportFlag = false;
+            AwaExplosion = false;
             text.text = "テレポート不可能";
             //Debug.Log ("No");
             Debug.Log (TeleportFlag);
@@ -141,20 +147,19 @@ public class MoveIcon : MonoBehaviour {
     }
     //爆発
     public void Explosion () {
-        
-        if (Input.GetButtonDown ("A_BUTTON")){
+
+        if (Input.GetButtonDown ("A_BUTTON") && AwaExplosion) {
             //配列処理
             foreach (var a in Stage.Bubblehub) {
                 //nullチェック
-                if(a !=null){
-                Instantiate(explosionEffect, a.transform.position, Quaternion.identity);
-                Destroy(a);
+                if (a != null) {
+                    Instantiate (explosionEffect, a.transform.position, Quaternion.identity);
+                    Destroy (a);
                 }
             }
             //要素削除
-            for(int i=0;i<Stage.Bubblehub.Count;i++)
-            {
-                Stage.Bubblehub.RemoveAt(i);
+            for (int i = 0; i < Stage.Bubblehub.Count; i++) {
+                Stage.Bubblehub.RemoveAt (i);
             }
         }
     }
