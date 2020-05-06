@@ -7,6 +7,12 @@ public class MoveIcon : MonoBehaviour {
     [SerializeField]
     public CameraControl CameraCO;
     public GameObject m_Player;
+    [SerializeField]
+    private StageRule Stage;
+   
+    [SerializeField]
+     private GameObject explosionEffect;
+
     //テキスト取得
     public Text text;
     //アイコンが１秒間に何ピクセル移動するか
@@ -48,20 +54,28 @@ public class MoveIcon : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         IconMove ();
+        Explosion ();
 
     }
     //枠内での当たり判定
     void OnTriggerEnter2D (Collider2D collider) {
-        if (collider.gameObject.tag == "StageArea") {
+        if (collider.gameObject.tag == "StageBox") {
+            //テレポートフラグを立てる
             TeleportFlag = true;
             text.text = "テレポート可能";
 
             Debug.Log (TeleportFlag);
+            //ステージスクリプトを取得する
+            Stage = collider.gameObject.GetComponent<StageRule> ();
+            
+            //Debug.Log (Stage.current_bubble);
 
         }
+
     }
+
     void OnTriggerExit2D (Collider2D collider) {
-        if (collider.gameObject.tag == "StageArea") {
+        if (collider.gameObject.tag == "StageBox") {
             TeleportFlag = false;
             text.text = "テレポート不可能";
             //Debug.Log ("No");
@@ -93,15 +107,10 @@ public class MoveIcon : MonoBehaviour {
 
         if (CameraCO.isCameraPos2 == false) {
             //移動キーが押されてなければ何もしない 2 つの浮動小数点値を比較し、近似している場合は true を返します
-            if (Mathf.Approximately (Input.GetAxis ("Horizontal"), 0f) && Mathf.Approximately (Input.GetAxis ("Vertical"), 0f)) {
-                
+            //if (Mathf.Approximately (Input.GetAxis ("Horizontal"), 0f) && Mathf.Approximately (Input.GetAxis ("Vertical"), 0f) && (Input.GetButtonDown ("B_BUTTON"))) {
 
-                if (Input.GetButtonDown ("B_BUTTON") && TeleportFlag) {
-                    Teleport ();
-                    Debug.Log ("テレポート");
-                }
-                return;
-            }
+            //return;
+            // }
 
             //移動先を計算
             var pos = rect.anchoredPosition + new Vector2 (Input.GetAxis ("Horizontal") * iconSpeed, Input.GetAxis ("Vertical") * iconSpeed) * Time.deltaTime;
@@ -130,4 +139,24 @@ public class MoveIcon : MonoBehaviour {
         //Debug.Log (m_Player.transform.position);
 
     }
+    //爆発
+    public void Explosion () {
+        
+        if (Input.GetButtonDown ("A_BUTTON")){
+            //配列処理
+            foreach (var a in Stage.Bubblehub) {
+                //nullチェック
+                if(a !=null){
+                Instantiate(explosionEffect, a.transform.position, Quaternion.identity);
+                Destroy(a);
+                }
+            }
+            //要素削除
+            for(int i=0;i<Stage.Bubblehub.Count;i++)
+            {
+                Stage.Bubblehub.RemoveAt(i);
+            }
+        }
+    }
+
 }

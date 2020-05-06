@@ -303,6 +303,12 @@ PrefabInstance:
       propertyPath: iconSpeed
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 6282284144228693819, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
+        type: 3}
     - target: {fileID: 8555079448635019808, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -952,7 +958,7 @@ PrefabInstance:
     - target: {fileID: 5756025499492183795, guid: d89295b0e690bf543ae541218db2d42c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.3
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5756025499492183795, guid: d89295b0e690bf543ae541218db2d42c,
         type: 3}

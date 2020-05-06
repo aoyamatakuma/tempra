@@ -3,7 +3,13 @@ guid: 438f7898bdc5f3941bac09a8b71526e7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - CameraCO: {instanceID: 0}
+  - m_Player: {instanceID: 0}
+  - Stage: {instanceID: 0}
+  - explosionEffect: {fileID: 1856004530783780, guid: 6964cb021b639c144971c274a0dedd33,
+      type: 3}
+  - text: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
