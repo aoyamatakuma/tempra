@@ -37,12 +37,12 @@ public class awamove : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q))
         {
-            Explosion();
+            Explosions();
         }
     }
 
 
-    public void Explosion()
+    public void Explosions()
     {
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
