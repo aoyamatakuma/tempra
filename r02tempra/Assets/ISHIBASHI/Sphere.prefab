@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 114665893089825054}
   - component: {fileID: 114842132120052256}
   - component: {fileID: 212527310966721688}
-  - component: {fileID: 135129967352488536}
-  m_Layer: 0
+  - component: {fileID: 5322932664226678136}
+  - component: {fileID: 503920983513406603}
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: bubble
   m_Icon: {fileID: 0}
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0.01
+  speed: 0.5
   explosionEffect: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
     type: 3}
   vibrationTime: 1
@@ -111,16 +113,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!135 &135129967352488536
-SphereCollider:
+--- !u!58 &5322932664226678136
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8176581596981492173}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
-  m_Center: {x: 0, y: 0, z: 0}
+--- !u!50 &503920983513406603
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176581596981492173}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

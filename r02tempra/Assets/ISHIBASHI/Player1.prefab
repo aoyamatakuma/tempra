@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6426227439522401390}
   - component: {fileID: 6426227439522401391}
   - component: {fileID: 6426227439522401376}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 6426227440305533295}
   - component: {fileID: 6426227440305533280}
   - component: {fileID: 6426227440305533281}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerHead
   m_TagString: PlayerHead
   m_Icon: {fileID: 0}
@@ -291,4 +291,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  foam: {fileID: 0}
   stageParent: {fileID: 0}

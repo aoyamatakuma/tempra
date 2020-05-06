@@ -292,6 +292,11 @@ PrefabInstance:
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 1104260345}
+    - target: {fileID: 6282284144228693819, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: iconSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 8555079448635019808, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: m_FontData.m_FontSize
