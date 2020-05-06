@@ -22,6 +22,9 @@ public class StageRule : MonoBehaviour {
     public bool flyBool;
     public bool downBool;
 
+    private int limit_touchBubble;
+    private int current_touchBubble;
+
     public List<GameObject> Bubblehub;
 
     //   public bool playerbool;
@@ -34,8 +37,11 @@ public class StageRule : MonoBehaviour {
         flyBool = false;
         downBool = false;
         current_bubble = 0;
+        limit_touchBubble = limit_bubble;
+        current_touchBubble = 0;
         firstPos = transform.position;
         up_position.x = transform.position.x;
+        firstPos.y = 0;
     }
 
     // Update is called once per frame
@@ -72,7 +78,7 @@ public class StageRule : MonoBehaviour {
             }
         }
 
-        if (countBubble < limit_bubble) {
+        if (countBubble < limit_bubble && flyBool) {
 
             downBool = true;
         }
@@ -84,7 +90,7 @@ public class StageRule : MonoBehaviour {
     //浮く
     void FlyRule () {
 
-        if (limit_bubble <= current_bubble) {
+        if (limit_bubble <= current_bubble ) {
             flyBool = true;
         }
 
@@ -97,7 +103,7 @@ public class StageRule : MonoBehaviour {
 
     void FlyMove (Vector2 nextPos) {
         if (!flyBool) return;
-        if (transform.position.y <= nextPos.y && flyBool) {
+        if (transform.position.y <= nextPos.y && flyBool && limit_touchBubble <= current_touchBubble) {
             transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);
         }
 
@@ -107,6 +113,14 @@ public class StageRule : MonoBehaviour {
         if (!downBool) return;
         if (transform.position.y >= nextPos.y && downBool) {
             transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);
+        }
+    }
+
+    void OnCollisionEnter(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("bubble"))
+        {
+            current_touchBubble++;
         }
     }
 
