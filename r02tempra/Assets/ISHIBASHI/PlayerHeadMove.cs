@@ -7,23 +7,20 @@ public class PlayerHeadMove : MonoBehaviour
     public float speed;
     Rigidbody2D rigidPlayer;
     CircleCollider2D playerHeadCollider;
-    public GameObject foam;
     [SerializeField] Transform stageParent;
-    GameObject stage;
-   // bool flag;
+    bool flag;
     // Start is called before the first frame update
     void Start()
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         playerHeadCollider = GetComponent<CircleCollider2D>();
-        //flag = false;
+        flag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-        Baburu();
     }
 
     void Move()//移動系
@@ -40,26 +37,13 @@ public class PlayerHeadMove : MonoBehaviour
         }
     }
 
-    void Baburu()
-    {
-        //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("X_BUTTON"))
-        {
-            //awaCreate = true;
-            //BaburuPosition = transform.position;
-            //BaburuPosition.z = 10f;
-            stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity, stageParent);
-            //foamCount++;
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("StageArea") )
+        if (col.gameObject.CompareTag("StageArea"))
         {
             stageParent = col.gameObject.transform.root;
             transform.parent = stageParent;
-           // flag = true;
+            //flag = true;
         }
     }
 
