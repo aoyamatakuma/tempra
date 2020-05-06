@@ -291,12 +291,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 493604272}
     - target: {fileID: 6282284144228693819, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: iconSpeed
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 6282284144228693819, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
+        type: 3}
     - target: {fileID: 8555079448635019808, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -691,6 +697,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9633c856a0641934daad4c29f70cf3fe, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9936997e866436941be90218c12a090c, type: 3}
+--- !u!1 &493604272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6426227440305533283, guid: 312ed1033e3830949bd1ff870cf44845,
+    type: 3}
+  m_PrefabInstance: {fileID: 1112748063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &493604273 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6426227440305533282, guid: 312ed1033e3830949bd1ff870cf44845,
+    type: 3}
+  m_PrefabInstance: {fileID: 1112748063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &925334862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,7 +1294,7 @@ MonoBehaviour:
   speed: 5
   posY: 36
   posZ: -100
-  playerTrans: {fileID: 1112748064}
+  playerTrans: {fileID: 493604273}
   offset: {x: 0, y: 2, z: 0}
   cameraVec: {x: 0, y: 2, z: -2}
   isCameraPos1: 1

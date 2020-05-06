@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 941142822079175735}
   - component: {fileID: 941142822079175721}
   - component: {fileID: 941142822079175734}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject (3)
   m_TagString: Border
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 941142822553874277}
   - component: {fileID: 941142822553874276}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: StageArea
   m_Icon: {fileID: 0}
@@ -819,6 +819,8 @@ MonoBehaviour:
   up_position: {x: 0, y: 72}
   flyBool: 0
   downBool: 0
+  current_touchBubble: 0
+  Bubblehub: []
 --- !u!1 &941142824065718408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1177,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sphere (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8176581596981492173, guid: 24b839b193a39444e930b191bb49cbb9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24b839b193a39444e930b191bb49cbb9, type: 3}
 --- !u!4 &5673802826092334670 stripped
@@ -1249,6 +1256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sphere (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8176581596981492173, guid: 24b839b193a39444e930b191bb49cbb9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24b839b193a39444e930b191bb49cbb9, type: 3}

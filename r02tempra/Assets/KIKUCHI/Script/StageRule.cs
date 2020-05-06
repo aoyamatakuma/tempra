@@ -23,6 +23,7 @@ public class StageRule : MonoBehaviour {
     public bool downBool;
 
     private int limit_touchBubble;
+    [SerializeField]
     private int current_touchBubble;
 
     public List<GameObject> Bubblehub;
@@ -116,7 +117,7 @@ public class StageRule : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("bubble"))
         {

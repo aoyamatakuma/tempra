@@ -291,5 +291,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  foam: {fileID: 0}
   stageParent: {fileID: 0}
