@@ -39,11 +39,11 @@ public class PlayerHeadMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("StageArea") && flag == false)
+        if (col.gameObject.CompareTag("StageArea"))
         {
             stageParent = col.gameObject.transform.root;
             transform.parent = stageParent;
-            flag = true;
+            //flag = true;
         }
     }
 

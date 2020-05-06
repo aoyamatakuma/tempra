@@ -45,6 +45,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private PlayerHeadMove playerHead;
 
+    private bool cameraCheck;
+
     //分裂体の初期値保管
     public Vector3 headPosition;
 
@@ -60,6 +62,8 @@ public class PlayerMove : MonoBehaviour
         playerHead = _playerHead.GetComponent<PlayerHeadMove>();
         playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
         headPosition = _playerHead.transform.localPosition;
+
+        cameraCheck = false;
 
         SetCurrentState(PlayerState.Normal);
     }
@@ -130,17 +134,17 @@ public class PlayerMove : MonoBehaviour
     //分裂後の頭？のみの処理予定
     void HeadMove()
     {
-        //if (Input.GetButtonDown("Y_BUTTON"))
-        //{
-        //    SetCurrentState(PlayerState.Division);
-        //}
+        Baburu();
+        if (Input.GetButtonDown("Y_BUTTON"))
+        {
+            CameraCheck();
+        }
     }
 
     void Jump()//ジャンプ系
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A_BUTTON") && jumpFlag == false)//ジャンプボタンを押してなおかつジャンプ中じゃないとき
         {
-            //rigidPlayer.velocity = Vector2.zero;
             rigidPlayer.AddForce(Vector2.up * jumpForce);
             jumpFlag = true;
         }
@@ -148,20 +152,26 @@ public class PlayerMove : MonoBehaviour
     void Baburu()
     {
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("B_BUTTON") && foamCount < 10)
+        if (Input.GetButtonDown("A_BUTTON") && foamCount < 10  && currentPlayerState == PlayerState.Normal)
         {
             awaCreate = true;
-            //BaburuPosition = transform.position;
-            //BaburuPosition.z = 10f;
-            stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity, stageParent);
+            stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity,stageParent);
             foamCount++;
         }
+
+        //マウス入力で左クリックしたとき
+        if (Input.GetButtonDown("A_BUTTON") && foamCount < 10 && currentPlayerState == PlayerState.Head)
+        {
+            awaCreate = true;
+            stage = (GameObject)Instantiate(foam, _playerHead.transform.position, Quaternion.identity, _playerHead.parent);
+            foamCount++;
+        }
+
     }
     void Move()//移動系
     {
         float h = Input.GetAxis("Horizontal");
         rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
-        //Debug.Log(h);
         if (Input.GetKey(KeyCode.LeftArrow) && transform.localScale.x > 0 || Input.GetKey(KeyCode.RightArrow) && transform.localScale.x < 0)
         {
             Vector2 pos = transform.localScale;
@@ -173,6 +183,16 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    void CameraCheck()
+    {
+        cameraCheck = !cameraCheck;
+    }
+
+    public void BubbleCount(int bubble)
+    {
+        foamCount = foamCount - bubble;
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Stage"))
@@ -182,7 +202,15 @@ public class PlayerMove : MonoBehaviour
 
         if(col.gameObject.CompareTag("PlayerHead"))
         {
-            SetCurrentState(PlayerState.Division);
+            if (cameraCheck == false)
+            {
+                SetCurrentState(PlayerState.Division);
+            }
+            else if(cameraCheck == true)
+            {
+                CameraCheck();
+                SetCurrentState(PlayerState.Normal);
+            }
             _playerHead.transform.localPosition = headPosition;
         }
     }
