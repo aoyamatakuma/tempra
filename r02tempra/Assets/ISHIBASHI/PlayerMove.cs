@@ -48,8 +48,11 @@ public class PlayerMove : MonoBehaviour
     private bool cameraCheck;
 
     //分裂体の初期値保管
-    public Vector3 headPosition;
+    [SerializeField]
+    private Vector3 headPosition;
 
+    [SerializeField]
+    private StageRule rule;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +64,7 @@ public class PlayerMove : MonoBehaviour
         playerHeadCollider = _playerHead.GetComponent<CircleCollider2D>();
         playerHead = _playerHead.GetComponent<PlayerHeadMove>();
         playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
+
         headPosition = _playerHead.transform.localPosition;
 
         cameraCheck = false;
@@ -152,19 +156,21 @@ public class PlayerMove : MonoBehaviour
     void Baburu()
     {
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("A_BUTTON") && foamCount < 10  && currentPlayerState == PlayerState.Normal)
+        if (Input.GetButtonDown("X_BUTTON") && foamCount < 10  && currentPlayerState == PlayerState.Normal)
         {
             awaCreate = true;
             stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity,stageParent);
             foamCount++;
+            rule.ListBubble(stage);
         }
 
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("A_BUTTON") && foamCount < 10 && currentPlayerState == PlayerState.Head)
+        if (Input.GetButtonDown("X_BUTTON") && foamCount < 10 && currentPlayerState == PlayerState.Head)
         {
             awaCreate = true;
             stage = (GameObject)Instantiate(foam, _playerHead.transform.position, Quaternion.identity, _playerHead.parent);
             foamCount++;
+            rule.ListBubble(stage);
         }
 
     }
@@ -191,6 +197,11 @@ public class PlayerMove : MonoBehaviour
     public void BubbleCount(int bubble)
     {
         foamCount = foamCount - bubble;
+    }
+
+    public void GetStage(StageRule rule)
+    {
+        this.rule = rule;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -220,6 +231,11 @@ public class PlayerMove : MonoBehaviour
         {
             stageParent = col.gameObject.transform.root;
             transform.parent = col.gameObject.transform.root;
+        }
+
+        if (col.gameObject.CompareTag("StageBox"))
+        {
+            GetStage(col.gameObject.GetComponent<StageRule>());
         }
     }
 }

@@ -8,13 +8,12 @@ public class PlayerHeadMove : MonoBehaviour
     Rigidbody2D rigidPlayer;
     CircleCollider2D playerHeadCollider;
     [SerializeField] Transform stageParent;
-    bool flag;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         playerHeadCollider = GetComponent<CircleCollider2D>();
-        flag = false;
     }
 
     // Update is called once per frame

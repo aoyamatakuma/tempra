@@ -31,6 +31,7 @@ public class MoveIcon : MonoBehaviour {
 
     //アイコン取得
     Image Icon;
+
     // Start is called before the first frame update
     void Start () {
 
@@ -147,8 +148,8 @@ public class MoveIcon : MonoBehaviour {
             foreach (var a in Stage.Bubblehub) {
                 //nullチェック
                 if(a !=null){
-                Instantiate(explosionEffect, a.transform.position, Quaternion.identity);
-                Destroy(a);
+                    Instantiate(explosionEffect, a.transform.position, Quaternion.identity);
+                    Destroy(a);
                 }
             }
             //要素削除
@@ -156,6 +157,8 @@ public class MoveIcon : MonoBehaviour {
             {
                 Stage.Bubblehub.RemoveAt(i);
             }
+
+            Stage.Minus();
         }
     }
 
