@@ -8,6 +8,8 @@ public class awamove : MonoBehaviour
     public float range = 1f;//幅
     [SerializeField]
    private float speed = 0.04f;//はやさ
+    [SerializeField]
+    private float speedY = 0.01f;
 
     [SerializeField]
     private GameObject explosionEffect;
@@ -32,7 +34,7 @@ public class awamove : MonoBehaviour
 
         Vector2 sin = transform.position;
         sin.x += Mathf.Sin(angle) * range;
-        sin.y += 0.01f;
+        sin.y += speedY;
         angle += speed;
         transform.position = sin;
 
