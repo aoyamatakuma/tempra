@@ -43,6 +43,8 @@ public class StageRule : MonoBehaviour {
         firstPos = transform.position;
         up_position.x = transform.position.x;
         firstPos.y = 0;
+
+        Bubblehub = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -75,7 +77,7 @@ public class StageRule : MonoBehaviour {
             if (allChildren[i].tag == "bubble") {
                 countBubble++;
                 downBool = false;
-                Bubblehub.Add(allChildren[i]);
+                //Bubblehub.Add(allChildren[i]);
             }
         }
 
@@ -122,7 +124,18 @@ public class StageRule : MonoBehaviour {
         if (col.gameObject.CompareTag("bubble"))
         {
             current_touchBubble++;
+
         }
     }
 
+
+    public void Minus()
+    {
+        player.BubbleCount(current_bubble);
+    }
+
+    public void ListBubble(GameObject obj)
+    {
+        Bubblehub.Add(obj);
+    }
 }
