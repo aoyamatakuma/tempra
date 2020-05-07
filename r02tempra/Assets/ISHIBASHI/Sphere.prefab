@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190e668200c59c7499d952de5eb5a9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0.01
-  speed: 0.5
+  range: 0.05
+  speed: 20
+  speedY: 0.05
   explosionEffect: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
     type: 3}
   vibrationTime: 1

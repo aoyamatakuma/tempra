@@ -28,12 +28,15 @@ public class StageRule : MonoBehaviour {
 
     public List<GameObject> Bubblehub;
 
+    public GameObject stageBorder;
+
     //   public bool playerbool;
 
     // Start is called before the first frame update
     void Start ()
 
     {
+       
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMove> ();
         flyBool = false;
         downBool = false;
@@ -76,12 +79,12 @@ public class StageRule : MonoBehaviour {
         for (int i = 0; i < allChildren.Count; i++) {
             if (allChildren[i].tag == "bubble") {
                 countBubble++;
-                downBool = false;
+               
                 //Bubblehub.Add(allChildren[i]);
             }
         }
 
-        if (countBubble < limit_bubble && flyBool) {
+        if (countBubble < limit_bubble  && flyBool) {
 
             downBool = true;
         }
@@ -95,6 +98,7 @@ public class StageRule : MonoBehaviour {
 
         if (limit_bubble <= current_bubble ) {
             flyBool = true;
+            downBool = false;
         }
 
         if (downBool) {
@@ -123,8 +127,34 @@ public class StageRule : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("bubble"))
         {
+            Debug.Log("泡あたったあああああああああああ");
             current_touchBubble++;
 
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("bubble"))
+        {
+            current_touchBubble--;
+
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("Border"))
+        {
+            stageBorder.SetActive(false);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Border"))
+        {
+            stageBorder.SetActive(true);
         }
     }
 
