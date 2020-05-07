@@ -8,12 +8,14 @@ public class PlayerHeadMove : MonoBehaviour
     Rigidbody2D rigidPlayer;
     CircleCollider2D playerHeadCollider;
     [SerializeField] Transform stageParent;
+    [SerializeField] PlayerMove player;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         playerHeadCollider = GetComponent<CircleCollider2D>();
+        player = player.GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,11 @@ public class PlayerHeadMove : MonoBehaviour
             stageParent = col.gameObject.transform.root;
             transform.parent = stageParent;
             //flag = true;
+        }
+
+        if (col.gameObject.CompareTag("StageBox"))
+        {
+            player.GetStage(col.gameObject.GetComponent<StageRule>());
         }
     }
 
