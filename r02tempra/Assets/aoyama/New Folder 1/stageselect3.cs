@@ -11,7 +11,7 @@ public class stageselect3 : MonoBehaviour
 
 
     private Color SelectOn = new Color(255 / 255.0f, 255 / 255.0f, 255 / 255.0f);
-    private Color SelectOff = new Color(90 / 255.0f, 90 / 255.0f, 90 / 255.0f);
+    private Color SelectOff = new Color(50 / 255.0f, 50 / 255.0f, 50 / 255.0f);
 
 
     int cntStage;
@@ -19,7 +19,7 @@ public class stageselect3 : MonoBehaviour
     void Start()
     {
 
-        cntStage = 1;
+        cntStage = 0;
     }
 
     // Update is called once per frame
@@ -27,17 +27,21 @@ public class stageselect3 : MonoBehaviour
     {
         DrawStageSelect();
         Select();
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            cntStage++;
-            if (cntStage >= 1)
+       // if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+            if (Input.GetAxis("Horizontal") > 0.9f)
             {
-                cntStage = 1;
+                cntStage++;
+                if (cntStage >= 1)
+                {
+                    cntStage = 1;
+                }
             }
-        }
+       // }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
+       // if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetAxis("Horizontal") < -0.9f)
+            {
             cntStage--;
             if (cntStage <= 0)
             {
@@ -66,15 +70,15 @@ public class stageselect3 : MonoBehaviour
 
     void Select()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("A_BUTTON"))
         {
             if (cntStage == 0)
             {
-                SceneManager.LoadScene("Stage1");
+                SceneManager.LoadScene("StageExample");
             }
             else
             {
-                SceneManager.LoadScene("Stage2");
+                SceneManager.LoadScene("stage02");
             }
 
         }
