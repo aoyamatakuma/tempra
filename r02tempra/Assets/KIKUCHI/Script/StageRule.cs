@@ -22,6 +22,9 @@ public class StageRule : MonoBehaviour {
     public bool flyBool;
     public bool downBool;
 
+    [SerializeField]
+    private bool isGoal;
+
     private int limit_touchBubble;
     [SerializeField]
     private int current_touchBubble;
@@ -96,12 +99,12 @@ public class StageRule : MonoBehaviour {
     //浮く
     void FlyRule () {
 
-        if (limit_bubble <= current_bubble ) {
+        if (limit_bubble <= current_bubble && !isGoal ) {
             flyBool = true;
             downBool = false;
         }
 
-        if (downBool) {
+        if (downBool && !isGoal) {
             flyBool = false;
             DownMove (firstPos);
         }
@@ -127,7 +130,6 @@ public class StageRule : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("bubble"))
         {
-            Debug.Log("泡あたったあああああああああああ");
             current_touchBubble++;
 
         }

@@ -803,6 +803,7 @@ MonoBehaviour:
   up_position: {x: 0, y: 72}
   flyBool: 0
   downBool: 0
+  isGoal: 0
   current_touchBubble: 0
   Bubblehub: []
   stageBorder: {fileID: 2283253711058129122}
