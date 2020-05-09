@@ -61,23 +61,17 @@ public class Selectmanager : MonoBehaviour
 
         //myTransform.position =pos;
         Select();
-        if (Input.GetAxis("Horizontal") > 0.9f&&rightMoveFlag == false && leftMoveFlag == false)
+        if (cntStage != 2&& Input.GetAxis("Horizontal") > 0.9f&&rightMoveFlag == false && leftMoveFlag == false)
         {
             cntStage++;
-            if (cntStage >= 1)
-            {
-                cntStage = 1;
-            }
+            
             rightMoveFlag = true;
         }
 
-        if (cntMove!=0&&Input.GetAxis("Horizontal") < -0.9f && rightMoveFlag == false && leftMoveFlag == false)
+        if (cntStage != 0 && Input.GetAxis("Horizontal") < -0.9f && rightMoveFlag == false && leftMoveFlag == false)
         {
             cntStage--;
-            if (cntStage <= 0)
-            {
-                cntStage = 0;
-            }
+            
             leftMoveFlag = true;
         }
     }
@@ -90,9 +84,12 @@ public class Selectmanager : MonoBehaviour
             {
                 SceneManager.LoadScene("StageExample");
             }
-            else
+            if (cntStage == 1)
             {
                 SceneManager.LoadScene("stage02");
+            }
+            if (cntStage == 2)
+            {
             }
         }
     }
