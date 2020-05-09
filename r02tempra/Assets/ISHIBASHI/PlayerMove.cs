@@ -206,10 +206,6 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Stage"))
-        {
-            jumpFlag = false;
-        }
 
         if(col.gameObject.CompareTag("PlayerHead"))
         {
@@ -236,6 +232,12 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.CompareTag("StageBox"))
         {
             GetStage(col.gameObject.GetComponent<StageRule>());
+        }
+
+        if (col.gameObject.CompareTag("Stage"))
+        {
+            jumpFlag = false;
+            Debug.Log("bbbbbbbb");
         }
     }
 }
