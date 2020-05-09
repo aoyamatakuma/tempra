@@ -27,6 +27,9 @@ public class CameraControl : MonoBehaviour
     private static int intA;
 
     GameObject stage;
+
+    [SerializeField]
+    private GameObject cameraPoint; 
     
 
     void Start()
@@ -34,13 +37,14 @@ public class CameraControl : MonoBehaviour
         isCameraPos1 = true;
         isCameraPos2 = false; 
         basePosition = playerTrans.position;
+        transform.position = cameraPoint.transform.position;
         //   intA = 0;
         //始まったらズームアウト
         intA = 1;
-        Invoke("Time", 2f);
+        Invoke("StartTime", 2f);
     }
     //始まったらズームアウト
-    void Time()
+    void StartTime()
     {
         intA = 0;
     }
@@ -66,7 +70,8 @@ public class CameraControl : MonoBehaviour
         }
         if (isCameraPos1)
         {
-            CameraLerp(new Vector3(transform.position.x, posY, posZ));
+            //ここいじる（カメラ操作）
+            CameraLerp(new Vector3(cameraPoint.transform.position.x, cameraPoint.transform.position.y, cameraPoint.transform.position.z));
         }
             
         else if (isCameraPos2)
@@ -79,8 +84,8 @@ public class CameraControl : MonoBehaviour
     //カメラが動く処理
     void CameraLerp(Vector3 move)
     {
-        // transform.position = Vector3.Lerp(transform.position, move, speed * Time.deltaTime);
-        transform.position = move;
+        transform.position = Vector3.Lerp(transform.position, move, speed * Time.deltaTime);
+        //transform.position = move;
     }
 
 

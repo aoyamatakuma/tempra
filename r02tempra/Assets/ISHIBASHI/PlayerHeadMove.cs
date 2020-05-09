@@ -29,13 +29,13 @@ public class PlayerHeadMove : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
         //Debug.Log(h);
-        if (Input.GetKey(KeyCode.LeftArrow) && transform.localScale.x > 0 || Input.GetKey(KeyCode.RightArrow) && transform.localScale.x < 0)
-        {
-            Vector2 pos = transform.localScale;
-            pos.x *= -1;
-            transform.localScale = pos;
+        //if (Input.GetKey(KeyCode.LeftArrow) && transform.localScale.x > 0 || Input.GetKey(KeyCode.RightArrow) && transform.localScale.x < 0)
+        //{
+        //    Vector2 pos = transform.localScale;
+        //    pos.x *= -1;
+        //    transform.localScale = pos;
 
-        }
+        //}
     }
 
     void OnTriggerEnter2D(Collider2D col)
