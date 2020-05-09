@@ -30,7 +30,11 @@ public class TitleManager : MonoBehaviour {
     //public static int Bgm;
 
 
+        void Awake()
+    {
 
+    Application.targetFrameRate = 15;
+    }
     // Use this for initialization
     void Start () {
         //Bgm = 0;
