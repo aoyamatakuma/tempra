@@ -6,36 +6,66 @@ using UnityEngine.UI;
 
 public class Selectmanager : MonoBehaviour
 {
-    static int targetFrameRate;
+    [SerializeField]
+    private GameObject fadeOutPrefab;
+    private GameObject fadeOutInstance;
+
+    [SerializeField]
+    private GameObject fadeInPrefab;
+    private GameObject fadeInInstance;
+
+
     public Animator targetAnimator;
     public Animator targetAnimatorLeft;
     public Animator effect;
-    public Image rightSlect;
-    public Image leftSlect;
+
+    public AudioClip select1;
+    public AudioClip cancel1;
+    public AudioClip decision1;
+    private AudioSource select;
+    private AudioSource cancel;
+    private AudioSource decision;
+
+  
+    
     public Image stage2;
-    public Image stage3;
+
     private bool rightMoveFlag;
     private bool leftMoveFlag;
-    
+    private bool endFlag;
+
+    private Color SelectOn = new Color(255 / 255.0f, 255 / 255.0f, 255 / 255.0f);
+    private Color SelectOff = new Color(0 / 255.0f, 0 / 255.0f, 0 / 255.0f,0);
+
 
     int cntMove;
     int cntnumber;
     int cntStage;
 
-    void Awake()
-    {
-        Application.targetFrameRate =23; //60FPSに設定
-    }
-
     // Start is called before the first frame update
     void Start()
     {
+        stage2.GetComponent<Image>().color = SelectOff;
+        Destroy(fadeOutInstance);
+        Destroy(fadeInInstance);
+        endFlag = true;
         
+
+        if (fadeOutInstance == null)
+        {
+            fadeOutInstance = GameObject.Instantiate(fadeOutPrefab) as GameObject;
+        }
+
+
         cntStage = 0;
         cntnumber=0;
         cntMove = 0;
         rightMoveFlag = false;
         leftMoveFlag = false;
+
+        select = gameObject.GetComponent<AudioSource>();
+        cancel = gameObject.GetComponent<AudioSource>();
+        decision = gameObject.GetComponent<AudioSource>();
         if (cntStage == 0)
         {
             targetAnimatorLeft.SetTrigger("Invisible");
@@ -45,9 +75,20 @@ public class Selectmanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Transform myTransform = this.transform;
-        //Vector3 pos = myTransform.position;
-        transform.localPosition = new Vector3(cntMove, 0, 0);
+        if (endFlag == true)
+        {
+            
+          StartCoroutine("Flag");
+        }
+        if (endFlag==true)
+        {
+            return;
+        }
+
+
+            //Transform myTransform = this.transform;
+            //Vector3 pos = myTransform.position;
+            transform.localPosition = new Vector3(cntMove, 0, 0);
         // 座標を取得
         //pos= myTransform.localPosition;
         //pos.x = 400;
@@ -79,6 +120,8 @@ public class Selectmanager : MonoBehaviour
         if (cntStage != 2 && Input.GetAxis("Horizontal") > 0.9f && rightMoveFlag == false && leftMoveFlag == false)
         {
             targetAnimator.SetTrigger("Right");
+            select.clip = select1;
+            select.Play();
             if (cntStage == 0)
             {
                 targetAnimatorLeft.SetTrigger("Lightsup");
@@ -94,6 +137,8 @@ public class Selectmanager : MonoBehaviour
         if (cntStage != 0 && Input.GetAxis("Horizontal") < -0.9f && rightMoveFlag == false && leftMoveFlag == false)
         {
             targetAnimatorLeft.SetTrigger("Right");
+            select.clip = select1;
+            select.Play();
             if (cntStage == 2)
             {
                 targetAnimator.SetTrigger("Lightsup");
@@ -106,23 +151,72 @@ public class Selectmanager : MonoBehaviour
                 targetAnimatorLeft.SetTrigger("Invisible");
             }
         }
+        if (cntStage == 2 && Input.GetAxis("Horizontal") > 0.1f && rightMoveFlag == false && leftMoveFlag == false)
+        {
+            cancel.clip = cancel1;
+            cancel.Play();
+        }
+        if (cntStage == 0 && Input.GetAxis("Horizontal") < -0.1f && rightMoveFlag == false && leftMoveFlag == false)
+        {
+            cancel.clip = cancel1;
+            cancel.Play();
+        }
+
+
+
+
+         if (cntStage == 2)
+        {
+
+            stage2.GetComponent<Image>().color = SelectOn;
+        }
+        else
+        {
+            stage2.GetComponent<Image>().color = SelectOff;
+        }
+        
     }
 
     void Select()
     {
         if (Input.GetButtonDown("A_BUTTON")&& rightMoveFlag == false && leftMoveFlag == false)
         {
-            if (cntStage == 0)
+            if (cntStage != 2)
             {
-                SceneManager.LoadScene("StageExample");
-            }
-            if (cntStage == 1)
-            {
-                SceneManager.LoadScene("stage02");
+                if (fadeInInstance == null)
+                {
+                    endFlag = true;
+                    decision.clip = decision1;
+                    decision.Play();
+                    fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
+                    StartCoroutine("End");
+                }
             }
             if (cntStage == 2)
             {
+                cancel.clip = cancel1;
+                cancel.Play();
             }
         }
+
+    }
+    public IEnumerator End()
+    {
+        yield return new WaitForSeconds(2);
+        if (cntStage == 0)
+        {
+            SceneManager.LoadScene("StageExample");
+        }
+        if (cntStage == 1)
+        {
+            SceneManager.LoadScene("stage02");
+        }
+        //SceneManager.LoadScene("GameMain");
+    }
+
+    public IEnumerator Flag()
+    {
+        yield return new WaitForSeconds(1);
+        endFlag = false;
     }
 }
