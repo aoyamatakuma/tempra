@@ -153,13 +153,13 @@ public class Selectmanager : MonoBehaviour
         }
         if (cntStage == 2 && Input.GetAxis("Horizontal") > 0.1f && rightMoveFlag == false && leftMoveFlag == false)
         {
-            cancel.clip = cancel1;
-            cancel.Play();
+            //cancel.clip = cancel1;
+            //cancel.Play();
         }
         if (cntStage == 0 && Input.GetAxis("Horizontal") < -0.1f && rightMoveFlag == false && leftMoveFlag == false)
         {
-            cancel.clip = cancel1;
-            cancel.Play();
+            //cancel.clip = cancel1;
+            //cancel.Play();
         }
 
 

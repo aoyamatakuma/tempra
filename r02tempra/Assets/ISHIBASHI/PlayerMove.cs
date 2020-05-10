@@ -11,6 +11,12 @@ public enum PlayerState
 
 public class PlayerMove : MonoBehaviour
 {
+    public AudioClip jumpSE;
+    public AudioClip shutterSE;
+    public AudioClip bubbleSE;
+    private AudioSource jump;
+    private AudioSource shutter;
+    private AudioSource bubble;
     //現在の状態
     private PlayerState currentPlayerState;
 
@@ -56,6 +62,9 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        jump = gameObject.GetComponent<AudioSource>();
+        shutter = gameObject.GetComponent<AudioSource>();
+        bubble = gameObject.GetComponent<AudioSource>();
         rigidPlayer = GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
@@ -78,6 +87,8 @@ public class PlayerMove : MonoBehaviour
         OnPlayerStateChanged(currentPlayerState);
         if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head)
         {
+            shutter.clip = shutterSE;
+            shutter.Play();
             if (currentPlayerState != PlayerState.Normal)
             {
                 SetCurrentState(PlayerState.Normal);
@@ -128,6 +139,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetButtonDown("B_BUTTON"))
         {
+            
             SetCurrentState(PlayerState.Head);
             playerHeadCollider.enabled = true;
             playerHeadRigidbody.simulated = true;
@@ -141,6 +153,7 @@ public class PlayerMove : MonoBehaviour
         Baburu();
         if (Input.GetButtonDown("Y_BUTTON"))
         {
+            
             CameraCheck();
         }
     }
@@ -149,6 +162,8 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A_BUTTON") && jumpFlag == false)//ジャンプボタンを押してなおかつジャンプ中じゃないとき
         {
+            jump.clip = jumpSE;
+            jump.Play();
             rigidPlayer.AddForce(Vector2.up * jumpForce);
             jumpFlag = true;
         }
@@ -158,6 +173,8 @@ public class PlayerMove : MonoBehaviour
         //マウス入力で左クリックしたとき
         if (Input.GetButtonDown("X_BUTTON") && foamCount < 10  && currentPlayerState == PlayerState.Normal)
         {
+            bubble.clip = bubbleSE;
+            bubble.Play();
             awaCreate = true;
             stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity,stageParent);
             foamCount++;
