@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Master/MasterGame.unity
     guid: 8911fe0c7aeebde4c8cbcc6303932562
-  - enabled: 1
+  - enabled: 0
     path: Assets/titleao.unity
     guid: 4061ca41fe9a2be46bb5f1769f52ea5e
   - enabled: 1
