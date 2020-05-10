@@ -19,11 +19,11 @@ public class StageRule : MonoBehaviour {
     [SerializeField]
     private Vector2 up_position;
 
-    public bool flyBool;
-    public bool downBool;
+    bool flyBool;
+    bool downBool;
 
     [SerializeField]
-    private bool isGoal;
+    private bool isStop;
 
     private int limit_touchBubble;
     [SerializeField]
@@ -33,6 +33,9 @@ public class StageRule : MonoBehaviour {
 
     public GameObject stageBorder;
 
+
+
+    
     //   public bool playerbool;
 
     // Start is called before the first frame update
@@ -49,8 +52,8 @@ public class StageRule : MonoBehaviour {
         firstPos = transform.position;
         up_position.x = transform.position.x;
         firstPos.y = 0;
-
         Bubblehub = new List<GameObject>();
+        BubbleCount_Start();
     }
 
     // Update is called once per frame
@@ -58,6 +61,31 @@ public class StageRule : MonoBehaviour {
         BubbleCount ();
         FlyRule ();
         FlyMove (up_position);
+    }
+
+   
+
+    void BubbleCount_Start()
+    {
+        List<GameObject> allChildren = new List<GameObject>();
+        GameObject child;
+
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            child = transform.GetChild(i).gameObject;
+            allChildren.Add(child);
+
+        }
+
+        for (int i = 0; i < allChildren.Count; i++)
+        {
+            if (allChildren[i].tag == "bubble")
+            {
+                Bubblehub.Add(allChildren[i]);
+            }
+        }
+     
     }
 
     //ステージ内のbubbleタグのついた子オブジェクトの数取得
@@ -99,12 +127,12 @@ public class StageRule : MonoBehaviour {
     //浮く
     void FlyRule () {
 
-        if (limit_bubble <= current_bubble && !isGoal ) {
+        if (limit_bubble <= current_bubble && !isStop ) {
             flyBool = true;
             downBool = false;
         }
 
-        if (downBool && !isGoal) {
+        if (downBool && !isStop) {
             flyBool = false;
             DownMove (firstPos);
         }
@@ -151,6 +179,11 @@ public class StageRule : MonoBehaviour {
             stageBorder.SetActive(false);
         }
 
+        if (col.gameObject.CompareTag("Collision"))
+        {
+            downBool = false;
+            flyBool = false;
+        }
       
     }
 

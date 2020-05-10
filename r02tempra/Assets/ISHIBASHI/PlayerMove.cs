@@ -178,14 +178,20 @@ public class PlayerMove : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
-        if (Input.GetKey(KeyCode.LeftArrow) && transform.localScale.x > 0 || Input.GetKey(KeyCode.RightArrow) && transform.localScale.x < 0)
+       
+        if(h != 0)
         {
-            Vector2 pos = transform.localScale;
-            pos.x *= -1;
-            transform.localScale = pos;
-
+            if (h > 0)
+            {
+                transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
+            }
+           
         }
-
+        
 
     }
 
