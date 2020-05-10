@@ -66,10 +66,10 @@ public class TitleManager : MonoBehaviour {
                 //audioSource.Play();
                 //fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
                 Destroy(startButtonInstance);
-                if (selectButtonInstance == null)
-                {
-                    selectButtonInstance = GameObject.Instantiate(selectButtonPrefab) as GameObject;
-                }
+                //if (selectButtonInstance == null)
+                //{
+                //    selectButtonInstance = GameObject.Instantiate(selectButtonPrefab) as GameObject;
+                //}
             }
         }
         if (Input.GetKeyDown(KeyCode.K))
