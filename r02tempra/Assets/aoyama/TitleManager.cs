@@ -49,16 +49,16 @@ public class TitleManager : MonoBehaviour {
         {
             fadeOutInstance = GameObject.Instantiate(fadeOutPrefab) as GameObject;
         }
-        if (startButtonInstance == null)
-        {
-            startButtonInstance = GameObject.Instantiate(startButtonPrefab) as GameObject;
-        }
+        //if (startButtonInstance == null)
+        //{
+        //    startButtonInstance = GameObject.Instantiate(startButtonPrefab) as GameObject;
+        //}
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetButtonDown("GamePad_A"))
+        if (Input.GetButtonDown("A_BUTTON"))
         {
             if (fadeInInstance == null)
             {
