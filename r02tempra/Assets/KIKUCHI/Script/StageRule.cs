@@ -150,6 +150,8 @@ public class StageRule : MonoBehaviour {
         {
             stageBorder.SetActive(false);
         }
+
+      
     }
 
     void OnTriggerExit2D(Collider2D col)
