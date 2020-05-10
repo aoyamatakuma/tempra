@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d867f13d60a13984aa05faca9dfe7b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageData: {fileID: 11400000, guid: 92d1a0a7e6922114da51a3b9e2f28bb4, type: 2}
+  stageData: {fileID: 11400000, guid: 46c14fa2e887439478a006048bd61f2c, type: 2}
   magnification: 35
 --- !u!4 &1193015744
 Transform:
