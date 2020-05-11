@@ -184,6 +184,8 @@ public class PlayerMove : MonoBehaviour
         //マウス入力で左クリックしたとき
         if (Input.GetButtonDown("X_BUTTON") && foamCount < 10 && currentPlayerState == PlayerState.Head)
         {
+            bubble.clip = bubbleSE;
+            bubble.Play();
             awaCreate = true;
             stage = (GameObject)Instantiate(foam, _playerHead.transform.position, Quaternion.identity, _playerHead.parent);
             foamCount++;
