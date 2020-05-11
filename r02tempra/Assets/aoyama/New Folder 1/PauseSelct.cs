@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PauseSelct : MonoBehaviour
 {
-
+    
     public Image stage1;
     public Image stage2;
 
