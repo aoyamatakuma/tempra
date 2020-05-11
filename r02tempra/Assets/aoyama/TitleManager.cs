@@ -13,9 +13,7 @@ public class TitleManager : MonoBehaviour {
     private GameObject fadeInPrefab;
     private GameObject fadeInInstance;
 
-    public AudioClip select1;
-    public AudioClip select2;
-    private AudioSource audioSource;
+    
     public static int Bgm;
 
 
@@ -27,7 +25,7 @@ public class TitleManager : MonoBehaviour {
         Destroy(fadeOutInstance);
         Destroy(fadeInInstance);
 
-        audioSource = gameObject.GetComponent<AudioSource>();
+        
 
         if (fadeOutInstance == null)
         {
@@ -42,8 +40,6 @@ public class TitleManager : MonoBehaviour {
         {
             if (fadeInInstance == null)
             {
-                audioSource.clip = select1;
-                audioSource.Play();
                 fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
                 StartCoroutine("End");
             }
