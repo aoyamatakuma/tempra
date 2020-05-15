@@ -47,7 +47,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5
+      scalar: 1.5
       minScalar: 0.8
       maxCurve:
         serializedVersion: 2
@@ -167,9 +167,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 2
       scalar: 24
-      minScalar: 10
+      minScalar: 30
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -198,8 +198,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 1
+          time: 0.009757996
+          value: 0.04035759
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -207,8 +207,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
+          time: 0.16096877
+          value: 0.19282517
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 8.52
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -660,7 +660,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 12.116911
+    angle: 5.069908
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -746,7 +746,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 3.7796137
+      value: 12.65077
       mode: 0
       spread: 0
       speed:
@@ -2568,7 +2568,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -3120,7 +3120,7 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
+          inSlope: 1
           outSlope: 1
           tangentMode: 0
           weightedMode: 0
@@ -3130,7 +3130,7 @@ ParticleSystem:
           time: 1
           value: 1
           inSlope: 1
-          outSlope: 0
+          outSlope: 1
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
