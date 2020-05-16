@@ -7,11 +7,16 @@ public class MoveIcon : MonoBehaviour {
     [SerializeField]
     public CameraControl CameraCO;
     public GameObject m_Player;
+    //画像取得
+    public Image Teleportimage;
+    public Sprite TeleportOnImage;
+    public Sprite TeleportOffImage;
+
     [SerializeField]
     private StageRule Stage;
-   
+
     [SerializeField]
-     private GameObject explosionEffect;
+    private GameObject explosionEffect;
 
     //テキスト取得
     public Text text;
@@ -33,7 +38,7 @@ public class MoveIcon : MonoBehaviour {
     private static bool AwaExplosion;
 
     //アイコン取得
-    Image Icon;
+    private Image Icon;
 
     // Start is called before the first frame update
     void Start () {
@@ -48,6 +53,8 @@ public class MoveIcon : MonoBehaviour {
         TeleportFlag = false;
         //テキスト非表示
         text.enabled = false;
+        //画像非表示
+        Teleportimage.enabled = false;
         //awaFalse
         AwaExplosion = false;
         //アイコンを取得
@@ -70,11 +77,12 @@ public class MoveIcon : MonoBehaviour {
             TeleportFlag = true;
             AwaExplosion = true;
             text.text = "テレポート可能";
-
+            //画像読み込み変更
+            Teleportimage.gameObject.GetComponent<Image> ().sprite = TeleportOnImage;
             Debug.Log (TeleportFlag);
             //ステージスクリプトを取得する
             Stage = collider.gameObject.GetComponent<StageRule> ();
-            
+
             //Debug.Log (Stage.current_bubble);
 
         }
@@ -85,6 +93,8 @@ public class MoveIcon : MonoBehaviour {
         if (collider.gameObject.tag == "StageBox") {
             TeleportFlag = false;
             AwaExplosion = false;
+            //画像読み込み変更
+            Teleportimage.gameObject.GetComponent<Image> ().sprite = TeleportOffImage;
             text.text = "テレポート不可能";
             //Debug.Log ("No");
             Debug.Log (TeleportFlag);
@@ -103,6 +113,7 @@ public class MoveIcon : MonoBehaviour {
             //アイコンの存在をONにする
             Icon.enabled = true;
             text.enabled = true;
+            Teleportimage.enabled = true;
 
         } else if (Input.GetButtonDown ("Y_BUTTON") && CameraCO.isCameraPos2 == false) {
             //MoveFlag = false;
@@ -111,6 +122,7 @@ public class MoveIcon : MonoBehaviour {
             //アイコンの存在をOFFにする
             Icon.enabled = false;
             text.enabled = false;
+            Teleportimage.enabled = false;
         }
 
         if (CameraCO.isCameraPos2 == false) {
@@ -149,23 +161,22 @@ public class MoveIcon : MonoBehaviour {
     }
     //爆発
     public void Explosion () {
-        
-        if (Input.GetButtonDown ("A_BUTTON") && AwaExplosion){
+
+        if (Input.GetButtonDown ("A_BUTTON") && AwaExplosion) {
             //配列処理
             foreach (var a in Stage.Bubblehub) {
                 //nullチェック
-                if(a !=null){
-                    Instantiate(explosionEffect, a.transform.position, Quaternion.identity);
-                    Destroy(a);
+                if (a != null) {
+                    Instantiate (explosionEffect, a.transform.position, Quaternion.identity);
+                    Destroy (a);
                 }
             }
             //要素削除
-            for(int i=0;i<Stage.Bubblehub.Count;i++)
-            {
-                Stage.Bubblehub.RemoveAt(i);
+            for (int i = 0; i < Stage.Bubblehub.Count; i++) {
+                Stage.Bubblehub.RemoveAt (i);
             }
-
-            Stage.Minus();
+            //ステージのバブルのカウント表示
+            Stage.Minus ();
         }
     }
 
