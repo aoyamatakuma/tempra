@@ -48,26 +48,15 @@ public class CameraControl : MonoBehaviour
     {
         intA = 0;
     }
-    // Update is called once per frame
+
     void Update()
     {
-        switch (intA)
-        {
-            case 0:
-                isCameraPos1 = false;
-                isCameraPos2 = true;
-                break;
-            case 1:
-                isCameraPos1 = true;
-                isCameraPos2 = false;
-                break;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON"))
-        {
-            intA++;
-            if (intA >= 2) { intA = 0; }
-        }
+        ChangeMode();
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+      
         if (isCameraPos1)
         {
             //ここいじる（カメラ操作）
@@ -88,5 +77,24 @@ public class CameraControl : MonoBehaviour
         //transform.position = move;
     }
 
+    void ChangeMode()
+    {
+        switch (intA)
+        {
+            case 0:
+                isCameraPos1 = false;
+                isCameraPos2 = true;
+                break;
+            case 1:
+                isCameraPos1 = true;
+                isCameraPos2 = false;
+                break;
+        }
 
+        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON"))
+        {
+            intA++;
+            if (intA >= 2) { intA = 0; }
+        }
+    }
 }
