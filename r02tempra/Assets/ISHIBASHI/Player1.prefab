@@ -151,6 +151,10 @@ MonoBehaviour:
   playerHead: {fileID: 6426227440305533281}
   headPosition: {x: 0, y: 0, z: 0}
   rule: {fileID: 0}
+  zoomInNaviPrefab: {fileID: 8521200816524464485, guid: 199a0e7ac956ee24b8d56a02096afe3b,
+    type: 3}
+  zoomOutNaviPrefab: {fileID: 327312577507728307, guid: 5fc59274dc5420d40b2a3dfa8e2306e4,
+    type: 3}
 --- !u!70 &6426227439522401376
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -59,6 +59,15 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]
     private StageRule rule;
+
+    //青山追加
+    [SerializeField]
+    private GameObject zoomInNaviPrefab;
+    private GameObject zoomInNaviInstance;
+
+    [SerializeField]
+    private GameObject zoomOutNaviPrefab;
+    private GameObject zoomOutNaviInstance;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +88,11 @@ public class PlayerMove : MonoBehaviour
         cameraCheck = false;
 
         SetCurrentState(PlayerState.Normal);
+
+        //Destroy(zoomOutNaviInstance);
+        Destroy(zoomOutNaviInstance);
+        Destroy(zoomInNaviInstance);
+        zoomInNaviInstance = GameObject.Instantiate(zoomInNaviPrefab) as GameObject;
     }
 
     // Update is called once per frame
@@ -89,12 +103,21 @@ public class PlayerMove : MonoBehaviour
         {
             shutter.clip = shutterSE;
             shutter.Play();
+
+
             if (currentPlayerState != PlayerState.Normal)
             {
+                zoomInNaviInstance = GameObject.Instantiate(zoomInNaviPrefab) as GameObject;
+                Destroy(zoomOutNaviInstance);
+
                 SetCurrentState(PlayerState.Normal);
+                
             }
             else if(currentPlayerState != PlayerState.Division)
             {
+                zoomOutNaviInstance = GameObject.Instantiate(zoomOutNaviPrefab) as GameObject;
+                Destroy(zoomInNaviInstance);
+
                 SetCurrentState(PlayerState.Division);
             }
         }
@@ -132,11 +155,14 @@ public class PlayerMove : MonoBehaviour
         Jump();
         Baburu();
         Move();
+
+       
     }
 
     //ズームアウト時の処理
     void DivisionMove()
     {
+
         if (Input.GetButtonDown("B_BUTTON"))
         {
             
