@@ -87,6 +87,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraCO: {fileID: 0}
   m_Player: {fileID: 0}
+  Teleportimage: {fileID: 0}
+  TeleportOnImage: {fileID: 0}
+  TeleportOffImage: {fileID: 0}
   Stage: {fileID: 0}
   explosionEffect: {fileID: 0}
   text: {fileID: 0}
