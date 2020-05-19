@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: stage1
   m_EditorClassIdentifier: 
   StageObjList:
-  - {fileID: 941142824010496543, guid: 29e7e81680f6abb45bd199a6d05f6063, type: 3}
+  - {fileID: 941142824010496543, guid: 5822907b9e8d89446b63ffdd2b9f6a2c, type: 3}
   - {fileID: 941142824010496543, guid: 87f6ba6136739f14fbafdcfe7d4578e3, type: 3}
   - {fileID: 941142824010496543, guid: adaaa8c3cecc01946884d0fd7936be7f, type: 3}
   - {fileID: 941142824010496543, guid: 6ba0b5b0b054815458bb07058fdef005, type: 3}

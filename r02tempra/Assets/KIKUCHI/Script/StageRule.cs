@@ -23,7 +23,7 @@ public class StageRule : MonoBehaviour {
     bool downBool;
 
     [SerializeField]
-    private bool isStop;
+    private bool isGoal;
 
     private int limit_touchBubble;
     [SerializeField]
@@ -115,7 +115,7 @@ public class StageRule : MonoBehaviour {
             }
         }
 
-        if (countBubble < limit_bubble  && flyBool) {
+        if (countBubble < limit_bubble  && flyBool ) {
 
             downBool = true;
         }
@@ -127,12 +127,12 @@ public class StageRule : MonoBehaviour {
     //浮く
     void FlyRule () {
 
-        if (limit_bubble <= current_bubble && !isStop ) {
+        if (limit_bubble <= current_bubble && !isGoal ) {
             flyBool = true;
             downBool = false;
         }
 
-        if (downBool && !isStop) {
+        if (downBool && !isGoal) {
             flyBool = false;
             DownMove (firstPos);
         }
@@ -148,8 +148,8 @@ public class StageRule : MonoBehaviour {
     }
 
     void DownMove (Vector2 nextPos) {
-        if (!downBool) return;
-        if (transform.position.y >= nextPos.y && downBool) {
+        if (!downBool ) return;
+        if (transform.position.y >= nextPos.y && downBool ) {
             transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);
         }
     }
