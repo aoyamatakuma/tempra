@@ -51,12 +51,12 @@ public class StageRule : MonoBehaviour {
     public List<GameObject> Bubblehub;
 
     public GameObject stage_Left;
-
     public GameObject stage_Right;
+    public GameObject light_Left;
+    public GameObject light_Right;
 
 
 
-    
     //   public bool playerbool;
 
     // Start is called before the first frame update
@@ -168,7 +168,7 @@ public class StageRule : MonoBehaviour {
     //浮く
     void FlyRule () {
 
-        if (limit_touchBubble <= current_touchBubble && !isGoal ) {
+        if (limit_bubble <= current_bubble && !isGoal ) {
             flyBool = true;
             downBool = false;
             SetCurrentState(StageState.Fly);
@@ -183,7 +183,7 @@ public class StageRule : MonoBehaviour {
 
     void FlyMove (Vector2 nextPos) {
         if (!flyBool) return;
-        if (transform.position.y <= nextPos.y ) {
+        if (transform.position.y <= nextPos.y && limit_touchBubble <= current_touchBubble) {
             transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);
         }
       
@@ -241,11 +241,13 @@ public class StageRule : MonoBehaviour {
         if(col.gameObject.CompareTag("Border_Left"))
         {
             Border_Bool(stage_Right, false);
+            Border_Bool(light_Right, true);
         }
 
         if (col.gameObject.CompareTag("Border_Right"))
         {
             Border_Bool(stage_Left, false);
+            Border_Bool(light_Left, true);
         }
 
         if (col.gameObject.CompareTag("Collision"))
@@ -261,11 +263,13 @@ public class StageRule : MonoBehaviour {
         if (col.gameObject.CompareTag("Border_Left"))
         {
             Border_Bool(stage_Right, true);
+            Border_Bool(light_Right, false);
         }
 
         if (col.gameObject.CompareTag("Border_Right"))
         {
             Border_Bool(stage_Left, true);
+            Border_Bool(light_Left, false);
         }
 
     }
