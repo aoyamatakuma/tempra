@@ -6,7 +6,7 @@ public class GoalBlock : MonoBehaviour
 {
     void Start()
     {
-        Debug.Log("aaaaaaaaaaa");
+       
     }
 
     void Update() { }
@@ -15,7 +15,7 @@ public class GoalBlock : MonoBehaviour
     {
         if (col.gameObject.tag =="Player")
         {
-            Debug.Log("GOAL!!!!!");
+     
             SceneManager.LoadScene("MasterGoal");
         }
     }
