@@ -1087,6 +1087,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 6426227439522401391, guid: 312ed1033e3830949bd1ff870cf44845,
+        type: 3}
+      propertyPath: babulimit
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1380,6 +1385,7 @@ MonoBehaviour:
   posY: 36
   posZ: -100
   playerTrans: {fileID: 493604273}
+  player: {fileID: 0}
   offset: {x: 0, y: 2, z: 0}
   cameraVec: {x: 0, y: 2, z: -2}
   isCameraPos1: 1
