@@ -40,7 +40,7 @@ public class StageCreate : MonoBehaviour
         //ステージ管理
         Arrrayswitch();
       
-        Debug.Log("活動中");
+     
         Create();
 
         
