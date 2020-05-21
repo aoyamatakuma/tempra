@@ -238,24 +238,26 @@ public class StageRule : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Border_Left"))
-        {
-            Border_Bool(stage_Right, false);
-            Border_Bool(light_Right, true);
-        }
-
-        if (col.gameObject.CompareTag("Border_Right"))
-        {
-            Border_Bool(stage_Left, false);
-            Border_Bool(light_Left, true);
-        }
-
+     
         if (col.gameObject.CompareTag("Collision"))
         {
             downBool = false;
             flyBool = false;
         }
       
+    }
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Border_Left"))
+        {
+            Border_Bool(stage_Right, false);
+            Border_Bool(light_Right, true);
+        }
+        if (col.gameObject.CompareTag("Border_Right"))
+        {
+            Border_Bool(stage_Left, false);
+            Border_Bool(light_Left, true);
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
