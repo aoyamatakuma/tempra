@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum PlayerState
 {
+    Stop,
     Normal,
     Division,
     Head
@@ -87,7 +88,7 @@ public class PlayerMove : MonoBehaviour
 
         cameraCheck = false;
 
-        SetCurrentState(PlayerState.Normal);
+        SetCurrentState(PlayerState.Stop);
 
         //Destroy(zoomOutNaviInstance);
         Destroy(zoomOutNaviInstance);
@@ -128,6 +129,9 @@ public class PlayerMove : MonoBehaviour
     {
         switch (state)
         {
+            case PlayerState.Stop:
+                StopMove();
+                break;
             case PlayerState.Normal:
                 NormalMove();
                 break;
@@ -147,6 +151,11 @@ public class PlayerMove : MonoBehaviour
     {
         currentPlayerState = state;
         OnPlayerStateChanged(currentPlayerState);
+    }
+
+    void StopMove()
+    {
+        Debug.Log("停止中");
     }
 
     //通常状態の処理
@@ -181,6 +190,20 @@ public class PlayerMove : MonoBehaviour
         {
             
             CameraCheck();
+        }
+
+        float h = Input.GetAxis("Horizontal");
+        if (h != 0)
+        {
+            if (h > 0)
+            {
+                transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
+            }
+
         }
     }
 

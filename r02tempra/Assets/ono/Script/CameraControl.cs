@@ -16,6 +16,8 @@ public class CameraControl : MonoBehaviour
 
     [SerializeField]
     Transform playerTrans;
+    [SerializeField]
+    PlayerMove player;
 
     [SerializeField]
     private Vector3 offset= new Vector3(0,2,0);
@@ -46,6 +48,7 @@ public class CameraControl : MonoBehaviour
     //始まったらズームアウト
     void StartTime()
     {
+        player.SetCurrentState(PlayerState.Normal);
         intA = 0;
     }
 
