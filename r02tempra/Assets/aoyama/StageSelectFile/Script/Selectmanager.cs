@@ -26,6 +26,8 @@ public class Selectmanager : MonoBehaviour
     private AudioSource cancel;
     private AudioSource decision;
 
+
+
   
     
     public Image stage2;
@@ -37,14 +39,21 @@ public class Selectmanager : MonoBehaviour
     private Color SelectOn = new Color(255 / 255.0f, 255 / 255.0f, 255 / 255.0f);
     private Color SelectOff = new Color(0 / 255.0f, 0 / 255.0f, 0 / 255.0f,0);
 
+    static int unlockStage;
 
     int cntMove;
     int cntnumber;
     int cntStage;
 
+    int stageMax=10;//最大ステージ数
+    int stageMin=1;//最小ステージ数
+
     // Start is called before the first frame update
     void Start()
     {
+        stageMax = 10;
+        stageMin = 1;
+
         stage2.GetComponent<Image>().color = SelectOff;
         Destroy(fadeOutInstance);
         Destroy(fadeInInstance);
@@ -57,7 +66,7 @@ public class Selectmanager : MonoBehaviour
         }
 
 
-        cntStage = 0;
+        cntStage = 1;
         cntnumber=0;
         cntMove = 0;
         rightMoveFlag = false;
@@ -66,7 +75,7 @@ public class Selectmanager : MonoBehaviour
         select = gameObject.GetComponent<AudioSource>();
         cancel = gameObject.GetComponent<AudioSource>();
         decision = gameObject.GetComponent<AudioSource>();
-        if (cntStage == 0)
+        if (cntStage == 1)
         {
             targetAnimatorLeft.SetTrigger("Invisible");
         }
@@ -117,46 +126,46 @@ public class Selectmanager : MonoBehaviour
 
         //myTransform.position =pos;
         Select();
-        if (cntStage != 2 && Input.GetAxis("Horizontal") > 0.9f && rightMoveFlag == false && leftMoveFlag == false)
+        if (cntStage != stageMax && Input.GetAxis("Horizontal") > 0.9f && rightMoveFlag == false && leftMoveFlag == false)
         {
             targetAnimator.SetTrigger("Right");
             select.clip = select1;
             select.Play();
-            if (cntStage == 0)
+            if (cntStage == stageMin)
             {
                 targetAnimatorLeft.SetTrigger("Lightsup");
             }
             cntStage++;
             rightMoveFlag = true;
-            if (cntStage == 2)
+            if (cntStage == stageMax)
             {
                 targetAnimator.SetTrigger("Invisible");
             }
         }
 
-        if (cntStage != 0 && Input.GetAxis("Horizontal") < -0.9f && rightMoveFlag == false && leftMoveFlag == false)
+        if (cntStage != stageMin && Input.GetAxis("Horizontal") < -0.9f && rightMoveFlag == false && leftMoveFlag == false)
         {
             targetAnimatorLeft.SetTrigger("Right");
             select.clip = select1;
             select.Play();
-            if (cntStage == 2)
+            if (cntStage == stageMax)
             {
                 targetAnimator.SetTrigger("Lightsup");
             }
             cntStage--;
 
             leftMoveFlag = true;
-            if (cntStage == 0)
+            if (cntStage == stageMin)
             {
                 targetAnimatorLeft.SetTrigger("Invisible");
             }
         }
-        if (cntStage == 2 && Input.GetAxis("Horizontal") > 0.1f && rightMoveFlag == false && leftMoveFlag == false)
+        if (cntStage == stageMax && Input.GetAxis("Horizontal") > 0.1f && rightMoveFlag == false && leftMoveFlag == false)
         {
             //cancel.clip = cancel1;
             //cancel.Play();
         }
-        if (cntStage == 0 && Input.GetAxis("Horizontal") < -0.1f && rightMoveFlag == false && leftMoveFlag == false)
+        if (cntStage == stageMin && Input.GetAxis("Horizontal") < -0.1f && rightMoveFlag == false && leftMoveFlag == false)
         {
             //cancel.clip = cancel1;
             //cancel.Play();
@@ -165,14 +174,14 @@ public class Selectmanager : MonoBehaviour
 
 
 
-         if (cntStage == 2)
+         if (cntStage == 1 || cntStage == 2 || cntStage == 10)
         {
 
-            stage2.GetComponent<Image>().color = SelectOn;
+            stage2.GetComponent<Image>().color = SelectOff;
         }
         else
         {
-            stage2.GetComponent<Image>().color = SelectOff;
+            stage2.GetComponent<Image>().color = SelectOn;
         }
         
     }
@@ -181,7 +190,7 @@ public class Selectmanager : MonoBehaviour
     {
         if (Input.GetButtonDown("A_BUTTON")&& rightMoveFlag == false && leftMoveFlag == false)
         {
-            if (cntStage != 2)
+            if (cntStage == 1|| cntStage == 2 || cntStage == 10)
             {
                 if (fadeInInstance == null)
                 {
@@ -192,7 +201,7 @@ public class Selectmanager : MonoBehaviour
                     StartCoroutine("End");
                 }
             }
-            if (cntStage == 2)
+            else
             {
                 cancel.clip = cancel1;
                 cancel.Play();
@@ -203,11 +212,15 @@ public class Selectmanager : MonoBehaviour
     public IEnumerator End()
     {
         yield return new WaitForSeconds(2);
-        if (cntStage == 0)
+        if (cntStage == 1)
         {
             SceneManager.LoadScene("StageExample");
         }
-        if (cntStage == 1)
+        if (cntStage == 2)
+        {
+            SceneManager.LoadScene("stage02");
+        }
+        if (cntStage == 10)
         {
             SceneManager.LoadScene("stage02");
         }

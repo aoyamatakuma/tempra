@@ -10,18 +10,29 @@ public class PlayerHeadMove : MonoBehaviour
     [SerializeField] Transform stageParent;
     [SerializeField] PlayerMove player;
 
+    private bool moveflag;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         playerHeadCollider = GetComponent<CircleCollider2D>();
         player = player.GetComponent<PlayerMove>();
+        moveflag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (moveflag)
+        {
+            Move();
+        }
+        if (Input.GetButtonDown("Y_BUTTON"))
+        {
+            moveflag = !moveflag;
+            rigidPlayer.velocity = Vector2.zero;
+        }
     }
 
     void Move()//移動系
@@ -61,6 +72,7 @@ public class PlayerHeadMove : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            moveflag = false;
             rigidPlayer.simulated = false;
             playerHeadCollider.enabled = false;
             transform.parent = col.gameObject.transform;

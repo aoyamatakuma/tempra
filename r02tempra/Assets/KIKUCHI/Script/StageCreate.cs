@@ -40,7 +40,7 @@ public class StageCreate : MonoBehaviour
         //ステージ管理
         Arrrayswitch();
       
-        Debug.Log("活動中");
+     
         Create();
 
         
@@ -80,7 +80,7 @@ public class StageCreate : MonoBehaviour
             case 0:
                 ArraryNum(2, 2, 2);
                 ArraryNum(1, 0, 1);
-                ArraryNum(0, 2, 4);
+                ArraryNum(0, 2, 1);
                 Debug.Log("0の場合");
                 //break文
                 break;
@@ -88,7 +88,7 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(2, 0, 2);
                 ArraryNum(0, 0, 3);
                 ArraryNum(1, 0, 1);
-                ArraryNum(0, 1, 4);
+                ArraryNum(0, 1, 1);
                 Debug.Log("１の場合");
                 //break文
                 break;

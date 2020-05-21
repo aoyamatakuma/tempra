@@ -79,7 +79,7 @@ public class MoveIcon : MonoBehaviour {
             text.text = "テレポート可能";
             //画像読み込み変更
             Teleportimage.gameObject.GetComponent<Image> ().sprite = TeleportOnImage;
-            Debug.Log (TeleportFlag);
+          
             //ステージスクリプトを取得する
             Stage = collider.gameObject.GetComponent<StageRule> ();
 
@@ -97,7 +97,7 @@ public class MoveIcon : MonoBehaviour {
             Teleportimage.gameObject.GetComponent<Image> ().sprite = TeleportOffImage;
             text.text = "テレポート不可能";
             //Debug.Log ("No");
-            Debug.Log (TeleportFlag);
+           
 
         }
     }
@@ -143,7 +143,7 @@ public class MoveIcon : MonoBehaviour {
             rect.anchoredPosition = pos;
             if (Input.GetButtonDown ("B_BUTTON") && TeleportFlag) {
                 Teleport ();
-                Debug.Log ("テレポート");
+              
 
             }
         }
