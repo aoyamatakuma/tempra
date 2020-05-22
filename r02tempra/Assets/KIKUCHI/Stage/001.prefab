@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7848969092138998152}
   - component: {fileID: 9124429177027670451}
+  - component: {fileID: 4977708596092763459}
   m_Layer: 13
   m_Name: stage_bottom
   m_TagString: Collision_bottom
@@ -57,6 +58,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4977708596092763459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601515989513670429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4e432212cbfe4f8bebcf46cb7f289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &701744373153140198
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +684,7 @@ MonoBehaviour:
   up_position: {x: 0, y: 44}
   wind_position: {x: 0, y: 0}
   isGoal: 1
+  limit_touchBubble: 0
   current_touchBubble: 0
   Bubblehub: []
   stage_Left: {fileID: 3710206931050275225}
@@ -954,6 +968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6545378587475982393}
   - component: {fileID: 7700117542046157079}
+  - component: {fileID: 754337830159679235}
   m_Layer: 13
   m_Name: stage_soto (1)
   m_TagString: Collsion_up
@@ -1001,6 +1016,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &754337830159679235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4505226505557546633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4e432212cbfe4f8bebcf46cb7f289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5172708545692692135
 GameObject:
   m_ObjectHideFlags: 0
