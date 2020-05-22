@@ -190,7 +190,7 @@ public class Selectmanager : MonoBehaviour
     {
         if (Input.GetButtonDown("A_BUTTON")&& rightMoveFlag == false && leftMoveFlag == false)
         {
-            if (cntStage == 1|| cntStage == 2 || cntStage == 10)
+            if (cntStage == 1|| cntStage == 2 || cntStage == 3 || cntStage == 10)
             {
                 if (fadeInInstance == null)
                 {
