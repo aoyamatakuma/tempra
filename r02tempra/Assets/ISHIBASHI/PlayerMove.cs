@@ -34,6 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     //生成するものと数
     public int foamCount;
+    public int babulimit;
     public GameObject foam;
     //バブル座標
     private Vector3 BaburuPosition;
@@ -220,7 +221,7 @@ public class PlayerMove : MonoBehaviour
     void Baburu()
     {
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("X_BUTTON") && foamCount < 10  && currentPlayerState == PlayerState.Normal)
+        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Normal)
         {
             bubble.clip = bubbleSE;
             bubble.Play();
@@ -231,7 +232,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("X_BUTTON") && foamCount < 10 && currentPlayerState == PlayerState.Head)
+        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Head)
         {
             bubble.clip = bubbleSE;
             bubble.Play();
