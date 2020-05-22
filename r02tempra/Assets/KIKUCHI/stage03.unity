@@ -1192,6 +1192,11 @@ PrefabInstance:
       propertyPath: explosionSE
       value: 
       objectReference: {fileID: 8300000, guid: 5e7e40853dd84f24c8662042d568d943, type: 3}
+    - target: {fileID: 6426227439522401391, guid: 312ed1033e3830949bd1ff870cf44845,
+        type: 3}
+      propertyPath: babulimit
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
       propertyPath: m_LocalPosition.x
