@@ -94,8 +94,9 @@ public class StageCreate : MonoBehaviour
                 break;
             case 2:
                 ArraryNum(2, 2, 2);
-                ArraryNum(0, 2, 1);
+                ArraryNum(1, 1, 1);
                 ArraryNum(0, 0, 1);
+                ArraryNum(1, 0, 4);
                 Debug.Log("2の場合");
                 //break文
                 break;

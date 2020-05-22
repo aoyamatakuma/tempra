@@ -1380,6 +1380,7 @@ MonoBehaviour:
   posY: 36
   posZ: -100
   playerTrans: {fileID: 493604273}
+  player: {fileID: 936554639}
   offset: {x: 0, y: 2, z: 0}
   cameraVec: {x: 0, y: 2, z: -2}
   isCameraPos1: 1

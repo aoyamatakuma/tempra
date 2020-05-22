@@ -17,6 +17,8 @@ TagManager:
   - Collision
   - Border_Left
   - Border_Right
+  - Collsion_up
+  - Collision_bottom
   layers:
   - Default
   - TransparentFX
@@ -31,7 +33,7 @@ TagManager:
   - bubble
   - judgment
   - stage_soto
-  - 
+  - collision
   - 
   - 
   - 
