@@ -81,7 +81,7 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(2, 2, 2);
                 ArraryNum(1, 0, 1);
                 ArraryNum(0, 2, 3);
-                Debug.Log("0の場合");
+              
                 //break文
                 break;
             case 1:
@@ -89,7 +89,7 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(0, 0, 3);
                 ArraryNum(1, 0, 1);
                 ArraryNum(0, 1, 1);
-                Debug.Log("１の場合");
+               
                 //break文
                 break;
             case 2:
@@ -97,7 +97,7 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(1, 1, 1);
                 ArraryNum(0, 0, 1);
                 ArraryNum(1, 0, 4);
-                Debug.Log("2の場合");
+              
                 //break文
                 break;
         }

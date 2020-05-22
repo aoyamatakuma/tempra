@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7810497106889200687}
   - component: {fileID: 3867517856372080313}
+  - component: {fileID: 8461313895979375374}
   m_Layer: 13
   m_Name: stage_soto (1)
   m_TagString: Collsion_up
@@ -41,7 +42,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 1.3}
@@ -57,6 +58,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &8461313895979375374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784489124043833762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4e432212cbfe4f8bebcf46cb7f289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &941142822079175732
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.5, y: 11}
+  m_AnchoredPosition: {x: 15, y: 8.5}
   m_SizeDelta: {x: 1034, y: 510}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &941142823278502188
@@ -901,6 +914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5202711346784448319}
   - component: {fileID: 8493579847942598717}
+  - component: {fileID: 2657105839567921519}
   m_Layer: 13
   m_Name: stage_bottom
   m_TagString: Collision_bottom
@@ -932,10 +946,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.29}
+  m_Offset: {x: 0, y: -1.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -948,6 +962,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &2657105839567921519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498338810937754496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4e432212cbfe4f8bebcf46cb7f289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2778256725716518791
 GameObject:
   m_ObjectHideFlags: 0

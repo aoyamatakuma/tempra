@@ -36,7 +36,8 @@ public class StageRule : MonoBehaviour {
     bool colBool;
     [SerializeField]
     private bool isGoal;
-    private int limit_touchBubble; 
+    [SerializeField]
+    private int limit_touchBubble =2; 
     [SerializeField]
     private int current_touchBubble;
     public List<GameObject> Bubblehub;
@@ -57,8 +58,7 @@ public class StageRule : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMove> ();
         flyBool = false;
         downBool = false;
-        current_bubble = 0;
-        limit_touchBubble = limit_bubble;
+        current_bubble = 0;      
         current_touchBubble = 0;
         firstPos = transform.position;
         up_position.x = transform.position.x;
@@ -160,7 +160,7 @@ public class StageRule : MonoBehaviour {
     //浮く
     void FlyRule () {
 
-        if (limit_bubble <= current_bubble && !isGoal  && limit_touchBubble<=current_touchBubble && currentStageState != StageState.hit_up) {
+        if (limit_bubble <= current_bubble && !isGoal  && limit_touchBubble <= current_touchBubble && currentStageState != StageState.hit_up) {
             flyBool = true;
             downBool = false;
             SetCurrentState(StageState.Fly);
@@ -173,7 +173,7 @@ public class StageRule : MonoBehaviour {
     }
 
     void FlyMove (Vector2 nextPos) {
-        if (!flyBool && currentStageState != StageState.Fly ) return; 
+        if (!flyBool && currentStageState != StageState.Fly )return; 
         transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);     
       if(transform.position.y >= nextPos.y)
         {
@@ -211,12 +211,8 @@ public class StageRule : MonoBehaviour {
 
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    public void HitStage(Collider2D col)
     {
-        if (col.gameObject.CompareTag("bubble"))
-        {
-            current_touchBubble++;
-        }
         if (col.gameObject.CompareTag("Collsion_up"))
         {
             Debug.Log(currentStageState);
@@ -228,12 +224,32 @@ public class StageRule : MonoBehaviour {
             Debug.Log(currentStageState);
             SetCurrentState(StageState.hit_up);
         }
+    }
 
+    public void ExitStage(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Collsion_up"))
+        {
+            SetCurrentState(StageState.Normal);
+        }
+        if (col.gameObject.CompareTag("Collision_bottom"))
+        {
+            SetCurrentState(StageState.Normal);
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("bubble"))
+        {
+            current_touchBubble++;
+        }
     }
 
     void OnCollisionStay2D(Collision2D col)
     {
-        
+      
     }
 
     void OnCollisionExit2D(Collision2D col)
@@ -243,22 +259,11 @@ public class StageRule : MonoBehaviour {
             current_touchBubble--;
 
         }
-        if (col.gameObject.CompareTag("Collsion_up"))
-        {
-
-            SetCurrentState(StageState.Normal);
-        }
-        if (col.gameObject.CompareTag("Collision_bottom"))
-        {
-
-            SetCurrentState(StageState.Normal);
-        }
+      
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-      
-
     }
     void OnTriggerStay2D(Collider2D col)
     {
@@ -271,9 +276,7 @@ public class StageRule : MonoBehaviour {
         {
             Border_Bool(stage_Left, false);
             Border_Bool(light_Left, true);
-        }
-
-       
+        }    
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -289,7 +292,6 @@ public class StageRule : MonoBehaviour {
             Border_Bool(stage_Left, true);
             Border_Bool(light_Left, false);
         }
-
       
     }
 
