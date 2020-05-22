@@ -20,15 +20,15 @@ public class ButtonSwich : MonoBehaviour {
         //名前を取得して分岐
         switch (transform.name) {
             case "Button":
-                Debug.Log ("リスタート");
+                //Debug.Log ("リスタート");
                 SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
                 break;
             case "Button1":
-                Debug.Log ("ステージセレクト");
+                //Debug.Log ("ステージセレクト");
                 SceneManager.LoadScene ("select");
                 break;
             case "Button2":
-                Debug.Log ("タイトル");
+                //Debug.Log ("タイトル");
                 SceneManager.LoadScene ("MasterTitle");
                 break;
             default:

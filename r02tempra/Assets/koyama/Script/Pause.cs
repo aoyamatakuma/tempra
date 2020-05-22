@@ -45,13 +45,13 @@ public class Pause : MonoBehaviour {
     void PauseandResumeCall () {
         // ポーズ状態が変更されていたら、Pause/Resumeを呼び出す。
         if (Input.GetKeyDown ("joystick button 7") && pausing == false) {
-            Debug.Log ("ウンコモラスメン");
+            //Debug.Log ("ウンコモラスメン");
             pausing = true;
             Pausing ();
             manuCanvas.SetActive (true);
             
         } else if (Input.GetKeyDown ("joystick button 7") && pausing == true) {
-            Debug.Log ("ウンコモラサナイメン");
+            //Debug.Log ("ウンコモラサナイメン");
             pausing = false;
             Resume ();
             manuCanvas.SetActive (false);
