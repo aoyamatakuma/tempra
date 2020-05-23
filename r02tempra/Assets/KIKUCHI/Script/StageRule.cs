@@ -45,6 +45,7 @@ public class StageRule : MonoBehaviour {
     public GameObject stage_Right;
     public GameObject light_Left;
     public GameObject light_Right;
+    private GameObject wind_target;
 
 
 
@@ -53,8 +54,8 @@ public class StageRule : MonoBehaviour {
     // Start is called before the first frame update
     void Start ()
 
-    {
-        SetCurrentState(StageState.Normal);
+    {    
+        SetCurrentState(StageState.Normal);   
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMove> ();
         flyBool = false;
         downBool = false;
@@ -264,33 +265,58 @@ public class StageRule : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (isWind)
+        {
+            if (leftWind)
+            {
+                if (col.gameObject.CompareTag("Border_Left"))
+                {
+                    wind_target = col.gameObject;
+                }
+            }
+
+            if(rightWind)
+            {
+                if (col.gameObject.CompareTag("Border_Right"))
+                {
+                    wind_target = col.gameObject;
+                }
+            }
+        }
     }
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Border_Left"))
+        if (!isWind)
         {
-            Border_Bool(stage_Right, false);
-            Border_Bool(light_Right, true);
+            if (col.gameObject.CompareTag("Border_Left"))
+            {
+                Border_Bool(stage_Right, false);
+                Border_Bool(light_Right, true);
+            }
+            if (col.gameObject.CompareTag("Border_Right"))
+            {
+                Border_Bool(stage_Left, false);
+                Border_Bool(light_Left, true);
+            }
         }
-        if (col.gameObject.CompareTag("Border_Right"))
-        {
-            Border_Bool(stage_Left, false);
-            Border_Bool(light_Left, true);
-        }    
+      
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Border_Left"))
+        if (!isWind)
         {
-            Border_Bool(stage_Right, true);
-            Border_Bool(light_Right, false);
-        }
+            if (col.gameObject.CompareTag("Border_Left"))
+            {
+                Border_Bool(stage_Right, true);
+                Border_Bool(light_Right, false);
+            }
 
-        if (col.gameObject.CompareTag("Border_Right"))
-        {
-            Border_Bool(stage_Left, true);
-            Border_Bool(light_Left, false);
+            if (col.gameObject.CompareTag("Border_Right"))
+            {
+                Border_Bool(stage_Left, true);
+                Border_Bool(light_Left, false);
+            }
         }
       
     }
