@@ -174,7 +174,7 @@ public class Selectmanager : MonoBehaviour
 
 
 
-         if (cntStage == 1 || cntStage == 2 || cntStage == 10)
+         if (cntStage == 1 || cntStage == 2 || cntStage ==3 || cntStage == 10)
         {
 
             stage2.GetComponent<Image>().color = SelectOff;
@@ -190,7 +190,7 @@ public class Selectmanager : MonoBehaviour
     {
         if (Input.GetButtonDown("A_BUTTON")&& rightMoveFlag == false && leftMoveFlag == false)
         {
-            if (cntStage == 1|| cntStage == 2 || cntStage == 10)
+            if (cntStage == 1|| cntStage == 2 || cntStage == 3 || cntStage == 10)
             {
                 if (fadeInInstance == null)
                 {
@@ -219,6 +219,10 @@ public class Selectmanager : MonoBehaviour
         if (cntStage == 2)
         {
             SceneManager.LoadScene("stage02");
+        }
+        if(cntStage == 3)
+        {
+            SceneManager.LoadScene("stage03");
         }
         if (cntStage == 10)
         {

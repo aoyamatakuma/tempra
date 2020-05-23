@@ -251,6 +251,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 812300576306574569, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 812300576306574572, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: m_Camera
@@ -366,6 +371,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2940719663770311050, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -437
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940719663770311050, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 219
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169160336800076772, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169160336800076773, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6282284144228693814, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -380,6 +405,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5063
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282284144228693815, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6282284144228693819, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
@@ -402,6 +432,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
         type: 3}
+    - target: {fileID: 6282284144228693819, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: Teleportimage
+      value: 
+      objectReference: {fileID: 308636777}
+    - target: {fileID: 6282284144228693819, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: Icon
+      value: 
+      objectReference: {fileID: 639708792}
     - target: {fileID: 8555079448635019808, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -431,6 +471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_HorizontalOverflow
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555079448635019838, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8555079448635019839, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
@@ -465,6 +510,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 253066502}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &308636777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3169160336800076774, guid: 24fad62a34f70314bb4362f762f88190,
+    type: 3}
+  m_PrefabInstance: {fileID: 253066502}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &339610814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -839,8 +896,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bgm
       objectReference: {fileID: 0}
+    - target: {fileID: 6714424893174649038, guid: a301ec3b73d58d9448b9ff260e218134,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a301ec3b73d58d9448b9ff260e218134, type: 3}
+--- !u!114 &639708792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6282284144228693817, guid: 24fad62a34f70314bb4362f762f88190,
+    type: 3}
+  m_PrefabInstance: {fileID: 253066502}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &722193698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1256,11 @@ PrefabInstance:
       propertyPath: explosionSE
       value: 
       objectReference: {fileID: 8300000, guid: 5e7e40853dd84f24c8662042d568d943, type: 3}
+    - target: {fileID: 6426227439522401391, guid: 312ed1033e3830949bd1ff870cf44845,
+        type: 3}
+      propertyPath: babulimit
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1190,7 +1269,7 @@ PrefabInstance:
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
@@ -1295,7 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d867f13d60a13984aa05faca9dfe7b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageData: {fileID: 11400000, guid: 46c14fa2e887439478a006048bd61f2c, type: 2}
+  stageData: {fileID: 11400000, guid: 99c02d242ec90ab408f31343fd769562, type: 2}
   magnification: 22
 --- !u!4 &1193015744
 Transform:
@@ -1344,7 +1423,6 @@ MonoBehaviour:
   Playerrb: {fileID: 0}
   airPowerX: -300
   airPowerY: 0
-  storm_position: {x: 0, y: 0}
 --- !u!61 &1578581060
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1486,6 +1564,7 @@ MonoBehaviour:
   posY: 36
   posZ: -100
   playerTrans: {fileID: 493604273}
+  player: {fileID: 936554639}
   offset: {x: 0, y: 2, z: 0}
   cameraVec: {x: 0, y: 2, z: -2}
   isCameraPos1: 1
