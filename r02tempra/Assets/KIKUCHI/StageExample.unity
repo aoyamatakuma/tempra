@@ -779,7 +779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4234352997587154, guid: 812deffa655857949b8d029f6bdf064f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.006
+      value: 0.023
       objectReference: {fileID: 0}
     - target: {fileID: 4234352997587154, guid: 812deffa655857949b8d029f6bdf064f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -832,7 +832,7 @@ PrefabInstance:
     - target: {fileID: 198462805386392532, guid: 812deffa655857949b8d029f6bdf064f,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 198462805386392532, guid: 812deffa655857949b8d029f6bdf064f,
         type: 3}
@@ -847,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 198462805386392532, guid: 812deffa655857949b8d029f6bdf064f,
         type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 199177059179098010, guid: 812deffa655857949b8d029f6bdf064f,
         type: 3}
@@ -1484,6 +1484,7 @@ MonoBehaviour:
   posY: 36
   posZ: -100
   playerTrans: {fileID: 493604273}
+  player: {fileID: 0}
   offset: {x: 0, y: 2, z: 0}
   cameraVec: {x: 0, y: 2, z: -2}
   isCameraPos1: 1
@@ -1591,7 +1592,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6accb5a287f4c654f9f19eca6cc1f196, type: 2}
+      objectReference: {fileID: 2100000, guid: a4d635b8eb2dee649a0ffcc77b13e589, type: 2}
     - target: {fileID: 2099192150954452701, guid: 8d3178e3ebf82db4b9760fc997cb561e,
         type: 3}
       propertyPath: m_LocalPosition.x
