@@ -15,6 +15,9 @@ MonoBehaviour:
   StageObjList:
   - {fileID: 941142824010496543, guid: 5822907b9e8d89446b63ffdd2b9f6a2c, type: 3}
   - {fileID: 941142824010496543, guid: 8c498b46be8bb914aa2bbf73b159fab7, type: 3}
+  - {fileID: 941142824010496543, guid: c07d4fc27ba22484c9e28548ac46f03a, type: 3}
+  - {fileID: 941142824010496543, guid: 67d0ce7c32b923344a841c745ccaab8b, type: 3}
+  - {fileID: 941142824010496543, guid: c5d42a824e5b11b43af87cb3409247f5, type: 3}
   Number_S: 3
   Xmax: 3
   Ymax: 3

@@ -97,9 +97,15 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(1, 1, 1);
                 ArraryNum(0, 0, 1);
                 ArraryNum(1, 0, 4);
-              
-                //break文
                 break;
+            case 3:
+              
+                ArraryNum(1, 0, 1);
+                ArraryNum(0, 1, 5);
+                break;
+              
+                
+              
         }
     }
 }

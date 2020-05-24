@@ -674,6 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b36716b0d1d8143a322338c0e1fb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
   player: {fileID: 0}
   currentStageState: 0
   isWind: 0

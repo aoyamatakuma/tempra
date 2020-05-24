@@ -15,10 +15,12 @@ public class ChildCollision : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         stage.HitStage(col);
+        stage.Wind_Col(col);
     }
     void OnTriggerStay2D(Collider2D col)
     {
         stage.HitStage(col);
+      
     }
 
     void OnTriggerExit2D(Collider2D col)
