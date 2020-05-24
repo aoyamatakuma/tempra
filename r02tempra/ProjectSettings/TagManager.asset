@@ -4,23 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - bubble
-  - StageArea
   - Border
+  - StageArea
   - Stage
-  - Goal
-  - Icon
-  - StageTile
   - StageBox
-  - PlayerHead
-  - Squares
   - Collision
+  - Collision_bottom
+  - Collsion_up
   - Border_Left
   - Border_Right
-  - Collsion_up
-  - Collision_bottom
-  - WarpPoint
-  - Abura
   layers:
   - Default
   - TransparentFX
@@ -30,17 +22,13 @@ TagManager:
   - UI
   - 
   - 
-  - Stage
-  - player
-  - bubble
-  - judgment
-  - stage_soto
-  - collision
-<<<<<<< HEAD
-  - wind_collision
-=======
-  - warppoints
->>>>>>> origin/tomo
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
