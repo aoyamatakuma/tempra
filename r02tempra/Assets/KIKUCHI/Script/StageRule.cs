@@ -287,11 +287,9 @@ public class StageRule : MonoBehaviour {
     public void Wind_Col(Collider2D col)
     {
         if (isWind)
-        {
-           
+        {         
             if (leftWind)
-            {
-              
+            {            
                 if (col.gameObject.CompareTag("Border_Right"))
                 {
                     Debug.Log("風に触れた");
@@ -302,7 +300,6 @@ public class StageRule : MonoBehaviour {
                     SetCurrentState(StageState.Wind_Left);
                 }
             }
-
             if (rightWind)
             {
                 if (col.gameObject.CompareTag("Border_Left"))

@@ -101,7 +101,8 @@ public class StageCreate : MonoBehaviour
             case 3:
               
                 ArraryNum(1, 0, 1);
-                ArraryNum(0, 1, 5);
+                ArraryNum(0, 1, 5
+                    );
                 break;
               
                 
