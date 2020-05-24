@@ -19,6 +19,8 @@ TagManager:
   - Border_Right
   - Collsion_up
   - Collision_bottom
+  - WarpPoint
+  - Abura
   layers:
   - Default
   - TransparentFX
@@ -34,7 +36,11 @@ TagManager:
   - judgment
   - stage_soto
   - collision
+<<<<<<< HEAD
   - wind_collision
+=======
+  - warppoints
+>>>>>>> origin/tomo
   - 
   - 
   - 
