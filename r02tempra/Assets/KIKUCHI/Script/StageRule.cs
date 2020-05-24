@@ -6,16 +6,21 @@ public enum StageState{
     Normal,
     Fly,
     Down,
-    Wind,
+    Wind_Left,
+    Wind_Right,
     hit_up,
-    hit_bottom
+    hit_bottom,
+    Wind_hit
 }
 
 public class StageRule : MonoBehaviour {
     [SerializeField]
-    private PlayerMove player;
+    private float speed =10f;
     [SerializeField]
-    private StageState currentStageState;
+    private PlayerMove player;
+   
+    public StageState currentStageState;
+    private StageState previousStageState;
     [SerializeField]
     private bool isWind;
     [SerializeField]
@@ -30,7 +35,9 @@ public class StageRule : MonoBehaviour {
     [SerializeField]
     private Vector2 up_position;
     [SerializeField]
-    private Vector2 wind_position;
+    private Vector2 wind_left_position;
+    [SerializeField]
+    private Vector2 wind_right_position;
     bool flyBool;
     bool downBool;
     bool colBool;
@@ -54,16 +61,23 @@ public class StageRule : MonoBehaviour {
     // Start is called before the first frame update
     void Start ()
 
-    {    
+    {
+        if (isWind)
+        {
+            Debug.Log("風だよ");
+        }
         SetCurrentState(StageState.Normal);   
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMove> ();
         flyBool = false;
         downBool = false;
         current_bubble = 0;      
         current_touchBubble = 0;
-        firstPos = transform.position;
-        up_position.x = transform.position.x;
-        firstPos.y = 0;
+        SetPosition_Dawn();
+        SetPosition_Up();
+        wind_left_position= transform.position;
+        wind_right_position.y = transform.position.y;
+        wind_left_position.x = 0;
+       
         Bubblehub = new List<GameObject>();
         BubbleCount_Start();
      
@@ -95,6 +109,10 @@ public class StageRule : MonoBehaviour {
                 break;
             case StageState.Down:
                 DownMove(firstPos);
+                break;
+            case StageState.Wind_Left:
+                LeftWindMove(wind_left_position, wind_target);
+                RightWindMove(wind_right_position, wind_target);
                 break;
             default:
                 break;
@@ -144,7 +162,7 @@ public class StageRule : MonoBehaviour {
             }
         }
 
-        if (countBubble < limit_bubble  && flyBool && currentStageState != StageState.hit_bottom) {
+        if (countBubble < limit_bubble   && currentStageState != StageState.hit_bottom) {
 
             downBool = true;
         }
@@ -161,21 +179,28 @@ public class StageRule : MonoBehaviour {
     //浮く
     void FlyRule () {
 
-        if (limit_bubble <= current_bubble && !isGoal  && limit_touchBubble <= current_touchBubble && currentStageState != StageState.hit_up) {
-            flyBool = true;
-            downBool = false;
+        if (limit_bubble <= current_bubble && !isGoal  && limit_touchBubble <= current_touchBubble && currentStageState != StageState.hit_up && currentStageState != StageState.Wind_hit) {
             SetCurrentState(StageState.Fly);
+            flyBool = true;
+            downBool = false;       
         }
 
-        if (downBool && !isGoal && currentStageState != StageState.hit_bottom) {
+        if (downBool && !isGoal && currentStageState != StageState.hit_bottom && currentStageState != StageState.Wind_hit) {
             flyBool = false;
             SetCurrentState(StageState.Down);
+        }
+
+        if(currentStageState == StageState.Normal || currentStageState == StageState.Wind_hit)
+        {
+            flyBool = false;
+            downBool = false;
         }
     }
 
     void FlyMove (Vector2 nextPos) {
-        if (!flyBool && currentStageState != StageState.Fly )return; 
-        transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);     
+        if (!flyBool && currentStageState != StageState.Fly )return;
+        transform.position = Vector2.MoveTowards(transform.position, nextPos,Time.deltaTime*  speed);
+       // transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);     
       if(transform.position.y >= nextPos.y)
         {
            
@@ -184,30 +209,49 @@ public class StageRule : MonoBehaviour {
     }
 
     void DownMove (Vector2 nextPos) {
-        if (!downBool && currentStageState != StageState.Down ) return;        
-        transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);      
-        if(transform.position.y <= nextPos.y)
-        {
+        if (!downBool && currentStageState != StageState.Down ) return;
+        transform.position = Vector2.MoveTowards(transform.position, nextPos, Time.deltaTime * speed);
+        if (transform.position.y <= nextPos.y)
+        { 
             SetCurrentState(StageState.Normal);
         }   
     }
 
     void LeftWindMove(Vector2 nextPos,GameObject target)
     {
-        if (!leftWind) return;
-        if (target.transform.position.x >= nextPos.x)
+        if (!leftWind && currentStageState != StageState.Wind_Left) return;
+        Debug.Log("左");
+        target. transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
+        if (target.transform.position.x <= nextPos.x)
         {
-            target.transform.position = Vector2.Lerp(target.transform.position, nextPos, Time.deltaTime * 1f);
+            SetCurrentState(StageState.Normal);
+            target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
+            target.gameObject.GetComponent<StageRule>().SetPosition_Up();
+            target.gameObject.GetComponent<StageRule>().SetCurrentState(previousStageState);
         }
 
     }
+    void SetPosition_Up()
+    {
+        up_position.x = transform.position.x; 
+    }
 
+    void SetPosition_Dawn()
+    {
+        firstPos = transform.position;
+        firstPos.y = 0;
+    }
     void RightWindMove(Vector2 nextPos, GameObject target)
     {
-        if (!rightWind) return;
-        if (target.transform.position.x <= nextPos.x)
+        if (!rightWind && currentStageState != StageState.Wind_Right) return;
+        Debug.Log("右");
+        target.transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
+        if (target.transform.position.x >= nextPos.x)
         {
-           target.transform.position = Vector2.Lerp(target.transform.position, nextPos, Time.deltaTime * 1f);
+            SetCurrentState(StageState.Normal);
+            target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
+            target.gameObject.GetComponent<StageRule>().SetPosition_Up();
+            target.gameObject.GetComponent<StageRule>().SetCurrentState(previousStageState);
         }
 
     }
@@ -216,13 +260,13 @@ public class StageRule : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("Collsion_up"))
         {
-            Debug.Log(currentStageState);
+           
             SetCurrentState(StageState.hit_bottom);
         }
 
         if (col.gameObject.CompareTag("Collision_bottom"))
         {
-            Debug.Log(currentStageState);
+         
             SetCurrentState(StageState.hit_up);
         }
     }
@@ -238,6 +282,40 @@ public class StageRule : MonoBehaviour {
             SetCurrentState(StageState.Normal);
         }
 
+    }
+
+    public void Wind_Col(Collider2D col)
+    {
+        if (isWind)
+        {
+           
+            if (leftWind)
+            {
+              
+                if (col.gameObject.CompareTag("Border_Right"))
+                {
+                    Debug.Log("風に触れた");
+                    GameObject colObj = col.transform.root.gameObject;
+                    previousStageState = colObj.GetComponent<StageRule>().currentStageState;
+                    colObj.GetComponent<StageRule>().SetCurrentState(StageState.Wind_hit);
+                    wind_target = colObj;
+                    SetCurrentState(StageState.Wind_Left);
+                }
+            }
+
+            if (rightWind)
+            {
+                if (col.gameObject.CompareTag("Border_Left"))
+                {
+                    Debug.Log("風に触れた");
+                    GameObject colObj = col.transform.root.gameObject;
+                    previousStageState = colObj.GetComponent<StageRule>().currentStageState;
+                    colObj.GetComponent<StageRule>().SetCurrentState(StageState.Wind_hit);
+                    wind_target = colObj;
+                    SetCurrentState(StageState.Wind_Right);
+                }
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -265,24 +343,7 @@ public class StageRule : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (isWind)
-        {
-            if (leftWind)
-            {
-                if (col.gameObject.CompareTag("Border_Left"))
-                {
-                    wind_target = col.gameObject;
-                }
-            }
 
-            if(rightWind)
-            {
-                if (col.gameObject.CompareTag("Border_Right"))
-                {
-                    wind_target = col.gameObject;
-                }
-            }
-        }
     }
     void OnTriggerStay2D(Collider2D col)
     {
