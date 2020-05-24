@@ -15,6 +15,9 @@ TagManager:
   - Border_Right
   - Goal
   - bubble
+  - Icon
+  - PlayerHead
+  - WarpPoint
   layers:
   - Default
   - TransparentFX
