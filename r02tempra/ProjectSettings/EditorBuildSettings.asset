@@ -18,18 +18,18 @@ EditorBuildSettings:
     path: Assets/koyama/Stage.unity
     guid: c3b2d4ce71d3e1a47ab445c85412ac76
   - enabled: 1
-    path: Assets/KIKUCHI/StageExample.unity
+    path: Assets/KIKUCHI/Scenes/StageExample.unity
     guid: 43f1b3323d266ae48b792e5ef8d0b99c
   - enabled: 1
     path: Assets/Master/MasterGoal.unity
     guid: 4c079756c899bdf419fde77232be0ff4
   - enabled: 1
-    path: Assets/KIKUCHI/stage02.unity
+    path: Assets/KIKUCHI/Scenes/stage02.unity
     guid: e7620a76b8a959b4688e9642f9c6e9bf
   - enabled: 1
     path: Assets/aoyama/select.unity
     guid: 6797e7ade89cd0e4fba4213895782d8f
   - enabled: 1
-    path: Assets/KIKUCHI/stage03.unity
+    path: Assets/KIKUCHI/Scenes/stage03.unity
     guid: d9523b18860ed4f4695289b90ade7746
   m_configObjects: {}
