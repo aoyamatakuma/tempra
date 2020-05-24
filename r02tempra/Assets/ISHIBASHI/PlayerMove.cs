@@ -62,6 +62,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private StageRule rule;
 
+    Animator playerAnime;
+
     //青山追加
     [SerializeField]
     private GameObject zoomInNaviPrefab;
@@ -85,6 +87,8 @@ public class PlayerMove : MonoBehaviour
         playerHead = _playerHead.GetComponent<PlayerHeadMove>();
         playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
 
+        playerAnime = gameObject.GetComponent<Animator>();
+
         headPosition = _playerHead.transform.localPosition;
 
         cameraCheck = false;
@@ -105,7 +109,6 @@ public class PlayerMove : MonoBehaviour
         {
             shutter.clip = shutterSE;
             shutter.Play();
-
 
             if (currentPlayerState != PlayerState.Normal)
             {
@@ -312,7 +315,6 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.CompareTag("Stage"))
         {
             jumpFlag = false;
-            Debug.Log("bbbbbbbb");
         }
     }
 }
