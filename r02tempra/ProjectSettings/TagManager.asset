@@ -13,6 +13,8 @@ TagManager:
   - Collsion_up
   - Border_Left
   - Border_Right
+  - Goal
+  - bubble
   layers:
   - Default
   - TransparentFX
@@ -22,14 +24,14 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Stage
+  - player
+  - bubble
+  - judment
+  - stage_soto
+  - collision
+  - wind_collision
+  - warppoint
   - 
   - 
   - 
