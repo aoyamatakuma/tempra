@@ -19,6 +19,7 @@ public class ChildCollision : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col)
     {
+       // stage.Wind_Col(col);
         stage.HitStage(col);
       
     }

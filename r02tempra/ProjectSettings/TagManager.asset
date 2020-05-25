@@ -18,6 +18,8 @@ TagManager:
   - Icon
   - PlayerHead
   - WarpPoint
+  - Collision_left
+  - Collision_right
   layers:
   - Default
   - TransparentFX
@@ -35,7 +37,7 @@ TagManager:
   - collision
   - wind_collision
   - warppoint
-  - 
+  - side_collision
   - 
   - 
   - 
