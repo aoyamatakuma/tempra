@@ -1155,7 +1155,7 @@ PrefabInstance:
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d867f13d60a13984aa05faca9dfe7b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageData: {fileID: 11400000, guid: 71e635f3fa943c4419ce3019a4bc31a6, type: 2}
+  stageData: {fileID: 11400000, guid: e0adb5d5b2e05fd4c9473aa87d23d52a, type: 2}
   magnification: 22
 --- !u!4 &1193015744
 Transform:
