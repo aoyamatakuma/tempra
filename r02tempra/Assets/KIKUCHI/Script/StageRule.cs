@@ -65,6 +65,8 @@ public class StageRule : MonoBehaviour {
 
     {
         SetCurrentState(StageState.Normal);   
+        Bubblehub = new List<GameObject>();
+        BubbleCount_Start();
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMove> ();
         flyBool = false;
         downBool = false;
@@ -75,8 +77,7 @@ public class StageRule : MonoBehaviour {
         wind_left_position= transform.position;
         wind_right_position.y = transform.position.y;
         wind_left_position.x = 0;      
-        Bubblehub = new List<GameObject>();
-        BubbleCount_Start();
+      
      
     }
 
@@ -199,7 +200,7 @@ public class StageRule : MonoBehaviour {
     }
 
     void FlyMove (Vector2 nextPos) {
-        if (!flyBool || currentStageState != StageState.Fly)return;
+        if (!flyBool && currentStageState != StageState.Fly)return;
         transform.position = Vector2.MoveTowards(transform.position, nextPos,Time.deltaTime*  speed);
        // transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);     
       if(transform.position.y >= nextPos.y)
@@ -209,7 +210,7 @@ public class StageRule : MonoBehaviour {
     }
 
     void DownMove (Vector2 nextPos) {
-        if (!downBool || currentStageState != StageState.Down ) return;
+        if (!downBool && currentStageState != StageState.Down ) return;
         transform.position = Vector2.MoveTowards(transform.position, nextPos, Time.deltaTime * speed);
         if (transform.position.y <= nextPos.y)
         { 
