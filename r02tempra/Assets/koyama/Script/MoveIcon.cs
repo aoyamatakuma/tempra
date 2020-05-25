@@ -193,7 +193,7 @@ public class MoveIcon : MonoBehaviour
                 //nullチェック
                 if (a != null)
                 {
-                    Instantiate(explosionEffect, a.transform.position, Quaternion.identity);
+                    Instantiate(explosionEffect, transform.position, Quaternion.identity);
                     Destroy(a);
                 }
             }
