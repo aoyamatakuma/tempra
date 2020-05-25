@@ -180,10 +180,10 @@ public class StageRule : MonoBehaviour {
     //浮く
     void FlyRule () {
 
-        if (limit_bubble <= current_bubble && !isGoal  && limit_touchBubble <= current_touchBubble && currentStageState != StageState.hit_up && currentStageState != StageState.Wind_hit) {
-            SetCurrentState(StageState.Fly);
+        if (limit_bubble <= current_bubble && !isGoal  && limit_touchBubble <= current_touchBubble && currentStageState != StageState.hit_up && currentStageState != StageState.Wind_hit) {     
             flyBool = true;
-            downBool = false;       
+            downBool = false;
+            SetCurrentState(StageState.Fly);
         }
 
         if (downBool && !isGoal && currentStageState != StageState.hit_bottom && currentStageState != StageState.Wind_hit) {
@@ -222,7 +222,7 @@ public class StageRule : MonoBehaviour {
         if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit ) return;
         Debug.Log("左");
         target. transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
-        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_left)
+        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit)
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
@@ -238,7 +238,7 @@ public class StageRule : MonoBehaviour {
         if (currentStageState != StageState.Wind_Right && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit) return;
         Debug.Log("右");
         target.transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
-        if (target.transform.position.x >= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_right)
+        if (target.transform.position.x >= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit)
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
