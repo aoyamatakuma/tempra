@@ -250,18 +250,21 @@ public class PlayerMove : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
-       
-        if(h != 0)
+        if (h > 0)
         {
-            if (h > 0)
-            {
-                transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
-            }
-            else
-            {
-                transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
-            }
-           
+            //rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
+            playerAnime.SetBool("Move", true);
+            transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
+        }
+        else if (h < 0)
+        {
+            //rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
+            playerAnime.SetBool("Move", true);
+            transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            playerAnime.SetBool("Move", false);
         }
         
 
