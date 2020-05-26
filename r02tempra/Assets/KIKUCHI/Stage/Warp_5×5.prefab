@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 5917432530836589899}
   - component: {fileID: 8661638919536465351}
   m_Layer: 11
-  m_Name: Warp
+  m_Name: "Warp_5\xD75"
   m_TagString: StageBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -670,7 +670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941142824010496543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 66, y: 44, z: 0}
+  m_LocalPosition: {x: 88, y: 66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 941142823340866228}
@@ -727,7 +727,7 @@ MonoBehaviour:
   rightWind: 0
   limit_bubble: 4
   current_bubble: 0
-  up_position: {x: 0, y: 44}
+  up_position: {x: 0, y: 88}
   wind_left_position: {x: 0, y: 0}
   wind_right_position: {x: 0, y: 0}
   isGoal: 0

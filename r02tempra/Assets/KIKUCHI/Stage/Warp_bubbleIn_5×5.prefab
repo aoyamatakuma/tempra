@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 5917432530836589899}
   - component: {fileID: 8661638919536465351}
   m_Layer: 11
-  m_Name: Warp_bubbleIn
+  m_Name: "Warp_bubbleIn_5\xD75"
   m_TagString: StageBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
