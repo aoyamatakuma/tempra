@@ -260,37 +260,35 @@ public class StageRule : MonoBehaviour {
 
     public void HitStage(Collider2D col)
     {
-      
-        if(currentStageState == StageState.Wind_hit)
+        if (!isWind)
         {
-            if (col.gameObject.CompareTag("Collision_left"))
+            if (currentStageState == StageState.Wind_hit)
             {
-                SetCurrentState(StageState.hit_right);
-            }
+                if (col.gameObject.CompareTag("Collision_left"))
+                {
+                    SetCurrentState(StageState.hit_right);
+                }
 
-            if (col.gameObject.CompareTag("Collision_right"))
+                if (col.gameObject.CompareTag("Collision_right"))
+                {
+                    SetCurrentState(StageState.hit_left);
+                }
+            }
+            else
             {
-                SetCurrentState(StageState.hit_left);
-            }
-        }
-        else
-        {
-            if (col.gameObject.CompareTag("Collsion_up"))
-            {
+                if (col.gameObject.CompareTag("Collsion_up"))
+                {
 
-                SetCurrentState(StageState.hit_bottom);
-            }
+                    SetCurrentState(StageState.hit_bottom);
+                }
 
-            if (col.gameObject.CompareTag("Collision_bottom"))
-            {
+                if (col.gameObject.CompareTag("Collision_bottom"))
+                {
 
-                SetCurrentState(StageState.hit_up);
+                    SetCurrentState(StageState.hit_up);
+                }
             }
-        }
-       
-     
-        
-      
+        }   
     }
 
     public void ExitStage(Collider2D col)

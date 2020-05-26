@@ -120,6 +120,11 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(2, 1, 1);
                 break;
             case 5:
+                ArraryNum(0, 2, 2);
+                ArraryNum(0, 1, 4);
+                ArraryNum(1, 0, 1);
+                ArraryNum(2, 0, 1);
+                ArraryNum(3, 2, 3);
                 break;
             case 6:
                 ArraryNum(0, 0, 1);
