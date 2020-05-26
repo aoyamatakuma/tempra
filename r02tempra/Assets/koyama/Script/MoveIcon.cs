@@ -47,8 +47,8 @@ public class MoveIcon : MonoBehaviour
 
         rect = GetComponent<RectTransform>();
 
-        //アイコンのサイズの半分で設定
-        Offset = new Vector2(rect.sizeDelta.x / 2f, rect.sizeDelta.y / 2f);
+        //アイコンのサイズ設定
+        Offset = new Vector2(rect.sizeDelta.x/2f , rect.sizeDelta.y/2f);
 
         //動かないように設定
         //MoveFlag = false;

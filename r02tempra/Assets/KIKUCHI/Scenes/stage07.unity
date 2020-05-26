@@ -231,10 +231,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213407398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.505347, y: -14.514582, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 253066503}
+  - {fileID: 336141129}
   - {fileID: 1112748064}
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -442,6 +442,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
         type: 3}
+    - target: {fileID: 6377559372001909526, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: CameraCO
+      value: 
+      objectReference: {fileID: 1706672786}
+    - target: {fileID: 6377559372001909526, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_Player
+      value: 
+      objectReference: {fileID: 493604272}
+    - target: {fileID: 6377559372015306044, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377559374038603874, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377559374038603879, guid: 24fad62a34f70314bb4362f762f88190,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1706672783}
     - target: {fileID: 8555079448635019808, guid: 24fad62a34f70314bb4362f762f88190,
         type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -499,9 +524,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24fad62a34f70314bb4362f762f88190, type: 3}
---- !u!224 &253066503 stripped
+--- !u!224 &336141129 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 812300576306574573, guid: 24fad62a34f70314bb4362f762f88190,
+  m_CorrespondingSourceObject: {fileID: 6377559373984604100, guid: 24fad62a34f70314bb4362f762f88190,
     type: 3}
   m_PrefabInstance: {fileID: 253066502}
   m_PrefabAsset: {fileID: 0}
@@ -1160,7 +1185,7 @@ PrefabInstance:
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6426227439935898636, guid: 312ed1033e3830949bd1ff870cf44845,
         type: 3}
