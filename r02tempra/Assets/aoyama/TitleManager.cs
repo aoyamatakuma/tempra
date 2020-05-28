@@ -13,7 +13,19 @@ public class TitleManager : MonoBehaviour {
     private GameObject fadeInPrefab;
     private GameObject fadeInInstance;
 
-    
+    [SerializeField]
+    private GameObject menuPrefab;
+    private GameObject menuInstance;
+
+    [SerializeField]
+    private GameObject deletePrefab;
+    private GameObject deleteInstance;
+
+    [SerializeField]
+    private GameObject aButtonPrefab;
+    private GameObject aButtonInstance;
+
+
     public static int Bgm;
 
 
@@ -24,12 +36,19 @@ public class TitleManager : MonoBehaviour {
         Bgm = 0;
         Destroy(fadeOutInstance);
         Destroy(fadeInInstance);
+        Destroy(menuInstance);
+        Destroy(deleteInstance);
+        Destroy(aButtonInstance);
 
-        
 
         if (fadeOutInstance == null)
         {
             fadeOutInstance = GameObject.Instantiate(fadeOutPrefab) as GameObject;
+        }
+
+        if (aButtonInstance == null)
+        {
+            aButtonInstance = GameObject.Instantiate(aButtonPrefab) as GameObject;
         }
     }
 
@@ -38,15 +57,32 @@ public class TitleManager : MonoBehaviour {
     {
         if (Input.GetButtonDown("A_BUTTON"))
         {
-            if (fadeInInstance == null)
+            ////Debug.Log("tes");
+            Destroy(aButtonInstance);
+            if (deleteInstance == null)
             {
-                fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
-                StartCoroutine("End");
+                deleteInstance = GameObject.Instantiate(deletePrefab) as GameObject;
+                StartCoroutine("Select");
             }
+            //if (fadeInInstance == null)
+            //{
+            //    fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
+            //    StartCoroutine("End");
+            //}
         }
 
     }
 
+    public IEnumerator Select()
+    {
+        Debug.Log("tes");
+        yield return new WaitForSeconds(0.2f);
+        if (menuInstance == null)
+        {
+            menuInstance = GameObject.Instantiate(menuPrefab) as GameObject;
+            
+        }
+    }
     public IEnumerator End()
     {
         yield return new WaitForSeconds(1);
