@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Swicth : MonoBehaviour
 {
-    public GameObject walls;
-    //移動状態を表すフラグ
+    [SerializeField]
+    private GameObject walls;
 
+    bool isPush;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class Swicth : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             // 消す！
+            isPush = true;
             Destroy(walls);
         }
 

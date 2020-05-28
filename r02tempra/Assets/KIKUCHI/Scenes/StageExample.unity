@@ -234,7 +234,7 @@ Transform:
   m_LocalPosition: {x: 12.505347, y: -14.514582, z: -1.0625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 253066503}
+  - {fileID: 1766574177}
   - {fileID: 1112748064}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -509,12 +509,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24fad62a34f70314bb4362f762f88190, type: 3}
---- !u!224 &253066503 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 812300576306574573, guid: 24fad62a34f70314bb4362f762f88190,
-    type: 3}
-  m_PrefabInstance: {fileID: 253066502}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &339610814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1362,6 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageData: {fileID: 11400000, guid: 241bdfb8efcacfb498ec2de4de9c8fc6, type: 2}
   magnification: 22
+  back_mass: {fileID: 0}
 --- !u!4 &1193015744
 Transform:
   m_ObjectHideFlags: 0
@@ -1635,6 +1630,12 @@ MonoBehaviour:
   isCameraPos1: 1
   isCameraPos2: 0
   cameraPoint: {fileID: 769427174}
+--- !u!224 &1766574177 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6377559373984604100, guid: 24fad62a34f70314bb4362f762f88190,
+    type: 3}
+  m_PrefabInstance: {fileID: 253066502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1925023505
 GameObject:
   m_ObjectHideFlags: 0

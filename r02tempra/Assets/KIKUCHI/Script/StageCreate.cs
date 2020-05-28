@@ -11,6 +11,8 @@ public class StageCreate : MonoBehaviour
     private int StageNumbers;//ステージの番号
     [SerializeField] 
     private float magnification = 36;
+    [SerializeField]
+    private GameObject back_mass;
     private int[,]posStage;
     Dictionary<int, GameObject> stageObject = new Dictionary<int, GameObject>();
 
@@ -30,6 +32,8 @@ public class StageCreate : MonoBehaviour
             for(int j = 0; j < width; j++)
             {
                 posStage[i, j] = 0;
+                back_mass.transform.position = new Vector3(j * magnification, i * magnification, 0);
+                Instantiate(back_mass);
             }
         } 
 
@@ -60,8 +64,9 @@ public class StageCreate : MonoBehaviour
                 if(posStage[i, j] != 0)
                 {
                     //重要
-                    stageObject[posStage[i, j]].transform.position = new Vector3(j * magnification, i*magnification, 0);
+                    stageObject[posStage[i, j]].transform.position = new Vector3(j * magnification, i*magnification, 0);               
                     Instantiate(stageObject[posStage[i, j]]);
+                   
                   
                 }
             }

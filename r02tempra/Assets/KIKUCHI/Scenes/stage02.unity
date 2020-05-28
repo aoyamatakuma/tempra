@@ -1447,6 +1447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageData: {fileID: 11400000, guid: 46c14fa2e887439478a006048bd61f2c, type: 2}
   magnification: 22
+  back_mass: {fileID: 8340545822972069148, guid: cfd2de9453128d544bb5ed5c43a7e642,
+    type: 3}
 --- !u!4 &1193015744
 Transform:
   m_ObjectHideFlags: 0
