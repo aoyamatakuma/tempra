@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: stage10
   m_EditorClassIdentifier: 
   StageObjList:
-  - {fileID: 941142824010496543, guid: 9a3110d281866cb4fa2f22ddf6a58414, type: 3}
-  - {fileID: 941142824010496543, guid: 2bf14ced8ea4b4846aed55a88e1d6753, type: 3}
-  - {fileID: 941142824010496543, guid: 94759fd993f94734e9d99438c79532e3, type: 3}
-  - {fileID: 941142824010496543, guid: c07d4fc27ba22484c9e28548ac46f03a, type: 3}
+  - {fileID: 941142824010496543, guid: 2b97570bd754eaf4fbd4a447e9bf64e9, type: 3}
+  - {fileID: 941142824010496543, guid: 8878f292abee7394d979a46055e4a62f, type: 3}
+  - {fileID: 941142824010496543, guid: fdbbdff14feaad14a8e518379b9c926a, type: 3}
+  - {fileID: 941142824010496543, guid: 121eff850db8fc847b1420cbec139546, type: 3}
   - {fileID: 941142824010496543, guid: 440951adf0591034a9538bde5e57e3b3, type: 3}
-  Number_S: 5
-  Xmax: 4
-  Ymax: 3
+  - {fileID: 941142824010496543, guid: 82e1aaa3fbe3ec04798d7212b3fd282d, type: 3}
+  Number_S: 9
+  Xmax: 5
+  Ymax: 5

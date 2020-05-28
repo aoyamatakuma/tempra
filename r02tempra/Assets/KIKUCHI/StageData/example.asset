@@ -17,6 +17,6 @@ MonoBehaviour:
   - {fileID: 941142824010496543, guid: c07d4fc27ba22484c9e28548ac46f03a, type: 3}
   - {fileID: 941142824010496543, guid: c5d42a824e5b11b43af87cb3409247f5, type: 3}
   - {fileID: 941142824010496543, guid: 67d0ce7c32b923344a841c745ccaab8b, type: 3}
-  Number_S: 6
+  Number_S: 0
   Xmax: 4
   Ymax: 3

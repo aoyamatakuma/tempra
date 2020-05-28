@@ -5,14 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class GameClear : MonoBehaviour
 {
-   
-     //経過時間カウント
-     private float time_KO;
+    [SerializeField]
+    private GameObject fadeOutPrefab;
+    private GameObject fadeOutInstance;
+
+    
+
+    //経過時間カウント
+    private float time_KO;
     // Start is called before the first frame update
     void Start()
     {
         //経過時間初期化
         time_KO=0.0f;
+        Destroy(fadeOutInstance);
+    
+
+
+
+        if (fadeOutInstance == null)
+        {
+            fadeOutInstance = GameObject.Instantiate(fadeOutPrefab) as GameObject;
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +44,9 @@ public class GameClear : MonoBehaviour
         //3秒経過で画面移動
         if(time_KO>=3.0f)
         {
-            SceneManager.LoadScene("select");
+           
+                SceneManager.LoadScene("select");
+            
         }
     }
 }

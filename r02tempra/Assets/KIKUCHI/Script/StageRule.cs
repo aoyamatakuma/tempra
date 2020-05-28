@@ -65,6 +65,8 @@ public class StageRule : MonoBehaviour {
 
     {
         SetCurrentState(StageState.Normal);   
+        Bubblehub = new List<GameObject>();
+        BubbleCount_Start();
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMove> ();
         flyBool = false;
         downBool = false;
@@ -75,8 +77,7 @@ public class StageRule : MonoBehaviour {
         wind_left_position= transform.position;
         wind_right_position.y = transform.position.y;
         wind_left_position.x = 0;      
-        Bubblehub = new List<GameObject>();
-        BubbleCount_Start();
+      
      
     }
 
@@ -199,7 +200,7 @@ public class StageRule : MonoBehaviour {
     }
 
     void FlyMove (Vector2 nextPos) {
-        if (!flyBool || currentStageState != StageState.Fly)return;
+        if (!flyBool && currentStageState != StageState.Fly)return;
         transform.position = Vector2.MoveTowards(transform.position, nextPos,Time.deltaTime*  speed);
        // transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);     
       if(transform.position.y >= nextPos.y)
@@ -209,7 +210,7 @@ public class StageRule : MonoBehaviour {
     }
 
     void DownMove (Vector2 nextPos) {
-        if (!downBool || currentStageState != StageState.Down ) return;
+        if (!downBool && currentStageState != StageState.Down ) return;
         transform.position = Vector2.MoveTowards(transform.position, nextPos, Time.deltaTime * speed);
         if (transform.position.y <= nextPos.y)
         { 
@@ -259,37 +260,35 @@ public class StageRule : MonoBehaviour {
 
     public void HitStage(Collider2D col)
     {
-      
-        if(currentStageState == StageState.Wind_hit)
+        if (!isWind)
         {
-            if (col.gameObject.CompareTag("Collision_left"))
+            if (currentStageState == StageState.Wind_hit)
             {
-                SetCurrentState(StageState.hit_right);
-            }
+                if (col.gameObject.CompareTag("Collision_left"))
+                {
+                    SetCurrentState(StageState.hit_right);
+                }
 
-            if (col.gameObject.CompareTag("Collision_right"))
+                if (col.gameObject.CompareTag("Collision_right"))
+                {
+                    SetCurrentState(StageState.hit_left);
+                }
+            }
+            else
             {
-                SetCurrentState(StageState.hit_left);
-            }
-        }
-        else
-        {
-            if (col.gameObject.CompareTag("Collsion_up"))
-            {
+                if (col.gameObject.CompareTag("Collsion_up"))
+                {
 
-                SetCurrentState(StageState.hit_bottom);
-            }
+                    SetCurrentState(StageState.hit_bottom);
+                }
 
-            if (col.gameObject.CompareTag("Collision_bottom"))
-            {
+                if (col.gameObject.CompareTag("Collision_bottom"))
+                {
 
-                SetCurrentState(StageState.hit_up);
+                    SetCurrentState(StageState.hit_up);
+                }
             }
-        }
-       
-     
-        
-      
+        }   
     }
 
     public void ExitStage(Collider2D col)

@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Swicth : MonoBehaviour
 {
-    public GameObject obj;
-    //移動状態を表すフラグ
+    [SerializeField]
+    private GameObject walls;
 
+    bool isPush;
 
     void Start()
     {
-        obj = GameObject.FindGameObjectWithTag("");
+
+        walls = GameObject.FindWithTag("WallBox");
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.gameObject.tag == "Player")
         {
-            Destroy(obj.gameObject);
+            // 消す！
+            isPush = true;
+            Destroy(walls);
         }
 
     }

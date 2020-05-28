@@ -11,6 +11,8 @@ public class StageCreate : MonoBehaviour
     private int StageNumbers;//ステージの番号
     [SerializeField] 
     private float magnification = 36;
+    [SerializeField]
+    private GameObject back_mass;
     private int[,]posStage;
     Dictionary<int, GameObject> stageObject = new Dictionary<int, GameObject>();
 
@@ -30,6 +32,8 @@ public class StageCreate : MonoBehaviour
             for(int j = 0; j < width; j++)
             {
                 posStage[i, j] = 0;
+                back_mass.transform.position = new Vector3(j * magnification, i * magnification, 0);
+                Instantiate(back_mass);
             }
         } 
 
@@ -60,8 +64,9 @@ public class StageCreate : MonoBehaviour
                 if(posStage[i, j] != 0)
                 {
                     //重要
-                    stageObject[posStage[i, j]].transform.position = new Vector3(j * magnification, i*magnification, 0);
+                    stageObject[posStage[i, j]].transform.position = new Vector3(j * magnification, i*magnification, 0);               
                     Instantiate(stageObject[posStage[i, j]]);
+                   
                   
                 }
             }
@@ -119,7 +124,14 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(2, 0, 1);
                 ArraryNum(2, 1, 1);
                 break;
-                case 5:
+            case 5:
+                ArraryNum(0, 2, 2);
+                ArraryNum(0, 1, 4);
+                ArraryNum(1, 0, 1);
+                ArraryNum(2, 0, 1);
+                ArraryNum(3, 2, 3);
+                break;
+            case 6:
                 ArraryNum(0, 0, 1);
                 ArraryNum(1, 2, 3);
                 ArraryNum(1, 0, 1);
@@ -128,14 +140,37 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(2, 0, 2);
                 ArraryNum(3, 0, 5);
                 break;
-            case 6:
-                ArraryNum(0, 1, 1);
-                ArraryNum(0, 0, 1);
-                ArraryNum(3, 1, 2);
-                ArraryNum(2, 0, 1);
-                ArraryNum(1, 2, 4);
+            case 7:
+               
                 break;
-              
+            case 8:
+                ArraryNum(0, 4, 3);
+                ArraryNum(0, 2, 2);
+                ArraryNum(1, 4, 3);
+                ArraryNum(2, 4, 3);
+                ArraryNum(2, 0, 1);
+                ArraryNum(3, 4, 2);
+                ArraryNum(3, 3, 6);
+                ArraryNum(3, 2, 3);
+                ArraryNum(3, 0, 4);
+                ArraryNum(4, 3, 4);
+                ArraryNum(4, 1, 6);
+                ArraryNum(4, 0, 7);
+                break;
+            case 9:
+                ArraryNum(1, 4, 2);
+                ArraryNum(1, 3, 3);
+                ArraryNum(1, 0, 1);
+                ArraryNum(2, 4, 1);
+                ArraryNum(2, 3, 3);
+                ArraryNum(2, 1, 5);
+                ArraryNum(2, 0, 1);
+                ArraryNum(3, 4, 6);
+                ArraryNum(3, 0, 1);
+                ArraryNum(4, 2, 4);
+                break;
+            case 10:
+                break;
                 
               
         }
