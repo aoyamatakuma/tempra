@@ -16,7 +16,7 @@ public class GoalBlock : MonoBehaviour
         if (col.gameObject.tag =="Player")
         {
      
-            SceneManager.LoadScene("MasterGoal");
+            //SceneManager.LoadScene("MasterGoal");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PlayerState
 {
@@ -72,6 +73,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private GameObject zoomOutNaviPrefab;
     private GameObject zoomOutNaviInstance;
+
+    //小山追加
+    [SerializeField]
+    //フェードイン処理
+    private GameObject fadeInPrefab;
+    private GameObject fadeInInstance;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,6 +106,8 @@ public class PlayerMove : MonoBehaviour
         Destroy(zoomOutNaviInstance);
         Destroy(zoomInNaviInstance);
         zoomInNaviInstance = GameObject.Instantiate(zoomInNaviPrefab) as GameObject;
+        //フェードイン消去
+        Destroy(fadeInInstance);
     }
 
     // Update is called once per frame
@@ -127,6 +136,8 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
+
+   
 
     // 状態が変わったら何をするか
     void OnPlayerStateChanged(PlayerState state)
@@ -319,5 +330,28 @@ public class PlayerMove : MonoBehaviour
         {
             jumpFlag = false;
         }
+        if (col.gameObject.tag == "Goal")
+        {
+            StartCoroutine("GoalCoroutine");
+        }
+    }
+    //小山　追加
+   public IEnumerator GoalCoroutine()
+    {
+        //アニメーション
+        playerAnime.SetBool("Move", true);
+        Debug.Log("コルーチン");
+        //1秒停止
+        yield return new WaitForSeconds(1f);
+        if (fadeInInstance == null)
+        {
+            //フェードイン処理
+            fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
+            yield return new WaitForSeconds(1f);
+            //ゴールシーンに飛ぶ
+            SceneManager.LoadScene("MasterGoal");
+
+        }
+       
     }
 }
