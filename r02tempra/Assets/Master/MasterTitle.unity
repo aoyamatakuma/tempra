@@ -535,7 +535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4838883346128728, guid: f015b1069dea8654184dcc7ef62f07db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.5
+      value: -7.7
       objectReference: {fileID: 0}
     - target: {fileID: 4838883346128728, guid: f015b1069dea8654184dcc7ef62f07db, type: 3}
       propertyPath: m_LocalPosition.z
@@ -572,26 +572,6 @@ PrefabInstance:
     - target: {fileID: 4838883346128728, guid: f015b1069dea8654184dcc7ef62f07db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.995
-      objectReference: {fileID: 0}
-    - target: {fileID: 198574671212950622, guid: f015b1069dea8654184dcc7ef62f07db,
-        type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 11.79097
-      objectReference: {fileID: 0}
-    - target: {fileID: 198574671212950622, guid: f015b1069dea8654184dcc7ef62f07db,
-        type: 3}
-      propertyPath: ShapeModule.angle
-      value: 15.959051
-      objectReference: {fileID: 0}
-    - target: {fileID: 198574671212950622, guid: f015b1069dea8654184dcc7ef62f07db,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 198574671212950622, guid: f015b1069dea8654184dcc7ef62f07db,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 7.44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f015b1069dea8654184dcc7ef62f07db, type: 3}
@@ -814,7 +794,7 @@ PrefabInstance:
     - target: {fileID: 198574671212950622, guid: f015b1069dea8654184dcc7ef62f07db,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198574671212950622, guid: f015b1069dea8654184dcc7ef62f07db,
         type: 3}
