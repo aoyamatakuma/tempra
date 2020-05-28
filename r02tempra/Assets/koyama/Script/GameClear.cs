@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameClear : MonoBehaviour
 {
+    //フェードアウト
     [SerializeField]
     private GameObject fadeOutPrefab;
     private GameObject fadeOutInstance;
@@ -22,7 +23,7 @@ public class GameClear : MonoBehaviour
     
 
 
-
+        //フェードアウト
         if (fadeOutInstance == null)
         {
             fadeOutInstance = GameObject.Instantiate(fadeOutPrefab) as GameObject;

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum PlayerState
 {
@@ -64,6 +63,7 @@ public class PlayerMove : MonoBehaviour
     private StageRule rule;
 
     Animator playerAnime;
+    Animator headAnime;
 
     //青山追加
     [SerializeField]
@@ -74,11 +74,7 @@ public class PlayerMove : MonoBehaviour
     private GameObject zoomOutNaviPrefab;
     private GameObject zoomOutNaviInstance;
 
-    //小山追加
-    [SerializeField]
-    //フェードイン処理
-    private GameObject fadeInPrefab;
-    private GameObject fadeInInstance;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +91,7 @@ public class PlayerMove : MonoBehaviour
         playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
 
         playerAnime = gameObject.GetComponent<Animator>();
+        headAnime = _playerHead.GetComponent<Animator>();
 
         headPosition = _playerHead.transform.localPosition;
 
@@ -106,8 +103,7 @@ public class PlayerMove : MonoBehaviour
         Destroy(zoomOutNaviInstance);
         Destroy(zoomInNaviInstance);
         zoomInNaviInstance = GameObject.Instantiate(zoomInNaviPrefab) as GameObject;
-        //フェードイン消去
-        Destroy(fadeInInstance);
+       
     }
 
     // Update is called once per frame
@@ -170,7 +166,7 @@ public class PlayerMove : MonoBehaviour
 
     void StopMove()
     {
-        Debug.Log("停止中");
+        //Debug.Log("停止中");
     }
 
     //通常状態の処理
@@ -189,11 +185,11 @@ public class PlayerMove : MonoBehaviour
 
         if (Input.GetButtonDown("B_BUTTON"))
         {
-            
             SetCurrentState(PlayerState.Head);
             playerHeadCollider.enabled = true;
             playerHeadRigidbody.simulated = true;
             playerHead.enabled = true;
+            headAnime.SetBool("Stop", true);
         }
     }
 
@@ -265,17 +261,20 @@ public class PlayerMove : MonoBehaviour
         {
             //rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
             playerAnime.SetBool("Move", true);
+            headAnime.SetBool("Stop", false);
             transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
         }
         else if (h < 0)
         {
             //rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
             playerAnime.SetBool("Move", true);
+            headAnime.SetBool("Stop", false);
             transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
         }
         else
         {
             playerAnime.SetBool("Move", false);
+            headAnime.SetBool("Stop", true);
         }
         
 
@@ -330,28 +329,7 @@ public class PlayerMove : MonoBehaviour
         {
             jumpFlag = false;
         }
-        if (col.gameObject.tag == "Goal")
-        {
-            StartCoroutine("GoalCoroutine");
-        }
-    }
-    //小山　追加
-   public IEnumerator GoalCoroutine()
-    {
-        //アニメーション
-        playerAnime.SetBool("Move", true);
-        Debug.Log("コルーチン");
-        //1秒停止
-        yield return new WaitForSeconds(1f);
-        if (fadeInInstance == null)
-        {
-            //フェードイン処理
-            fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
-            yield return new WaitForSeconds(1f);
-            //ゴールシーンに飛ぶ
-            SceneManager.LoadScene("MasterGoal");
-
-        }
        
     }
+  
 }
