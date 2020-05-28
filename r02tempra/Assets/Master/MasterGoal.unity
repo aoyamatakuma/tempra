@@ -688,6 +688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef7ea5e7937987419de08ec315735f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeOutPrefab: {fileID: 127494549307719052, guid: 23017f5555f11d145afb8bd4084aac3f,
+    type: 3}
 --- !u!1 &2039916735
 GameObject:
   m_ObjectHideFlags: 0
