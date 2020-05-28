@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerHeadMove : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerHeadMove : MonoBehaviour
     public float speed;
     Rigidbody2D rigidPlayer;
     CircleCollider2D playerHeadCollider;
+    Animator anim;
     [SerializeField] Transform stageParent;
     [SerializeField] PlayerMove player;
 
@@ -18,6 +20,7 @@ public class PlayerHeadMove : MonoBehaviour
         rigidPlayer = GetComponent<Rigidbody2D>();
         playerHeadCollider = GetComponent<CircleCollider2D>();
         player = player.GetComponent<PlayerMove>();
+        anim = GetComponent<Animator>();
         moveflag = false;
     }
 
@@ -41,6 +44,7 @@ public class PlayerHeadMove : MonoBehaviour
         rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
         if (h != 0)
         {
+            anim.SetBool("Move", true);
             if (h > 0)
             {
                 transform.localScale = new Vector3(3, transform.localScale.y, transform.localScale.z);
@@ -50,6 +54,10 @@ public class PlayerHeadMove : MonoBehaviour
                 transform.localScale = new Vector3(-3, transform.localScale.y, transform.localScale.z);
             }
 
+        }
+        else
+        {
+            anim.SetBool("Move", false);
         }
     }
 
@@ -72,6 +80,9 @@ public class PlayerHeadMove : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            anim.SetBool("Stop", false);
+            anim.SetBool("Move", false);
+            anim.SetTrigger("StopTrigger");
             moveflag = false;
             rigidPlayer.simulated = false;
             playerHeadCollider.enabled = false;

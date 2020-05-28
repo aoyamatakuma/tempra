@@ -63,6 +63,7 @@ public class PlayerMove : MonoBehaviour
     private StageRule rule;
 
     Animator playerAnime;
+    Animator headAnime;
 
     //青山追加
     [SerializeField]
@@ -88,6 +89,7 @@ public class PlayerMove : MonoBehaviour
         playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
 
         playerAnime = gameObject.GetComponent<Animator>();
+        headAnime = _playerHead.GetComponent<Animator>();
 
         headPosition = _playerHead.transform.localPosition;
 
@@ -159,7 +161,7 @@ public class PlayerMove : MonoBehaviour
 
     void StopMove()
     {
-        Debug.Log("停止中");
+        //Debug.Log("停止中");
     }
 
     //通常状態の処理
@@ -178,11 +180,11 @@ public class PlayerMove : MonoBehaviour
 
         if (Input.GetButtonDown("B_BUTTON"))
         {
-            
             SetCurrentState(PlayerState.Head);
             playerHeadCollider.enabled = true;
             playerHeadRigidbody.simulated = true;
             playerHead.enabled = true;
+            headAnime.SetBool("Stop", true);
         }
     }
 
@@ -254,17 +256,20 @@ public class PlayerMove : MonoBehaviour
         {
             //rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
             playerAnime.SetBool("Move", true);
+            headAnime.SetBool("Stop", false);
             transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
         }
         else if (h < 0)
         {
             //rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
             playerAnime.SetBool("Move", true);
+            headAnime.SetBool("Stop", false);
             transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
         }
         else
         {
             playerAnime.SetBool("Move", false);
+            headAnime.SetBool("Stop", true);
         }
         
 
