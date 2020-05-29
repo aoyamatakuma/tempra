@@ -173,10 +173,11 @@ public class PlayerMove : MonoBehaviour
     void NormalMove()
     {
         Jump();
-        Baburu();
         Move();
-
-       
+        if (rule.current_bubble < rule.limit_bubble)
+        {
+            Baburu();
+        }
     }
 
     //ズームアウト時の処理
@@ -196,7 +197,11 @@ public class PlayerMove : MonoBehaviour
     //分裂後の頭？のみの処理予定
     void HeadMove()
     {
-        Baburu();
+        if (rule.current_bubble < rule.limit_bubble)
+        {
+            Baburu();
+        }
+
         if (Input.GetButtonDown("Y_BUTTON"))
         {
             
