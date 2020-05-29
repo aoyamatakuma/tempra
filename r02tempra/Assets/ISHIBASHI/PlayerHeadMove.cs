@@ -87,6 +87,7 @@ public class PlayerHeadMove : MonoBehaviour
             rigidPlayer.simulated = false;
             playerHeadCollider.enabled = false;
             transform.parent = col.gameObject.transform;
+            transform.localPosition = player.GetHeadPosition();
             GetComponent<PlayerHeadMove>().enabled = false;
         }
     }
