@@ -7,7 +7,8 @@ public enum PlayerState
     Stop,
     Normal,
     Division,
-    Head
+    Head,
+    Goal
 }
 
 public class PlayerMove : MonoBehaviour
@@ -152,6 +153,9 @@ public class PlayerMove : MonoBehaviour
             case PlayerState.Head:
                 HeadMove();
                 break;
+            case PlayerState.Goal:
+                GoalMove();
+                break;
             default:
                 break;
         }
@@ -162,6 +166,11 @@ public class PlayerMove : MonoBehaviour
     {
         currentPlayerState = state;
         OnPlayerStateChanged(currentPlayerState);
+    }
+
+    void GoalMove()
+    {
+
     }
 
     void StopMove()
