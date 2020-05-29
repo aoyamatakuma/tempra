@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 7160217084055919100}
   - component: {fileID: 1182783364061739660}
   - component: {fileID: 7515222655981611535}
+  - component: {fileID: 4777864993684704019}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -201,7 +202,7 @@ RectTransform:
   m_GameObject: {fileID: 7164504916542188096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9913894, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5615465329526452268}
   m_RootOrder: 1
@@ -277,3 +278,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4777864993684704019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164504916542188096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94920c699b2790e4eb8c02cbcdb34629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInPrefab: {fileID: 5155085804432139170, guid: c5406cace481d5648affb4711b634cec,
+    type: 3}
