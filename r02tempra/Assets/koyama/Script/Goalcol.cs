@@ -32,15 +32,15 @@ public class Goalcol : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            //スクリプト取得
+            Player = col.GetComponent<PlayerMove>();
             //コルーチン開始
             StartCoroutine("GoalCoroutine");
         }
     }
     public IEnumerator GoalCoroutine()
     {
-        //スクリプト取得
-        Player = Player.GetComponent<PlayerMove>();
-
+   
         //無効化
         Player.SetCurrentState(PlayerState.Stop);
 

@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c5f4907032f89664dbc90067ea03af36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -159,8 +159,6 @@ MonoBehaviour:
   zoomInNaviPrefab: {fileID: 8546991744049322773, guid: 199a0e7ac956ee24b8d56a02096afe3b,
     type: 3}
   zoomOutNaviPrefab: {fileID: 327312577507728307, guid: 5fc59274dc5420d40b2a3dfa8e2306e4,
-    type: 3}
-  fadeInPrefab: {fileID: 5155085804432139170, guid: c5406cace481d5648affb4711b634cec,
     type: 3}
 --- !u!70 &6426227439522401376
 CapsuleCollider2D:
@@ -870,7 +868,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 484d9e30e58133f4aa5693e9eb48769e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

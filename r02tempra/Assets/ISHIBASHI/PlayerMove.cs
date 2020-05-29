@@ -173,10 +173,11 @@ public class PlayerMove : MonoBehaviour
     void NormalMove()
     {
         Jump();
-        Baburu();
         Move();
-
-       
+        if (rule.current_bubble < rule.limit_bubble)
+        {
+            Baburu();
+        }
     }
 
     //ズームアウト時の処理
@@ -196,7 +197,11 @@ public class PlayerMove : MonoBehaviour
     //分裂後の頭？のみの処理予定
     void HeadMove()
     {
-        Baburu();
+        if (rule.current_bubble < rule.limit_bubble)
+        {
+            Baburu();
+        }
+
         if (Input.GetButtonDown("Y_BUTTON"))
         {
             
@@ -259,14 +264,12 @@ public class PlayerMove : MonoBehaviour
         rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
         if (h > 0)
         {
-            //rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
             playerAnime.SetBool("Move", true);
             headAnime.SetBool("Stop", false);
             transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
         }
         else if (h < 0)
         {
-            //rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
             playerAnime.SetBool("Move", true);
             headAnime.SetBool("Stop", false);
             transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
@@ -295,6 +298,11 @@ public class PlayerMove : MonoBehaviour
         this.rule = rule;
     }
 
+    public Vector3 GetHeadPosition()
+    {
+        return headPosition;
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
 
@@ -309,7 +317,6 @@ public class PlayerMove : MonoBehaviour
                 CameraCheck();
                 SetCurrentState(PlayerState.Normal);
             }
-            _playerHead.transform.localPosition = headPosition;
         }
     }
     void OnTriggerEnter2D(Collider2D col)

@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/KIKUCHI/Scenes/stage02.unity
     guid: e7620a76b8a959b4688e9642f9c6e9bf
   - enabled: 1
-    path: Assets/aoyama/select.unity
+    path: Assets/aoyama/Scene/select.unity
     guid: 6797e7ade89cd0e4fba4213895782d8f
   - enabled: 1
     path: Assets/KIKUCHI/Scenes/stage03.unity
