@@ -104,7 +104,15 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(1, 0, 4);
                 break;
             case 3:
-              
+                ArraryNum(0, 0, 1);
+                ArraryNum(1, 2, 2);
+                ArraryNum(1, 1, 3);
+                ArraryNum(2, 1, 3);
+                ArraryNum(2, 0, 2);
+                ArraryNum(3, 0, 4);
+             
+                break;
+            case 4:
                 ArraryNum(0, 0, 1);
                 ArraryNum(0, 2, 2);
                 ArraryNum(0, 1, 4);
@@ -115,14 +123,6 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(2, 0, 1);
                 ArraryNum(3, 2, 3);
                 ArraryNum(3, 1, 5);
-                break;
-            case 4:
-                ArraryNum(1, 0, 1);
-                ArraryNum(3, 1, 1);
-                ArraryNum(0, 0, 1);
-                ArraryNum(0, 1, 3);
-                ArraryNum(2, 0, 1);
-                ArraryNum(2, 1, 1);
                 break;
             case 5:
                 ArraryNum(0, 2, 2);
@@ -141,6 +141,16 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(3, 0, 5);
                 break;
             case 7:
+                ArraryNum(0, 0, 2);
+                ArraryNum(1, 3, 1);
+                ArraryNum(1, 2, 1);
+                ArraryNum(1, 0, 5);
+                ArraryNum(2, 3, 4);
+                ArraryNum(2, 2, 1);
+                ArraryNum(2, 0, 2);
+                ArraryNum(3, 3, 1);
+                ArraryNum(3, 1, 3);
+                ArraryNum(3, 0, 4);
                
                 break;
             case 8:

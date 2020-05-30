@@ -85,104 +85,106 @@ public class Selectmanager : MonoBehaviour
     void Update()
     {
         if (endFlag == true)
-        {            
-          StartCoroutine("Flag");
+        {
+            StartCoroutine("Flag");
         }
-        if (endFlag==true)
+        if (endFlag == true)
         {
             return;
         }
 
-
+        if (fadeInInstance == null)
+        {
             //Transform myTransform = this.transform;
             //Vector3 pos = myTransform.position;
             transform.localPosition = new Vector3(cntMove, 0, 0);
-        // 座標を取得
-        //pos= myTransform.localPosition;
-        //pos.x = 400;
+            // 座標を取得
+            //pos= myTransform.localPosition;
+            //pos.x = 400;
 
-        if (rightMoveFlag == true)
-        {
-            cntMove -= 40;
-            cntnumber += 40;
-            if (cntnumber == 400)
+            if (rightMoveFlag == true)
             {
-                rightMoveFlag = false;
-                cntnumber = 0;
+                cntMove -= 40;
+                cntnumber += 40;
+                if (cntnumber == 400)
+                {
+                    rightMoveFlag = false;
+                    cntnumber = 0;
+                }
             }
-        }
 
-        if (leftMoveFlag == true)
-        {
-            cntMove += 40;
-            cntnumber += 40;
-            if (cntnumber == 400)
+            if (leftMoveFlag == true)
             {
-                leftMoveFlag = false;
-                cntnumber = 0;
+                cntMove += 40;
+                cntnumber += 40;
+                if (cntnumber == 400)
+                {
+                    leftMoveFlag = false;
+                    cntnumber = 0;
+                }
             }
-        }
 
-        //myTransform.position =pos;
-        Select();
-        if (cntStage != stageMax && Input.GetAxis("Horizontal") > 0.9f && rightMoveFlag == false && leftMoveFlag == false)
-        {
-            targetAnimator.SetTrigger("Right");
-            select.clip = select1;
-            select.Play();
-            if (cntStage == stageMin)
+            //myTransform.position =pos;
+            Select();
+            if (cntStage != stageMax && Input.GetAxis("Horizontal") > 0.9f && rightMoveFlag == false && leftMoveFlag == false)
             {
-                targetAnimatorLeft.SetTrigger("Lightsup");
+                targetAnimator.SetTrigger("Right");
+                select.clip = select1;
+                select.Play();
+                if (cntStage == stageMin)
+                {
+                    targetAnimatorLeft.SetTrigger("Lightsup");
+                }
+                cntStage++;
+                rightMoveFlag = true;
+                if (cntStage == stageMax)
+                {
+                    targetAnimator.SetTrigger("Invisible");
+                }
             }
-            cntStage++;
-            rightMoveFlag = true;
-            if (cntStage == stageMax)
+
+            if (cntStage != stageMin && Input.GetAxis("Horizontal") < -0.9f && rightMoveFlag == false && leftMoveFlag == false)
             {
-                targetAnimator.SetTrigger("Invisible");
-            }
-        }
+                targetAnimatorLeft.SetTrigger("Right");
+                select.clip = select1;
+                select.Play();
+                if (cntStage == stageMax)
+                {
+                    targetAnimator.SetTrigger("Lightsup");
+                }
+                cntStage--;
 
-        if (cntStage != stageMin && Input.GetAxis("Horizontal") < -0.9f && rightMoveFlag == false && leftMoveFlag == false)
-        {
-            targetAnimatorLeft.SetTrigger("Right");
-            select.clip = select1;
-            select.Play();
-            if (cntStage == stageMax)
+                leftMoveFlag = true;
+                if (cntStage == stageMin)
+                {
+                    targetAnimatorLeft.SetTrigger("Invisible");
+                }
+            }
+            if (cntStage == stageMax && Input.GetAxis("Horizontal") > 0.1f && rightMoveFlag == false && leftMoveFlag == false)
             {
-                targetAnimator.SetTrigger("Lightsup");
+                //cancel.clip = cancel1;
+                //cancel.Play();
             }
-            cntStage--;
-
-            leftMoveFlag = true;
-            if (cntStage == stageMin)
+            if (cntStage == stageMin && Input.GetAxis("Horizontal") < -0.1f && rightMoveFlag == false && leftMoveFlag == false)
             {
-                targetAnimatorLeft.SetTrigger("Invisible");
+                //cancel.clip = cancel1;
+                //cancel.Play();
             }
-        }
-        if (cntStage == stageMax && Input.GetAxis("Horizontal") > 0.1f && rightMoveFlag == false && leftMoveFlag == false)
-        {
-            //cancel.clip = cancel1;
-            //cancel.Play();
-        }
-        if (cntStage == stageMin && Input.GetAxis("Horizontal") < -0.1f && rightMoveFlag == false && leftMoveFlag == false)
-        {
-            //cancel.clip = cancel1;
-            //cancel.Play();
-        }
 
 
 
 
-         if (cntStage == 1 || cntStage == 2 || cntStage ==3 || cntStage == 4 || cntStage==5|| cntStage == 6 || cntStage == 7 || cntStage == 9 || cntStage == 10)
-        {
+            if (cntStage == 1 || cntStage == 2 || cntStage == 3 || cntStage == 4 || cntStage == 5 || cntStage == 6 || cntStage == 7 || cntStage == 9 || cntStage == 10)
+            {
 
-            stage2.GetComponent<Image>().color = SelectOff;
+                stage2.GetComponent<Image>().color = SelectOff;
+            }
+            else
+            {
+                stage2.GetComponent<Image>().color = SelectOn;
+            }
+
         }
-        else
-        {
-            stage2.GetComponent<Image>().color = SelectOn;
-        }
-        
     }
 
     void Select()
