@@ -75,6 +75,9 @@ public class PlayerMove : MonoBehaviour
     private GameObject zoomOutNaviPrefab;
     private GameObject zoomOutNaviInstance;
 
+    private bool headScale = false;
+    private Vector3 headvec;
+
    
     // Start is called before the first frame update
     void Start()
@@ -95,6 +98,7 @@ public class PlayerMove : MonoBehaviour
         headAnime = _playerHead.GetComponent<Animator>();
 
         headPosition = _playerHead.transform.localPosition;
+        headvec = _playerHead.transform.localScale;
 
         cameraCheck = false;
 
@@ -131,6 +135,11 @@ public class PlayerMove : MonoBehaviour
 
                 SetCurrentState(PlayerState.Division);
             }
+        }
+
+        if(headScale && headvec.y < _playerHead.localScale.y)
+        {
+            _playerHead.transform.localScale -= new Vector3(0.02f, 0.02f, 0);
         }
     }
 
@@ -200,6 +209,8 @@ public class PlayerMove : MonoBehaviour
             playerHeadRigidbody.simulated = true;
             playerHead.enabled = true;
             headAnime.SetBool("Stop", true);
+            playerHead.StartCoroutine("Coroutine");
+            Invoke("rotationStop", 1f);
         }
     }
 
@@ -212,23 +223,8 @@ public class PlayerMove : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Y_BUTTON"))
-        {
-            
+        {           
             CameraCheck();
-        }
-
-        float h = Input.GetAxis("Horizontal");
-        if (h != 0)
-        {
-            if (h > 0)
-            {
-                transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
-            }
-            else
-            {
-                transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
-            }
-
         }
     }
 
@@ -275,13 +271,13 @@ public class PlayerMove : MonoBehaviour
         {
             playerAnime.SetBool("Move", true);
             headAnime.SetBool("Stop", false);
-            transform.localScale = new Vector3(5.6f, transform.localScale.y, transform.localScale.z);
+            transform.localRotation = new Quaternion(0, 0, 0, 0);
         }
         else if (h < 0)
         {
             playerAnime.SetBool("Move", true);
             headAnime.SetBool("Stop", false);
-            transform.localScale = new Vector3(-5.6f, transform.localScale.y, transform.localScale.z);
+            transform.localRotation = new Quaternion(0, 180, 0, 0);
         }
         else
         {
@@ -326,6 +322,8 @@ public class PlayerMove : MonoBehaviour
                 CameraCheck();
                 SetCurrentState(PlayerState.Normal);
             }
+
+            StartCoroutine("Coroutine");
         }
     }
     void OnTriggerEnter2D(Collider2D col)
@@ -347,5 +345,21 @@ public class PlayerMove : MonoBehaviour
         }
        
     }
-  
+
+    private IEnumerator Coroutine()
+    {
+        //処理１
+        headScale = true;
+        //１秒待機
+        yield return new WaitForSeconds(1.0f);
+        headScale = false;
+        //コルーチンを終了
+        yield break;
+    }
+
+    private void rotationStop()
+    {
+        transform.localRotation = new Quaternion(0, 0, 0, 0);
+    }
+
 }
