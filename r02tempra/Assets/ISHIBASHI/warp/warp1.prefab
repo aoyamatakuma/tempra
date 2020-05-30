@@ -117,6 +117,10 @@ MonoBehaviour:
   transObj: {fileID: 0}
   moveStatus: 0
   warp: []
+  trapSound: {fileID: 0}
+  effectPrefab: {fileID: 1567760881137220, guid: e97c6b7349199b846855f26cca4e65e6,
+    type: 3}
+  walkSpeed: 3
 --- !u!58 &4317214021429497838
 CircleCollider2D:
   m_ObjectHideFlags: 0
