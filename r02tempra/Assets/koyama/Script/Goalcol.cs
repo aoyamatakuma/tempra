@@ -42,7 +42,7 @@ public class Goalcol : MonoBehaviour
     {
    
         //無効化
-        Player.SetCurrentState(PlayerState.Stop);
+        Player.SetCurrentState(PlayerState.Goal);
 
         Debug.Log("コルーチン");
       

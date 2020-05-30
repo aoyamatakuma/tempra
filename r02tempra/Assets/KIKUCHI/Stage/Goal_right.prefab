@@ -679,6 +679,7 @@ MonoBehaviour:
   speed: 10
   player: {fileID: 0}
   currentStageState: 0
+  previousStageState: 0
   isWind: 0
   leftWind: 0
   rightWind: 0
