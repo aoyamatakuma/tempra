@@ -89,15 +89,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraCO: {fileID: 0}
   m_Player: {fileID: 0}
-  Teleportimage: {fileID: 3833698321395825590}
-  TeleportOnImage: {fileID: 21300000, guid: 8356276f2351dc24cb56b1dcb4551bb4, type: 3}
-  TeleportOffImage: {fileID: 21300000, guid: 11e81a87ed7772b4bb6ba0dfc3b1e148, type: 3}
   Stage: {fileID: 0}
   explosionEffect: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
     type: 3}
+  Icon: {fileID: 3833698321390499551}
+  Teleportimage: {fileID: 3833698321395825590}
+  TeleportOnImage: {fileID: 21300000, guid: 8356276f2351dc24cb56b1dcb4551bb4, type: 3}
+  TeleportOffImage: {fileID: 21300000, guid: 11e81a87ed7772b4bb6ba0dfc3b1e148, type: 3}
   text: {fileID: 0}
   iconSpeed: 1000
-  Icon: {fileID: 3833698321390499551}
 --- !u!50 &3833698321390499549
 Rigidbody2D:
   serializedVersion: 4
@@ -172,7 +172,7 @@ RectTransform:
   m_GameObject: {fileID: 3833698321393871092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.43, y: 0.57, z: 1}
+  m_LocalScale: {x: 0.55, y: 0.66, z: 1}
   m_Children:
   - {fileID: 3833698321390499547}
   m_Father: {fileID: 3833698321483854350}
