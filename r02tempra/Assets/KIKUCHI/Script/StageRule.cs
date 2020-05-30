@@ -285,24 +285,21 @@ public class StageRule : MonoBehaviour {
             {
                 if (col.gameObject.CompareTag("Collsion_up") && currentStageState !=StageState.hit_bottom && currentStageState != StageState.hit_up && currentStageState != StageState.hit_bottom_up)
                 {
-                    Debug.Log("えええええなんでえええええええええええ");
+                  
                    SetCurrentState(StageState.hit_bottom);                                        
                 }
 
                 if (col.gameObject.CompareTag("Collision_bottom") && currentStageState != StageState.hit_up && currentStageState != StageState.hit_bottom && currentStageState != StageState.hit_bottom_up)
-                {
-                   
+                {                  
                    SetCurrentState(StageState.hit_up);                  
                 }
 
                 if (col.gameObject.CompareTag("Collsion_up") && currentStageState == StageState.hit_up && currentStageState != StageState.hit_bottom_up)
-                {
-                    Debug.Log("はさまれた2");
+                {               
                     SetCurrentState(StageState.hit_bottom_up);
                 }
                 if (col.gameObject.CompareTag("Collision_bottom") && currentStageState == StageState.hit_bottom && currentStageState != StageState.hit_bottom_up)
-                {
-                    Debug.Log("はさまれた1");
+                {           
                     SetCurrentState(StageState.hit_bottom_up);
                 }
             }
@@ -329,22 +326,18 @@ public class StageRule : MonoBehaviour {
         {
             if (col.gameObject.CompareTag("Collsion_up") && currentStageState == StageState.hit_bottom )
             {
-                Debug.Log("消えたなり");
                 SetCurrentState(StageState.Normal);              
             }
             if (col.gameObject.CompareTag("Collision_bottom") && currentStageState == StageState.hit_up )
             {
-                Debug.Log("挟まれたうえで消えたなり");
                 SetCurrentState(StageState.Normal);           
             }
             if (col.gameObject.CompareTag("Collsion_up") && currentStageState == StageState.hit_bottom_up)
             {
-                Debug.Log("上の判定消えたなり");
                 SetCurrentState(StageState.hit_bottom);
             }
             if (col.gameObject.CompareTag("Collision_bottom") && currentStageState == StageState.hit_bottom_up)
             {
-                Debug.Log("下の判定消えたなり");
                 SetCurrentState(StageState.hit_up);
             }
         }
