@@ -174,7 +174,7 @@ public class Selectmanager : MonoBehaviour
 
 
 
-            if (cntStage == 1 || cntStage == 2 || cntStage == 3 || cntStage == 4 || cntStage == 5 || cntStage == 6 || cntStage == 7 || cntStage == 9 || cntStage == 10)
+            if (cntStage == 1 || cntStage == 2 || cntStage == 3 || cntStage == 4 || cntStage == 5 || cntStage == 6 || cntStage == 7 || cntStage == 8 || cntStage == 9 || cntStage == 10)
             {
 
                 stage2.GetComponent<Image>().color = SelectOff;
@@ -191,7 +191,7 @@ public class Selectmanager : MonoBehaviour
     {
         if (Input.GetButtonDown("A_BUTTON")&& rightMoveFlag == false && leftMoveFlag == false)
         {
-            if (cntStage == 1|| cntStage == 2 || cntStage == 3 || cntStage == 4 || cntStage == 5 || cntStage == 6 || cntStage == 7 || cntStage == 9 || cntStage == 10)
+            if (cntStage == 1|| cntStage == 2 || cntStage == 3 || cntStage == 4 || cntStage == 5 || cntStage == 6 || cntStage == 7 || cntStage == 8|| cntStage == 9 || cntStage == 10)
             {
                 if (fadeInInstance == null)
                 {
@@ -240,6 +240,10 @@ public class Selectmanager : MonoBehaviour
         if (cntStage == 7)
         {
             SceneManager.LoadScene("stage07");
+        }
+        if (cntStage == 7)
+        {
+            SceneManager.LoadScene("stage08");
         }
         if (cntStage == 9)
         {
