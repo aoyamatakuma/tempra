@@ -18,7 +18,7 @@ public class Warp : MonoBehaviour
     void Start()
     {
         warp = GameObject.FindGameObjectsWithTag("WarpPoint");
-
+       
         //  transVec = transObj.transform.position;
         //初期では移動可能なためTrue
         moveStatus = true;
@@ -29,7 +29,7 @@ public class Warp : MonoBehaviour
         obj = GameObject.Find(other.name);
         //スクリプト取得
         player = other.GetComponent<PlayerMove>();
-      
+        StartCoroutine("WarpCoroutine");
         //自分が移動可能なとき移動する。
         // エフェクトを出す。（posでエフェクトの出現位置を調整する。）
         Vector3 pos = other.transform.position;
@@ -37,31 +37,49 @@ public class Warp : MonoBehaviour
 
         // エフェクトを２秒後に消す。
         Destroy(effect, 1.0f);
-
-    
+        // 経過時間をカウント
         if (moveStatus)
-        {
-            //  移動先は直後移動できないようにする
-            if (gameObject != warp[0])
-            {  
-                warp[0].GetComponent<Warp>().moveStatus = false;
-                obj.transform.position = warp[0].transform.position;
-              
-
+        {      
+                //  移動先は直後移動できないようにする
+                if (gameObject != warp[0])
+                {
+                    warp[0].GetComponent<Warp>().moveStatus = false;
+                    StartCoroutine("Warp1");
             }
-            else if (gameObject != warp[1])
-            {
-                warp[1].GetComponent<Warp>().moveStatus = false;
-                obj.transform.position = warp[1].transform.position;
+                else if (gameObject != warp[1])
+                {
+                    warp[1].GetComponent<Warp>().moveStatus = false;
+                    StartCoroutine("Warp2");
             }
-        }
+            }
     }
-    //public IEnumerator wait()
-    //{
-
-       
-
-    //}
+    //ワープアニメーション？
+    public IEnumerator WarpCoroutine()
+    {
+        //無効化
+        player.SetCurrentState(PlayerState.Stop);
+        yield return new WaitForSeconds(2f);
+        player.SetCurrentState(PlayerState.Normal);
+        Debug.Log("コルーチン");
+    }
+    //ワープ時間
+    public IEnumerator Warp1()
+    {
+        //無効化
+        player.SetCurrentState(PlayerState.Stop);
+        yield return new WaitForSeconds(2f);
+        obj.transform.position = warp[0].transform.position;
+        Debug.Log("ワープ2");
+    }
+    //ワープ時間
+    public IEnumerator Warp2()
+    {
+        //無効化
+        player.SetCurrentState(PlayerState.Stop);
+        yield return new WaitForSeconds(2f);
+        obj.transform.position = warp[1].transform.position;
+        Debug.Log("ワープ3");
+    }
     //物体と離れた直後呼ばれる
     void OnTriggerExit2D(Collider2D other)
     {
