@@ -12,6 +12,8 @@ public class PlayerHeadMove : MonoBehaviour
     [SerializeField] Transform stageParent;
     [SerializeField] PlayerMove player;
 
+    private bool headScale;
+
     private bool moveflag;
 
     // Start is called before the first frame update
@@ -36,22 +38,28 @@ public class PlayerHeadMove : MonoBehaviour
             moveflag = !moveflag;
             rigidPlayer.velocity = Vector2.zero;
         }
+
+        if(headScale)
+        {
+            transform.localScale += new Vector3(0.05f, 0.05f, 0);
+        }
     }
 
     void Move()//移動系
     {
         float h = Input.GetAxis("Horizontal");
         rigidPlayer.velocity = new Vector2(speed * h, rigidPlayer.velocity.y);
+
         if (h != 0)
         {
             anim.SetBool("Move", true);
             if (h > 0)
             {
-                transform.localScale = new Vector3(3, transform.localScale.y, transform.localScale.z);
+                transform.localRotation = new Quaternion(0, 0, 0, 0);
             }
             else
             {
-                transform.localScale = new Vector3(-3, transform.localScale.y, transform.localScale.z);
+                transform.localRotation = new Quaternion(0, 180, 0, 0);
             }
 
         }
@@ -88,7 +96,19 @@ public class PlayerHeadMove : MonoBehaviour
             playerHeadCollider.enabled = false;
             transform.parent = col.gameObject.transform;
             transform.localPosition = player.GetHeadPosition();
+            transform.localRotation = new Quaternion(0, 0, 0, 0);
             GetComponent<PlayerHeadMove>().enabled = false;
         }
+    }
+
+    public IEnumerator Coroutine()
+    {
+        //処理１
+        headScale = true;
+        //１秒待機
+        yield return new WaitForSeconds(1.0f);
+        headScale = false;
+        //コルーチンを終了
+        yield break;
     }
 }
