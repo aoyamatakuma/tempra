@@ -85,8 +85,7 @@ public class Selectmanager : MonoBehaviour
     void Update()
     {
         if (endFlag == true)
-        {
-            
+        {            
           StartCoroutine("Flag");
         }
         if (endFlag==true)
