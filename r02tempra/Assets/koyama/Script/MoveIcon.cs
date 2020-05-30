@@ -6,18 +6,23 @@ using UnityEngine.UI;
 public class MoveIcon : MonoBehaviour
 {
     [SerializeField]
-    public CameraControl CameraCO;
-    public GameObject m_Player;
-    //画像取得
-    public Image Teleportimage;
-    public Sprite TeleportOnImage;
-    public Sprite TeleportOffImage;
-
+    private CameraControl CameraCO;
+    [SerializeField]
+    private GameObject m_Player;
     [SerializeField]
     private StageRule Stage;
 
     [SerializeField]
     private GameObject explosionEffect;
+    [SerializeField]
+    //アイコン取得
+    private Image Icon;
+
+    //画像取得
+    public Image Teleportimage;
+    public Sprite TeleportOnImage;
+    public Sprite TeleportOffImage;
+
 
     //テキスト取得
     public Text text;
@@ -37,9 +42,6 @@ public class MoveIcon : MonoBehaviour
 
     //泡破裂フラグ
     private static bool AwaExplosion;
-    [SerializeField]
-    //アイコン取得
-    private Image Icon;
 
     // Start is called before the first frame update
     void Start()
@@ -185,7 +187,7 @@ public class MoveIcon : MonoBehaviour
     public void Explosion()
     {
 
-        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion)
+        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion && CameraCO.isCameraPos2 == false)
         {
             //配列処理
             foreach (var a in Stage.Bubblehub)
