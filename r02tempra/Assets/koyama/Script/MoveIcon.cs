@@ -185,7 +185,7 @@ public class MoveIcon : MonoBehaviour
     public void Explosion()
     {
 
-        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion)
+        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion && CameraCO.isCameraPos2 == false)
         {
             //配列処理
             foreach (var a in Stage.Bubblehub)
