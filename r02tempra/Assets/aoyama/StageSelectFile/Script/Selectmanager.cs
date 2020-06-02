@@ -241,7 +241,7 @@ public class Selectmanager : MonoBehaviour
         {
             SceneManager.LoadScene("stage07");
         }
-        if (cntStage == 7)
+        if (cntStage == 8)
         {
             SceneManager.LoadScene("stage08");
         }
