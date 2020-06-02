@@ -9,6 +9,8 @@ public class GameClear : MonoBehaviour
     [SerializeField]
     private GameObject fadeOutPrefab;
     private GameObject fadeOutInstance;
+    [SerializeField]
+    private GameObject stageManu;
 
     [SerializeField]
     //Scene スクリプト取得
@@ -44,7 +46,7 @@ public class GameClear : MonoBehaviour
         TimeScene();
     }
     
-    //時間経過でシーン切り替え
+    
     public void TimeScene()
     {
         //経過時間をカウント
@@ -52,17 +54,10 @@ public class GameClear : MonoBehaviour
 
 
         //3秒経過で画面移動
-        if(time_KO>=3.0f)
+        if(time_KO>=1.0f)
         {
-            if(gameManager.currentStageNum==11)
-            {
-                SceneManager.LoadScene("MasterTitle");
-            }
-            else
-            {
-            SceneManager.LoadScene("stage"+ gameManager.currentStageNum);
-            }
 
+            stageManu.SetActive(true);
         }
     }
     void CountStage()
