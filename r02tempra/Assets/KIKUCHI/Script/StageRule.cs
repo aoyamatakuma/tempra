@@ -414,25 +414,25 @@ public class StageRule : MonoBehaviour {
           
             if (currentStageState == StageState.Normal || currentStageState == StageState.hit_bottom || currentStageState == StageState.hit_up)
             {
-                //StageRule colStage = col.gameObject.transform.root.GetComponent<StageRule>();
-                //if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up)
-                {
+                StageRule colStage = col.gameObject.transform.root.GetComponent<StageRule>();
                     if (col.gameObject.CompareTag("Border_Left"))
-                    {
-                        Border_Bool(stage_Right, false);
-                        Border_Bool(light_Right, true);
+                    {                    
+                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up)
+                        {
+                            Border_Bool(stage_Right, false);
+                            Border_Bool(light_Right, true);
+                        }                       
                     }
                     if (col.gameObject.CompareTag("Border_Right"))
                     {
-                        Border_Bool(stage_Left, false);
-                        Border_Bool(light_Left, true);
+                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up)
+                        {
+                            Border_Bool(stage_Left, false);
+                            Border_Bool(light_Left, true);
+                        }
                     }
-                }
-              
-            }
-
-        }
-
+             }             
+          }       
     }
 
     void OnTriggerExit2D(Collider2D col)
