@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageObjList:
   - {fileID: 941142824010496543, guid: 2b97570bd754eaf4fbd4a447e9bf64e9, type: 3}
-  - {fileID: 941142824010496543, guid: 8878f292abee7394d979a46055e4a62f, type: 3}
+  - {fileID: 941142824010496543, guid: 2bf14ced8ea4b4846aed55a88e1d6753, type: 3}
   - {fileID: 941142824010496543, guid: fdbbdff14feaad14a8e518379b9c926a, type: 3}
   - {fileID: 941142824010496543, guid: 121eff850db8fc847b1420cbec139546, type: 3}
-  - {fileID: 941142824010496543, guid: 440951adf0591034a9538bde5e57e3b3, type: 3}
+  - {fileID: 941142824010496543, guid: fb133dfd142bffd4ab0f4a76c16c8317, type: 3}
   - {fileID: 941142824010496543, guid: 82e1aaa3fbe3ec04798d7212b3fd282d, type: 3}
   Number_S: 9
   Xmax: 5
