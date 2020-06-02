@@ -10,15 +10,21 @@ public class GameClear : MonoBehaviour
     private GameObject fadeOutPrefab;
     private GameObject fadeOutInstance;
 
-    
+    [SerializeField]
+    //Scene スクリプト取得
+    private SceneM gameManager;
+
+
 
     //経過時間カウント
     private float time_KO;
     // Start is called before the first frame update
     void Start()
     {
+        //読み込む
+        gameManager = GameObject.Find("GameManager").GetComponent<SceneM>();
         //経過時間初期化
-        time_KO=0.0f;
+        time_KO =0.0f;
         Destroy(fadeOutInstance);
     
 
@@ -28,6 +34,8 @@ public class GameClear : MonoBehaviour
         {
             fadeOutInstance = GameObject.Instantiate(fadeOutPrefab) as GameObject;
         }
+        gameManager = gameManager.GetComponent<SceneM>();
+        CountStage();
     }
 
     // Update is called once per frame
@@ -42,12 +50,24 @@ public class GameClear : MonoBehaviour
         //経過時間をカウント
         time_KO +=Time.deltaTime;
 
+
         //3秒経過で画面移動
         if(time_KO>=3.0f)
         {
-           
-                SceneManager.LoadScene("select");
-            
+            if(gameManager.currentStageNum==11)
+            {
+                SceneManager.LoadScene("MasterTitle");
+            }
+            else
+            {
+            SceneManager.LoadScene("stage"+ gameManager.currentStageNum);
+            }
+
         }
+    }
+    void CountStage()
+    {
+        gameManager.currentStageNum += 1;
+        Debug.Log(gameManager.currentStageNum);
     }
 }
