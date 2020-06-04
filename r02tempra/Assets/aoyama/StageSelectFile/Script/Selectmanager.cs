@@ -43,7 +43,7 @@ public class Selectmanager : MonoBehaviour
 
     int cntMove;
     int cntnumber;
-    int cntStage;
+    int cntStage=1;
 
     int stageMax=10;//最大ステージ数
     int stageMin=1;//最小ステージ数
@@ -66,7 +66,7 @@ public class Selectmanager : MonoBehaviour
         }
 
 
-        cntStage = 1;
+        //cntStage = 1;
         cntnumber=0;
         cntMove = 0;
         rightMoveFlag = false;
