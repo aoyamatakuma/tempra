@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  fadeInPrefab: {fileID: 5155085804432139170, guid: c5406cace481d5648affb4711b634cec,
+    type: 3}
 --- !u!1 &6112903828904432934
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  fadeInPrefab: {fileID: 5155085804432139170, guid: c5406cace481d5648affb4711b634cec,
+    type: 3}
 --- !u!1 &6112903829709450786
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,6 +520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  fadeInPrefab: {fileID: 5155085804432139170, guid: c5406cace481d5648affb4711b634cec,
+    type: 3}
 --- !u!1 &6112903829815849718
 GameObject:
   m_ObjectHideFlags: 0
