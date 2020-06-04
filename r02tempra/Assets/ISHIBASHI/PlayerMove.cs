@@ -66,17 +66,10 @@ public class PlayerMove : MonoBehaviour
     Animator playerAnime;
     Animator headAnime;
 
-    //青山追加
-    [SerializeField]
-    private GameObject zoomInNaviPrefab;
-    private GameObject zoomInNaviInstance;
-
-    [SerializeField]
-    private GameObject zoomOutNaviPrefab;
-    private GameObject zoomOutNaviInstance;
 
     private bool headScale = false;
     private Vector3 headvec;
+    private GameRule gameRule;
 
    
     // Start is called before the first frame update
@@ -97,6 +90,8 @@ public class PlayerMove : MonoBehaviour
         playerAnime = gameObject.GetComponent<Animator>();
         headAnime = _playerHead.GetComponent<Animator>();
 
+        gameRule = GameObject.Find("GameManager").GetComponent<GameRule>();
+
         headPosition = _playerHead.transform.localPosition;
         headvec = _playerHead.transform.localScale;
 
@@ -104,10 +99,7 @@ public class PlayerMove : MonoBehaviour
 
         SetCurrentState(PlayerState.Stop);
 
-        //Destroy(zoomOutNaviInstance);
-        Destroy(zoomOutNaviInstance);
-        Destroy(zoomInNaviInstance);
-        zoomInNaviInstance = GameObject.Instantiate(zoomInNaviPrefab) as GameObject;
+      
        
     }
 
@@ -122,17 +114,10 @@ public class PlayerMove : MonoBehaviour
 
             if (currentPlayerState != PlayerState.Normal)
             {
-                zoomInNaviInstance = GameObject.Instantiate(zoomInNaviPrefab) as GameObject;
-                Destroy(zoomOutNaviInstance);
-
-                SetCurrentState(PlayerState.Normal);
-                
+                SetCurrentState(PlayerState.Normal);               
             }
             else if(currentPlayerState != PlayerState.Division)
             {
-                zoomOutNaviInstance = GameObject.Instantiate(zoomOutNaviPrefab) as GameObject;
-                Destroy(zoomInNaviInstance);
-
                 SetCurrentState(PlayerState.Division);
             }
         }
@@ -241,7 +226,7 @@ public class PlayerMove : MonoBehaviour
     void Baburu()
     {
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Normal)
+        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Normal && gameRule.getIsPlay())
         {
             bubble.clip = bubbleSE;
             bubble.Play();
@@ -252,7 +237,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Head)
+        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Head && gameRule.getIsPlay())
         {
             bubble.clip = bubbleSE;
             bubble.Play();

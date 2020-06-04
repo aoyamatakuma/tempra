@@ -1680,11 +1680,15 @@ MonoBehaviour:
   posZ: -100
   playerTrans: {fileID: 493604273}
   player: {fileID: 936554639}
-  offset: {x: 0, y: 2, z: 0}
+  offset: {x: 0, y: 7, z: -10}
   cameraVec: {x: 0, y: 2, z: -2}
   isCameraPos1: 1
   isCameraPos2: 0
   cameraPoint: {fileID: 769427174}
+  zoomInNaviPrefab: {fileID: 8546991744049322773, guid: 199a0e7ac956ee24b8d56a02096afe3b,
+    type: 3}
+  zoomOutNaviPrefab: {fileID: 327312577507728307, guid: 5fc59274dc5420d40b2a3dfa8e2306e4,
+    type: 3}
 --- !u!4 &1749568574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3373605463658074806, guid: a343de5a3391058439bc85879ac71a59,

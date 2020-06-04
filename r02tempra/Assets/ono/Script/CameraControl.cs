@@ -31,13 +31,28 @@ public class CameraControl : MonoBehaviour
     GameObject stage;
 
     [SerializeField]
-    private GameObject cameraPoint; 
-    
+    private GameObject cameraPoint;
+
+    //青山追加
+    [SerializeField]
+    private GameObject zoomInNaviPrefab;
+    private GameObject zoomInNaviInstance;
+
+    [SerializeField]
+    private GameObject zoomOutNaviPrefab;
+    private GameObject zoomOutNaviInstance;
+    private Camera mainCam;
+
 
     void Start()
     {
+        mainCam = gameObject.GetComponent<Camera>();
         isCameraPos1 = true;
-        isCameraPos2 = false; 
+        isCameraPos2 = false;
+        zoomInNaviInstance = Instantiate(zoomInNaviPrefab);
+        zoomOutNaviInstance = Instantiate(zoomOutNaviPrefab);
+        zoomInNaviInstance.gameObject.SetActive(false);
+        zoomOutNaviInstance.gameObject.SetActive(true);
         basePosition = playerTrans.position;
         transform.position = cameraPoint.transform.position;
         //   intA = 0;
@@ -62,13 +77,14 @@ public class CameraControl : MonoBehaviour
       
         if (isCameraPos1)
         {
+         
             //ここいじる（カメラ操作）
-            CameraLerp(new Vector3(cameraPoint.transform.position.x, cameraPoint.transform.position.y, cameraPoint.transform.position.z));
+            CameraLerp(new Vector3(cameraPoint.transform.position.x, cameraPoint.transform.position.y, cameraPoint.transform.position.z));        
         }
             
         else if (isCameraPos2)
         {
-           
+            
             CameraLerp(new Vector3(playerTrans.position.x, playerTrans.position.y + offset.y, -11 + offset.z));
         }
     }
@@ -87,10 +103,14 @@ public class CameraControl : MonoBehaviour
             case 0:
                 isCameraPos1 = false;
                 isCameraPos2 = true;
+                zoomInNaviInstance.gameObject.SetActive(true);
+                zoomOutNaviInstance.gameObject.SetActive(false);
                 break;
             case 1:
                 isCameraPos1 = true;
                 isCameraPos2 = false;
+                zoomInNaviInstance.gameObject.SetActive(false);
+                zoomOutNaviInstance.gameObject.SetActive(true);
                 break;
         }
 

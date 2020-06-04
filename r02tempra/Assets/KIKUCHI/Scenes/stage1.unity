@@ -1428,11 +1428,15 @@ MonoBehaviour:
   posZ: -100
   playerTrans: {fileID: 493604273}
   player: {fileID: 936554639}
-  offset: {x: 0, y: 2, z: 0}
+  offset: {x: 0, y: 7, z: -10}
   cameraVec: {x: 0, y: 2, z: -2}
   isCameraPos1: 1
   isCameraPos2: 0
   cameraPoint: {fileID: 769427174}
+  zoomInNaviPrefab: {fileID: 8546991744049322773, guid: 199a0e7ac956ee24b8d56a02096afe3b,
+    type: 3}
+  zoomOutNaviPrefab: {fileID: 327312577507728307, guid: 5fc59274dc5420d40b2a3dfa8e2306e4,
+    type: 3}
 --- !u!1 &1925023505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,66 +1855,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[0]
-      value: stage01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[1]
-      value: stage02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[2]
-      value: stage03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[3]
-      value: stage04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[4]
-      value: stage05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[5]
-      value: stage06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[6]
-      value: stage07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[7]
-      value: stage08
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[9]
-      value: stage10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: StageName.Array.data[8]
-      value: stage09
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
-        type: 3}
-      propertyPath: currentStageNum
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8988055986638496231, guid: 2a08221e75556e64789dd439bd2fbc1b,
         type: 3}
       propertyPath: m_LocalPosition.x
