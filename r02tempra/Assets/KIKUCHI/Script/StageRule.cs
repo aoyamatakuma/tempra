@@ -22,7 +22,8 @@ public class StageRule : MonoBehaviour {
     private float speed =10f;
     [SerializeField]
     private PlayerMove player;
-   
+    
+    
     public StageState currentStageState;
     public StageState previousStageState;
     [SerializeField]
@@ -231,7 +232,7 @@ public class StageRule : MonoBehaviour {
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
-            target.gameObject.GetComponent<StageRule>().SetCurrentState(target.gameObject.GetComponent<StageRule>().previousStageState);
+            target.gameObject.GetComponent<StageRule>().SetCurrentState(StageState.Normal);
           //  Debug.Log(target.gameObject.GetComponent<StageRule>().currentStageState);
             SetCurrentState(StageState.Normal);
         }
@@ -246,7 +247,7 @@ public class StageRule : MonoBehaviour {
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
-            target.gameObject.GetComponent<StageRule>().SetCurrentState(target.gameObject.GetComponent<StageRule>().previousStageState);
+            target.gameObject.GetComponent<StageRule>().SetCurrentState(StageState.Normal);
             SetCurrentState(StageState.Normal);
         }
     }
