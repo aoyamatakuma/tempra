@@ -8,7 +8,8 @@ public enum PlayerState
     Normal,
     Division,
     Head,
-    Goal
+    Goal,
+    Warp
 }
 
 public class PlayerMove : MonoBehaviour
@@ -70,8 +71,11 @@ public class PlayerMove : MonoBehaviour
     private bool headScale = false;
     private Vector3 headvec;
     private GameRule gameRule;
-
-   
+    //ワープフラグ
+    public float warpangle = 10;
+    public bool warpflag;
+    public GameObject effectPrefab;
+    public bool warpscale;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +86,7 @@ public class PlayerMove : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
         awaCreate = false;
-
+        warpflag = false; //ワープフラグ
         playerHeadCollider = _playerHead.GetComponent<CircleCollider2D>();
         playerHead = _playerHead.GetComponent<PlayerHeadMove>();
         playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
@@ -126,6 +130,12 @@ public class PlayerMove : MonoBehaviour
         {
             _playerHead.transform.localScale -= new Vector3(0.02f, 0.02f, 0);
         }
+        //ワープフラグ
+        if (warpflag == false)
+        {
+            rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+       
     }
 
    
@@ -150,6 +160,9 @@ public class PlayerMove : MonoBehaviour
             case PlayerState.Goal:
                 GoalMove();
                 break;
+            case PlayerState.Warp:
+                WarpMove();
+                break;
             default:
                 break;
         }
@@ -166,6 +179,15 @@ public class PlayerMove : MonoBehaviour
     {
 
     }
+    //ワープフラグ
+    void WarpMove()
+    {
+       // transform.rotation *= Quaternion.AngleAxis(warpangle, Vector3.forward);
+        //1秒間に360度回る
+        transform.Rotate(new Vector3(0, 0, 180) * Time.deltaTime, Space.World);
+      // StartCoroutine("Warolocal");
+        warpflag = true;
+    }
 
     void StopMove()
     {
@@ -177,6 +199,7 @@ public class PlayerMove : MonoBehaviour
     {
         Jump();
         Move();
+        warpflag = false;   //ワープフラグ
         if (rule.current_bubble < rule.limit_bubble)
         {
             Baburu();
@@ -328,9 +351,24 @@ public class PlayerMove : MonoBehaviour
         {
             jumpFlag = false;
         }
-       
-    }
+        //ワープフラグ
+        if (col.gameObject.CompareTag("WarpPoint"))
+        {
+            if (warpflag == true)
+            {
+                transform.position = col.gameObject.transform.position;
+                rigidPlayer.constraints = RigidbodyConstraints2D.FreezePosition;
+            }
+            // エフェクトを出す。（posでエフェクトの出現位置を調整する。）
+            Vector3 pos = col.transform.position;
+            GameObject effect = (GameObject)Instantiate(effectPrefab, new Vector3(pos.x, pos.y + 1, pos.z - 1), Quaternion.identity);
 
+            // エフェクトを２秒後に消す。
+            Destroy(effect, 1.0f);
+
+        }
+    }
+   
     private IEnumerator Coroutine()
     {
         //処理１
@@ -341,7 +379,16 @@ public class PlayerMove : MonoBehaviour
         //コルーチンを終了
         yield break;
     }
-
+    public IEnumerator Warolocal()
+    {
+        //処理１
+        transform.localScale -= new Vector3(0.05f, 0.05f, 0);
+        //１秒待機
+        yield return new WaitForSeconds(1.0f);
+        transform.localScale += new Vector3(0.05f, 0.05f, 0);
+        //コルーチンを終了
+        yield break;
+    }
     private void rotationStop()
     {
         transform.localRotation = new Quaternion(0, 0, 0, 0);
