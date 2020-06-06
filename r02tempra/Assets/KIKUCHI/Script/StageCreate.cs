@@ -19,7 +19,7 @@ public class StageCreate : MonoBehaviour
     //Start
     //Awake
     //OnEnable
-    void Start()
+    void Awake()
     {
 
         width  = stageData.Xmax;
