@@ -69,9 +69,10 @@ public class PlayerMove : MonoBehaviour
 
     private bool headScale = false;
     private Vector3 headvec;
+    [SerializeField]
     private GameRule gameRule;
 
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,7 +91,7 @@ public class PlayerMove : MonoBehaviour
         playerAnime = gameObject.GetComponent<Animator>();
         headAnime = _playerHead.GetComponent<Animator>();
 
-        gameRule = GameObject.Find("GameManager").GetComponent<GameRule>();
+       
 
         headPosition = _playerHead.transform.localPosition;
         headvec = _playerHead.transform.localScale;
@@ -126,6 +127,7 @@ public class PlayerMove : MonoBehaviour
         {
             _playerHead.transform.localScale -= new Vector3(0.02f, 0.02f, 0);
         }
+        Debug.Log(gameRule.getIsPlay());
     }
 
    

@@ -58,7 +58,6 @@ public class StageRule : MonoBehaviour {
     public GameObject light_Left;
     public GameObject light_Right;
     private GameObject wind_target;
-    private GameRule gameRule;
 
 
 
@@ -72,7 +71,6 @@ public class StageRule : MonoBehaviour {
         Bubblehub = new List<GameObject>();
         BubbleCount_Start();
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMove> ();
-        gameRule = GameObject.Find("GameManager").GetComponent<GameRule>();
         flyBool = false;
         downBool = false;
         current_bubble = 0;      
@@ -207,27 +205,21 @@ public class StageRule : MonoBehaviour {
 
     void FlyMove (Vector2 nextPos) {
         if ( currentStageState != StageState.Fly )return;
-        Debug.Log(gameRule.getIsPlay());
-        gameRule.falsePlay();
       //  if (currentStageState == StageState.hit_bottom_up) return;
         transform.position = Vector2.MoveTowards(transform.position, nextPos,Time.deltaTime*  speed);
        // transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);     
       if(transform.position.y >= nextPos.y || currentStageState != StageState.Fly)
-        {
-           gameRule.truePlay();      
+        {    
             SetCurrentState(StageState.Normal);
         }
     }
 
     void DownMove (Vector2 nextPos) {
         if ( currentStageState != StageState.Down ) return;
-        Debug.Log(gameRule.getIsPlay());
-        gameRule.falsePlay();
         // if (currentStageState == StageState.hit_bottom_up) return;
         transform.position = Vector2.MoveTowards(transform.position, nextPos, Time.deltaTime * speed);
         if (transform.position.y <= nextPos.y || currentStageState != StageState.Down)
         {
-            gameRule.truePlay();
             SetCurrentState(StageState.Normal);
         }   
     }
@@ -236,14 +228,12 @@ public class StageRule : MonoBehaviour {
     {
         
         if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit ) return;
-        gameRule.falsePlay();
         target. transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
         if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit)
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
             target.gameObject.GetComponent<StageRule>().SetCurrentState(StageState.Normal);
-            gameRule.truePlay();
             //  Debug.Log(target.gameObject.GetComponent<StageRule>().currentStageState);
             SetCurrentState(StageState.Normal);
         }
@@ -253,14 +243,12 @@ public class StageRule : MonoBehaviour {
     void RightWindMove(Vector2 nextPos, GameObject target)
     {
         if (currentStageState != StageState.Wind_Right && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit ) return;
-       gameRule.falsePlay();
         target.transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
         if (target.transform.position.x >= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit)
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
             target.gameObject.GetComponent<StageRule>().SetCurrentState(StageState.Normal);
-           gameRule.truePlay();
             SetCurrentState(StageState.Normal);
         }
     }
@@ -418,8 +406,7 @@ public class StageRule : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col)
-    {
-       
+    {     
     }
     void OnTriggerStay2D(Collider2D col)
     {
