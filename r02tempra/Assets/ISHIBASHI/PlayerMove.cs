@@ -76,6 +76,7 @@ public class PlayerMove : MonoBehaviour
     public bool warpflag;
     public GameObject effectPrefab;
     public bool warpscale;
+    private int warpcount;
     // Start is called before the first frame update
     void Start()
     {
@@ -110,6 +111,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         OnPlayerStateChanged(currentPlayerState);
         if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head)
         {
@@ -130,11 +132,7 @@ public class PlayerMove : MonoBehaviour
         {
             _playerHead.transform.localScale -= new Vector3(0.02f, 0.02f, 0);
         }
-        //ワープフラグ
-        if (warpflag == false)
-        {
-            rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
+       
        
     }
 
@@ -182,11 +180,7 @@ public class PlayerMove : MonoBehaviour
     //ワープフラグ
     void WarpMove()
     {
-       // transform.rotation *= Quaternion.AngleAxis(warpangle, Vector3.forward);
-        //1秒間に360度回る
-        transform.Rotate(new Vector3(0, 0, 180) * Time.deltaTime, Space.World);
-      // StartCoroutine("Warolocal");
-        warpflag = true;
+        WarpFlag();
     }
 
     void StopMove()
@@ -197,9 +191,13 @@ public class PlayerMove : MonoBehaviour
     //通常状態の処理
     void NormalMove()
     {
+        warpflag = false;//ワープ演出回転
         Jump();
         Move();
-        warpflag = false;   //ワープフラグ
+        if (warpcount != 0)
+        {
+            WarpFlag();
+        }
         if (rule.current_bubble < rule.limit_bubble)
         {
             Baburu();
@@ -295,7 +293,34 @@ public class PlayerMove : MonoBehaviour
         
 
     }
-
+    void WarpFlag()
+    {
+        // transform.rotation *= Quaternion.AngleAxis(warpangle, Vector3.forward);
+        if (warpflag == true)
+        {
+            //1秒間に回る
+            transform.Rotate(new Vector3(0, 0, 177) * Time.deltaTime, Space.World);
+            PlayerWarpScale();
+           // StartCoroutine("Warolocal");
+        }
+        //ワープフラグ
+        if (warpflag == false)
+        {
+            transform.rotation=new Quaternion(0,0,0,0);
+            rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+    void PlayerWarpScale()
+    {
+        if (warpcount == 1)
+        {
+            transform.localScale -= new Vector3(0.05f, 0.05f, 0);
+        }
+        if (warpcount == 2)
+        {
+            transform.localScale += new Vector3(0.05f, 0.05f, 0);
+        }
+    }
     void CameraCheck()
     {
         cameraCheck = !cameraCheck;
@@ -354,11 +379,10 @@ public class PlayerMove : MonoBehaviour
         //ワープフラグ
         if (col.gameObject.CompareTag("WarpPoint"))
         {
-            if (warpflag == true)
-            {
-                transform.position = col.gameObject.transform.position;
-                rigidPlayer.constraints = RigidbodyConstraints2D.FreezePosition;
-            }
+            warpflag = true;
+            transform.position = col.gameObject.transform.position;
+            rigidPlayer.constraints = RigidbodyConstraints2D.FreezePosition;
+           
             // エフェクトを出す。（posでエフェクトの出現位置を調整する。）
             Vector3 pos = col.transform.position;
             GameObject effect = (GameObject)Instantiate(effectPrefab, new Vector3(pos.x, pos.y + 1, pos.z - 1), Quaternion.identity);
@@ -368,7 +392,9 @@ public class PlayerMove : MonoBehaviour
 
         }
     }
+
    
+
     private IEnumerator Coroutine()
     {
         //処理１
@@ -381,14 +407,20 @@ public class PlayerMove : MonoBehaviour
     }
     public IEnumerator Warolocal()
     {
+     
         //処理１
-        transform.localScale -= new Vector3(0.05f, 0.05f, 0);
+         warpcount++;
         //１秒待機
         yield return new WaitForSeconds(1.0f);
-        transform.localScale += new Vector3(0.05f, 0.05f, 0);
+        Debug.Log("nnnnn");
+         warpcount++;
+        yield return new WaitForSeconds(1.0f);
+        warpcount = 0;
         //コルーチンを終了
         yield break;
+        
     }
+    
     private void rotationStop()
     {
         transform.localRotation = new Quaternion(0, 0, 0, 0);

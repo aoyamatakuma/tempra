@@ -36,15 +36,17 @@ public class Warp : MonoBehaviour
      
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine("WarpCoroutine");
             // 経過時間をカウント
             if (moveStatus)
             {
+                player.StartCoroutine("Warolocal");
+                StartCoroutine("WarpCoroutine");
+                warp[0].GetComponent<Warp>().moveStatus = false;
+                warp[1].GetComponent<Warp>().moveStatus = false;
                 //  移動先は直後移動できないようにする
                 if (gameObject != warp[0])
                 {
                     StartCoroutine("Warp1");
-
                 }
                 else if (gameObject != warp[1])
                 {
@@ -61,29 +63,45 @@ public class Warp : MonoBehaviour
         player.SetCurrentState(PlayerState.Warp);
         yield return new WaitForSeconds(2f);
         player.SetCurrentState(PlayerState.Normal);
+        //コルーチンを終了
+        yield break;
     }
     //ワープ時間
     public IEnumerator Warp1()
     {
         //無効化
         yield return new WaitForSeconds(1f);
-        warp[0].GetComponent<Warp>().moveStatus = false;
         player.transform.position = warp[0].transform.position;
- 
+        //yield return new WaitForSeconds(2f);
+        //player.SetCurrentState(PlayerState.Normal);
+        //コルーチンを終了
+        yield break;
     }
+
     //ワープ時間
     public IEnumerator Warp2()
     {
         //無効化
         yield return new WaitForSeconds(1f);
-        warp[1].GetComponent<Warp>().moveStatus = false;
         player.transform.position = warp[1].transform.position;
-   
+        //yield return new WaitForSeconds(2f);
+        //player.SetCurrentState(PlayerState.Normal);
+        //コルーチンを終了
+        yield break;
     }
+
     //物体と離れた直後呼ばれる
     void OnTriggerExit2D(Collider2D other)
     {
-        //移動可能にする。
-        moveStatus = true;
+        //移動可能にする
+        StartCoroutine("warpstatus");
+    }
+    public IEnumerator warpstatus()
+    {
+        //無効化
+        yield return new WaitForSeconds(0.5f);
+          moveStatus = true;
+        //コルーチンを終了
+        yield break;
     }
 }
