@@ -8,7 +8,8 @@ public enum PlayerState
     Normal,
     Division,
     Head,
-    Goal
+    Goal,
+    Warp
 }
 
 public class PlayerMove : MonoBehaviour
@@ -70,8 +71,12 @@ public class PlayerMove : MonoBehaviour
     private bool headScale = false;
     private Vector3 headvec;
     private GameRule gameRule;
-
-   
+    //ワープフラグ
+    public float warpangle = 10;
+    public bool warpflag;
+    public GameObject effectPrefab;
+    public bool warpscale;
+    private int warpcount;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +87,7 @@ public class PlayerMove : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
         awaCreate = false;
-
+        warpflag = false; //ワープフラグ
         playerHeadCollider = _playerHead.GetComponent<CircleCollider2D>();
         playerHead = _playerHead.GetComponent<PlayerHeadMove>();
         playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
@@ -106,6 +111,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         OnPlayerStateChanged(currentPlayerState);
         if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head)
         {
@@ -126,6 +132,8 @@ public class PlayerMove : MonoBehaviour
         {
             _playerHead.transform.localScale -= new Vector3(0.02f, 0.02f, 0);
         }
+       
+       
     }
 
    
@@ -150,6 +158,9 @@ public class PlayerMove : MonoBehaviour
             case PlayerState.Goal:
                 GoalMove();
                 break;
+            case PlayerState.Warp:
+                WarpMove();
+                break;
             default:
                 break;
         }
@@ -166,6 +177,11 @@ public class PlayerMove : MonoBehaviour
     {
 
     }
+    //ワープフラグ
+    void WarpMove()
+    {
+        WarpFlag();
+    }
 
     void StopMove()
     {
@@ -175,8 +191,13 @@ public class PlayerMove : MonoBehaviour
     //通常状態の処理
     void NormalMove()
     {
+        warpflag = false;//ワープ演出回転
         Jump();
         Move();
+        if (warpcount != 0)
+        {
+            WarpFlag();
+        }
         if (rule.current_bubble < rule.limit_bubble)
         {
             Baburu();
@@ -272,7 +293,34 @@ public class PlayerMove : MonoBehaviour
         
 
     }
-
+    void WarpFlag()
+    {
+        // transform.rotation *= Quaternion.AngleAxis(warpangle, Vector3.forward);
+        if (warpflag == true)
+        {
+            //1秒間に回る
+            transform.Rotate(new Vector3(0, 0, 177) * Time.deltaTime, Space.World);
+            PlayerWarpScale();
+           // StartCoroutine("Warolocal");
+        }
+        //ワープフラグ
+        if (warpflag == false)
+        {
+            transform.rotation=new Quaternion(0,0,0,0);
+            rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+    void PlayerWarpScale()
+    {
+        if (warpcount == 1)
+        {
+            transform.localScale -= new Vector3(0.05f, 0.05f, 0);
+        }
+        if (warpcount == 2)
+        {
+            transform.localScale += new Vector3(0.05f, 0.05f, 0);
+        }
+    }
     void CameraCheck()
     {
         cameraCheck = !cameraCheck;
@@ -328,8 +376,24 @@ public class PlayerMove : MonoBehaviour
         {
             jumpFlag = false;
         }
-       
+        //ワープフラグ
+        if (col.gameObject.CompareTag("WarpPoint"))
+        {
+            warpflag = true;
+            transform.position = col.gameObject.transform.position;
+            rigidPlayer.constraints = RigidbodyConstraints2D.FreezePosition;
+           
+            // エフェクトを出す。（posでエフェクトの出現位置を調整する。）
+            Vector3 pos = col.transform.position;
+            GameObject effect = (GameObject)Instantiate(effectPrefab, new Vector3(pos.x, pos.y + 1, pos.z - 1), Quaternion.identity);
+
+            // エフェクトを２秒後に消す。
+            Destroy(effect, 1.0f);
+
+        }
     }
+
+   
 
     private IEnumerator Coroutine()
     {
@@ -341,7 +405,22 @@ public class PlayerMove : MonoBehaviour
         //コルーチンを終了
         yield break;
     }
-
+    public IEnumerator Warolocal()
+    {
+     
+        //処理１
+         warpcount++;
+        //１秒待機
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log("nnnnn");
+         warpcount++;
+        yield return new WaitForSeconds(1.0f);
+        warpcount = 0;
+        //コルーチンを終了
+        yield break;
+        
+    }
+    
     private void rotationStop()
     {
         transform.localRotation = new Quaternion(0, 0, 0, 0);
