@@ -95,7 +95,7 @@ public class PlayerMove : MonoBehaviour
         playerAnime = gameObject.GetComponent<Animator>();
         headAnime = _playerHead.GetComponent<Animator>();
 
-        gameRule = GameObject.Find("GameManager").GetComponent<GameRule>();
+        gameRule = GameObject.Find("StageManager").GetComponent<GameRule>();
 
         headPosition = _playerHead.transform.localPosition;
         headvec = _playerHead.transform.localScale;
