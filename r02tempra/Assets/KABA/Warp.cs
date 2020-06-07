@@ -94,14 +94,7 @@ public class Warp : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         //移動可能にする
-        StartCoroutine("warpstatus");
+        moveStatus = true;
     }
-    public IEnumerator warpstatus()
-    {
-        //無効化
-        yield return new WaitForSeconds(0.5f);
-          moveStatus = true;
-        //コルーチンを終了
-        yield break;
-    }
+    
 }
