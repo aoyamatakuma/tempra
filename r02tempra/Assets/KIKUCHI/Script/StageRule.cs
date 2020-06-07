@@ -18,8 +18,8 @@ public enum StageState{
 }
 
 public class StageRule : MonoBehaviour {
-    [SerializeField]
-    private float speed =10f;
+
+    private float speed =15f;
     [SerializeField]
     private PlayerMove player;
     
