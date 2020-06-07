@@ -572,8 +572,8 @@ Transform:
   - {fileID: 5202711346784448319}
   - {fileID: 1500101466554904215}
   - {fileID: 6874211780561399348}
-  - {fileID: 4212610745141755452}
   - {fileID: 1851815858119805529}
+  - {fileID: 4212610745141755452}
   - {fileID: 2321507814898158230}
   - {fileID: 6829899954344354043}
   - {fileID: 7088225141759615342}
@@ -771,6 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e583675438cc78c408bc35066a4b57b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enn: {fileID: 6096734056867140138}
 --- !u!114 &7722317302799780375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,7 +875,7 @@ Transform:
   m_LocalScale: {x: 2.9073465, y: 1.1855198, z: 2.2581332}
   m_Children: []
   m_Father: {fileID: 941142824010496528}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &1530880472834616050
 SpriteRenderer:
@@ -1950,7 +1951,7 @@ PrefabInstance:
     - target: {fileID: 4897329313792732251, guid: 9fb006bc9da919641b63d94da2a31865,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4897329313792732251, guid: 9fb006bc9da919641b63d94da2a31865,
         type: 3}
