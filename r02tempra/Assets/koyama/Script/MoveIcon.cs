@@ -43,7 +43,7 @@ public class MoveIcon : MonoBehaviour
     //泡破裂フラグ
     private static bool AwaExplosion;
 
-    [SerializeField]
+   
     private GameRule gameRule;
 
     // Start is called before the first frame update
@@ -69,6 +69,7 @@ public class MoveIcon : MonoBehaviour
         //awaFalse
         AwaExplosion = false;
 
+        gameRule = GameObject.Find("StageManager").GetComponent<GameRule>();
         //アイコンを取得
         Icon = GameObject.Find("PausableObjects/Canvas/Panel/Icon").GetComponent<Image>();
         Icon.enabled = false;
