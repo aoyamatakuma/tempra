@@ -95,7 +95,7 @@ public class PlayerMove : MonoBehaviour
         playerAnime = gameObject.GetComponent<Animator>();
         headAnime = _playerHead.GetComponent<Animator>();
 
-        gameRule = GameObject.Find("GameManager").GetComponent<GameRule>();
+        gameRule = GameObject.Find("StageManager").GetComponent<GameRule>();
 
         headPosition = _playerHead.transform.localPosition;
         headvec = _playerHead.transform.localScale;
@@ -307,6 +307,7 @@ public class PlayerMove : MonoBehaviour
         if (warpflag == false)
         {
             transform.rotation=new Quaternion(0,0,0,0);
+            transform.localScale = new Vector3(5.6752f, 5.6752f, 5.6752f);//追加
             rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
