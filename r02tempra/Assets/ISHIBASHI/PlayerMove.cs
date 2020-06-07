@@ -307,6 +307,7 @@ public class PlayerMove : MonoBehaviour
         if (warpflag == false)
         {
             transform.rotation=new Quaternion(0,0,0,0);
+            transform.localScale = new Vector3(5.6752f, 5.6752f, 5.6752f);//追加
             rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
