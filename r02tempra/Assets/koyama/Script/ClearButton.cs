@@ -9,7 +9,7 @@ public class ClearButton : MonoBehaviour
     GameObject buttonA;
     GameObject buttonB;
     GameObject buttonC;
-    GameObject buttonD;
+   
     [SerializeField]
     //Scene スクリプト取得
     private SceneM gameManager;
@@ -31,7 +31,7 @@ public class ClearButton : MonoBehaviour
         buttonA = GameObject.Find("StageManu/Panel/Button");
         buttonB = GameObject.Find("StageManu/Panel/Button1");
         buttonC = GameObject.Find("StageManu/Panel/Button2");
-        buttonD = GameObject.Find("StageManu/Panel/Button3");
+       
         
         //フェードイン消去
         Destroy(fadeInInstance);
@@ -60,10 +60,7 @@ public class ClearButton : MonoBehaviour
                 //コルーチン開始
                 StartCoroutine("MainCoroutine");
                 break;
-            case "Button3":
-                //コルーチン開始
-                StartCoroutine("MainCoroutine");
-                break;
+           
             default:
                 break;
 
@@ -90,7 +87,7 @@ public class ClearButton : MonoBehaviour
             buttonA.SetActive(false);
             buttonB.SetActive(false);
             buttonC.SetActive(false);
-            buttonD.SetActive(true);
+           
 
         }
         else
@@ -98,7 +95,7 @@ public class ClearButton : MonoBehaviour
             buttonA.SetActive(true);
             buttonB.SetActive(true);
             buttonC.SetActive(true);
-            buttonD.SetActive(false);
+           
 
         }
        
