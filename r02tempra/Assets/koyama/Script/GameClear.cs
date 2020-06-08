@@ -20,6 +20,7 @@ public class GameClear : MonoBehaviour
 
     //経過時間カウント
     private float time_KO;
+    private float time_Next;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class GameClear : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<SceneM>();
         //経過時間初期化
         time_KO =0.0f;
+        time_Next = 0.0f;
         Destroy(fadeOutInstance);
     
 
@@ -44,6 +46,7 @@ public class GameClear : MonoBehaviour
     void Update()
     {
         TimeScene();
+        TimeNextSecene();
     }
     
     
@@ -58,6 +61,20 @@ public class GameClear : MonoBehaviour
         {
 
             stageManu.SetActive(true);
+        }
+    }
+    public void TimeNextSecene()
+    {
+        if(gameManager.currentStageNum==11)
+        {
+            //経過時間をカウント
+            time_Next += Time.deltaTime;
+            if (time_Next>=4.0f)
+            {
+            SceneManager.LoadScene("MasterTitle");
+            Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
+
+            }
         }
     }
     void CountStage()
