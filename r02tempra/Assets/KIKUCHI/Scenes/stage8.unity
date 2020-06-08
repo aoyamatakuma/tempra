@@ -564,6 +564,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4189878481881622637, guid: 2a08221e75556e64789dd439bd2fbc1b,
+        type: 3}
+      propertyPath: currentStageNum
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8988055986638496231, guid: 2a08221e75556e64789dd439bd2fbc1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1681,6 +1686,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1706672783}
+    - target: {fileID: 3833698321547294125, guid: 98f4e1824cd13eb45a0e9310caee6ff8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f4e1824cd13eb45a0e9310caee6ff8, type: 3}
 --- !u!1 &1985842372 stripped

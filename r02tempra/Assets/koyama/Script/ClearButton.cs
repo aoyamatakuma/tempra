@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class ClearButton : MonoBehaviour
 {
-  
+    GameObject buttonA;
+    GameObject buttonB;
+    GameObject buttonC;
     [SerializeField]
     //Scene スクリプト取得
     private SceneM gameManager;
@@ -25,8 +27,12 @@ public class ClearButton : MonoBehaviour
         //読み込む
         gameManager = GameObject.Find("GameManager").GetComponent<SceneM>();
         gameManager = gameManager.GetComponent<SceneM>();
+        buttonA = GameObject.Find("StageManu/Panel/Button");
+        buttonB = GameObject.Find("StageManu/Panel/Button1");
+        buttonC = GameObject.Find("StageManu/Panel/Button2");
         //フェードイン消去
         Destroy(fadeInInstance);
+        OnButton();
     }
 
     // Update is called once per frame
@@ -68,6 +74,23 @@ public class ClearButton : MonoBehaviour
             SceneManager.LoadScene("stage" + gameManager.currentStageNum);
             
         }
+    }
+    public void OnButton()
+    {
+        if (gameManager.currentStageNum == 11)
+        {
+            buttonA.SetActive(false);
+            buttonB.SetActive(false);
+            buttonC.SetActive(true);
+        }
+        else
+        {
+            buttonA.SetActive(true);
+            buttonB.SetActive(true);
+            buttonC.SetActive(true);
+
+        }
+       
     }
     public IEnumerator NextStageCoroutine()
     {
