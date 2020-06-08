@@ -225,11 +225,10 @@ public class StageRule : MonoBehaviour {
     }
 
     void LeftWindMove(Vector2 nextPos,GameObject target)
-    {
-        
-        if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit ) return;
+    {     
+        if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_right) return;
         target. transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
-        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit)
+        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit )
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
@@ -283,8 +282,8 @@ public class StageRule : MonoBehaviour {
                     
                 }
             }
-            else
-            {
+            if(currentStageState != StageState.Wind_hit)
+            { 
                 if (col.gameObject.CompareTag("Collsion_up") && currentStageState !=StageState.hit_bottom && currentStageState != StageState.hit_up && currentStageState != StageState.hit_bottom_up)
                 {
                   

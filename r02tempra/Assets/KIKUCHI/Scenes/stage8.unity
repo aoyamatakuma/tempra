@@ -1955,7 +1955,7 @@ PrefabInstance:
     - target: {fileID: 2474682102396449327, guid: eec7656da16e292429718518cafcee69,
         type: 3}
       propertyPath: m_Name
-      value: stageManager
+      value: StageManager
       objectReference: {fileID: 0}
     - target: {fileID: 2474682102396449361, guid: eec7656da16e292429718518cafcee69,
         type: 3}
