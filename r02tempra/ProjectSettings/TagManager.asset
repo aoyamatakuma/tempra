@@ -22,6 +22,7 @@ TagManager:
   - Collision_right
   - Abura
   - WallBox
+  - SceneManager
   layers:
   - Default
   - TransparentFX
