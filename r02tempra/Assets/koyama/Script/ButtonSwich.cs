@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ButtonSwich : MonoBehaviour {
 
+  
     [SerializeField]
     //フェードイン処理
     private GameObject fadeInPrefab;
@@ -15,6 +16,7 @@ public class ButtonSwich : MonoBehaviour {
         // 自分を選択状態にする
         Selectable sel = GetComponent<Selectable> ();
         sel.Select ();
+       
         //フェードイン消去
         Destroy(fadeInInstance);
     }
@@ -54,7 +56,9 @@ public class ButtonSwich : MonoBehaviour {
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);
             //Debug.Log ("リスタート");
+            Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+           
 
         }
 
@@ -69,6 +73,7 @@ public class ButtonSwich : MonoBehaviour {
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);
             //Debug.Log ("ステージセレクト");
+            Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
             SceneManager.LoadScene("select");
 
         }
@@ -84,8 +89,9 @@ public class ButtonSwich : MonoBehaviour {
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);
             //Debug.Log ("タイトル");
+            Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
             SceneManager.LoadScene("MasterTitle");
-
+         
         }
 
     }

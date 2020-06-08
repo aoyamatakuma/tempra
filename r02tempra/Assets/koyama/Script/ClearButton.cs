@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class ClearButton : MonoBehaviour
 {
-
-
+  
     [SerializeField]
     //Scene スクリプト取得
     private SceneM gameManager;
@@ -16,6 +15,7 @@ public class ClearButton : MonoBehaviour
     private GameObject fadeInPrefab;
     private GameObject fadeInInstance;
 
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +66,7 @@ public class ClearButton : MonoBehaviour
         else
         {
             SceneManager.LoadScene("stage" + gameManager.currentStageNum);
+            
         }
     }
     public IEnumerator NextStageCoroutine()
@@ -78,6 +79,8 @@ public class ClearButton : MonoBehaviour
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);
             NextSecene();
+            Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
+           
 
         }
 
@@ -91,9 +94,10 @@ public class ClearButton : MonoBehaviour
             //フェードイン処理
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);
+            Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
             //Debug.Log ("ステージセレクト");
             SceneManager.LoadScene("select");
-
+          
         }
 
     }
@@ -106,9 +110,10 @@ public class ClearButton : MonoBehaviour
             //フェードイン処理
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);
+            Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
             //Debug.Log ("タイトル");
             SceneManager.LoadScene("MasterTitle");
-
+        
         }
 
     }
