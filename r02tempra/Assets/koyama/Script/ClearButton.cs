@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class ClearButton : MonoBehaviour
+public class ClearButton : StandaloneInputModule
 {
     GameObject buttonA;
     GameObject buttonB;
@@ -32,7 +33,7 @@ public class ClearButton : MonoBehaviour
         buttonB = GameObject.Find("StageManu/Panel/Button1");
         buttonC = GameObject.Find("StageManu/Panel/Button2");
        
-        
+
         //フェードイン消去
         Destroy(fadeInInstance);
         OnButton();
@@ -43,6 +44,7 @@ public class ClearButton : MonoBehaviour
     {
         
     }
+   
     public void OnClick()
     {
         //名前を取得して分岐

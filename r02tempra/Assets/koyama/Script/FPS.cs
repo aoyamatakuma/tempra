@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class FPS : MonoBehaviour
+public class FPS : StandaloneInputModule
 {
- 
 
- 
+
+
     void Awake()
     {
         QualitySettings.vSyncCount = 0;
@@ -25,7 +26,9 @@ public class FPS : MonoBehaviour
 
         Debug.Log(QualitySettings.vSyncCount);
         Debug.Log(Application.targetFrameRate);
-        
+      
 
     }
+   
 }
+
