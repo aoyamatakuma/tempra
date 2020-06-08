@@ -204,7 +204,7 @@ public class PlayerMove : MonoBehaviour
         {
             WarpFlag();
         }
-        if (rule.current_bubble < rule.limit_bubble)
+        if (rule.current_bubble < rule.limit_bubble && !awaCreate)
         {
             Baburu();
         }
@@ -229,7 +229,7 @@ public class PlayerMove : MonoBehaviour
     //分裂後の頭？のみの処理予定
     void HeadMove()
     {
-        if (rule.current_bubble < rule.limit_bubble  && !isYcheck)
+        if (rule.current_bubble < rule.limit_bubble  && !isYcheck && !awaCreate)
         {
             Baburu();
         }
@@ -257,7 +257,6 @@ public class PlayerMove : MonoBehaviour
         {
             bubble.clip = bubbleSE;
             bubble.Play();
-            awaCreate = true;
             stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity,stageParent);
             foamCount++;
             rule.ListBubble(stage);
@@ -268,7 +267,6 @@ public class PlayerMove : MonoBehaviour
         {
             bubble.clip = bubbleSE;
             bubble.Play();
-            awaCreate = true;
             stage = (GameObject)Instantiate(foam, _playerHead.transform.position, Quaternion.identity, _playerHead.parent);
             foamCount++;
             rule.ListBubble(stage);
@@ -398,10 +396,20 @@ public class PlayerMove : MonoBehaviour
             Destroy(effect, 1.0f);
 
         }
+
+        if(col.gameObject.CompareTag("AwaCreate"))
+        {
+            awaCreate = false;
+        }
     }
 
-   
-
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("AwaCreate"))
+        {
+            awaCreate = true;
+        }
+    }
     private IEnumerator Coroutine()
     {
         //処理１
