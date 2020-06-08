@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum PlayerState
@@ -8,7 +7,8 @@ public enum PlayerState
     Normal,
     Division,
     Head,
-    Goal
+    Goal,
+    Warp
 }
 
 public class PlayerMove : MonoBehaviour
@@ -21,6 +21,8 @@ public class PlayerMove : MonoBehaviour
     private AudioSource bubble;
     //現在の状態
     private PlayerState currentPlayerState;
+    //１つ前の状態
+    private PlayerState previousPlayerState;
 
     //追加　小野
     public GameObject HaretuEffect;
@@ -55,6 +57,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerHeadMove playerHead;
 
     private bool cameraCheck;
+    public bool isYcheck;
 
     //分裂体の初期値保管
     [SerializeField]
@@ -66,19 +69,17 @@ public class PlayerMove : MonoBehaviour
     Animator playerAnime;
     Animator headAnime;
 
-    //青山追加
-    [SerializeField]
-    private GameObject zoomInNaviPrefab;
-    private GameObject zoomInNaviInstance;
-
-    [SerializeField]
-    private GameObject zoomOutNaviPrefab;
-    private GameObject zoomOutNaviInstance;
 
     private bool headScale = false;
     private Vector3 headvec;
-
-   
+    private GameRule gameRule;
+    //ワープフラグ
+    public float warpangle = 10;
+    public bool warpflag;
+    public GameObject effectPrefab;
+    public bool warpscale;
+    private int warpcount;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -89,7 +90,7 @@ public class PlayerMove : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
         awaCreate = false;
-
+        warpflag = false; //ワープフラグ
         playerHeadCollider = _playerHead.GetComponent<CircleCollider2D>();
         playerHead = _playerHead.GetComponent<PlayerHeadMove>();
         playerHeadRigidbody = _playerHead.GetComponent<Rigidbody2D>();
@@ -97,42 +98,36 @@ public class PlayerMove : MonoBehaviour
         playerAnime = gameObject.GetComponent<Animator>();
         headAnime = _playerHead.GetComponent<Animator>();
 
+        gameRule = GameObject.Find("StageManager").GetComponent<GameRule>();
+
         headPosition = _playerHead.transform.localPosition;
         headvec = _playerHead.transform.localScale;
 
         cameraCheck = false;
+        isYcheck = false;
 
         SetCurrentState(PlayerState.Stop);
 
-        //Destroy(zoomOutNaviInstance);
-        Destroy(zoomOutNaviInstance);
-        Destroy(zoomInNaviInstance);
-        zoomInNaviInstance = GameObject.Instantiate(zoomInNaviPrefab) as GameObject;
+      
        
     }
 
     // Update is called once per frame
     void Update()
     {
+      
         OnPlayerStateChanged(currentPlayerState);
-        if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head)
+        if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head && currentPlayerState != PlayerState.Stop)
         {
             shutter.clip = shutterSE;
             shutter.Play();
 
             if (currentPlayerState != PlayerState.Normal)
             {
-                zoomInNaviInstance = GameObject.Instantiate(zoomInNaviPrefab) as GameObject;
-                Destroy(zoomOutNaviInstance);
-
-                SetCurrentState(PlayerState.Normal);
-                
+                SetCurrentState(PlayerState.Normal);               
             }
             else if(currentPlayerState != PlayerState.Division)
             {
-                zoomOutNaviInstance = GameObject.Instantiate(zoomOutNaviPrefab) as GameObject;
-                Destroy(zoomInNaviInstance);
-
                 SetCurrentState(PlayerState.Division);
             }
         }
@@ -140,6 +135,10 @@ public class PlayerMove : MonoBehaviour
         if(headScale && headvec.y < _playerHead.localScale.y)
         {
             _playerHead.transform.localScale -= new Vector3(0.02f, 0.02f, 0);
+        }
+        if (currentPlayerState != PlayerState.Head)
+        {
+            Pause();
         }
     }
 
@@ -165,6 +164,9 @@ public class PlayerMove : MonoBehaviour
             case PlayerState.Goal:
                 GoalMove();
                 break;
+            case PlayerState.Warp:
+                WarpMove();
+                break;
             default:
                 break;
         }
@@ -181,18 +183,28 @@ public class PlayerMove : MonoBehaviour
     {
 
     }
+    //ワープフラグ
+    void WarpMove()
+    {
+        WarpFlag();
+    }
 
     void StopMove()
     {
-        //Debug.Log("停止中");
+        playerAnime.SetBool("Move", false);
     }
 
     //通常状態の処理
     void NormalMove()
     {
+        warpflag = false;//ワープ演出回転
         Jump();
         Move();
-        if (rule.current_bubble < rule.limit_bubble)
+        if (warpcount != 0)
+        {
+            WarpFlag();
+        }
+        if (rule.current_bubble < rule.limit_bubble && !awaCreate)
         {
             Baburu();
         }
@@ -201,7 +213,7 @@ public class PlayerMove : MonoBehaviour
     //ズームアウト時の処理
     void DivisionMove()
     {
-
+        playerAnime.SetBool("Move", false);
         if (Input.GetButtonDown("B_BUTTON"))
         {
             SetCurrentState(PlayerState.Head);
@@ -217,13 +229,13 @@ public class PlayerMove : MonoBehaviour
     //分裂後の頭？のみの処理予定
     void HeadMove()
     {
-        if (rule.current_bubble < rule.limit_bubble)
+        if (rule.current_bubble < rule.limit_bubble  && !isYcheck && !awaCreate)
         {
             Baburu();
         }
 
-        if (Input.GetButtonDown("Y_BUTTON"))
-        {           
+        if (Input.GetButtonDown("Y_BUTTON") && !isYcheck)
+        {
             CameraCheck();
         }
     }
@@ -241,22 +253,20 @@ public class PlayerMove : MonoBehaviour
     void Baburu()
     {
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Normal)
+        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Normal && gameRule.getIsPlay())
         {
             bubble.clip = bubbleSE;
             bubble.Play();
-            awaCreate = true;
             stage = (GameObject)Instantiate(foam, transform.position, Quaternion.identity,stageParent);
             foamCount++;
             rule.ListBubble(stage);
         }
 
         //マウス入力で左クリックしたとき
-        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Head)
+        if (Input.GetButtonDown("X_BUTTON") && foamCount < babulimit && currentPlayerState == PlayerState.Head && gameRule.getIsPlay())
         {
             bubble.clip = bubbleSE;
             bubble.Play();
-            awaCreate = true;
             stage = (GameObject)Instantiate(foam, _playerHead.transform.position, Quaternion.identity, _playerHead.parent);
             foamCount++;
             rule.ListBubble(stage);
@@ -287,7 +297,35 @@ public class PlayerMove : MonoBehaviour
         
 
     }
-
+    void WarpFlag()
+    {
+        // transform.rotation *= Quaternion.AngleAxis(warpangle, Vector3.forward);
+        if (warpflag == true)
+        {
+            //1秒間に回る
+            transform.Rotate(new Vector3(0, 0, 177) * Time.deltaTime, Space.World);
+            PlayerWarpScale();
+           // StartCoroutine("Warolocal");
+        }
+        //ワープフラグ
+        if (warpflag == false)
+        {
+            transform.rotation=new Quaternion(0,0,0,0);
+            transform.localScale = new Vector3(5.6752f, 5.6752f, 5.6752f);//追加
+            rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+    void PlayerWarpScale()
+    {
+        if (warpcount == 1)
+        {
+            transform.localScale -= new Vector3(0.05f, 0.05f, 0);
+        }
+        if (warpcount == 2)
+        {
+            transform.localScale += new Vector3(0.05f, 0.05f, 0);
+        }
+    }
     void CameraCheck()
     {
         cameraCheck = !cameraCheck;
@@ -343,9 +381,35 @@ public class PlayerMove : MonoBehaviour
         {
             jumpFlag = false;
         }
-       
+        //ワープフラグ
+        if (col.gameObject.CompareTag("WarpPoint"))
+        {
+            warpflag = true;
+            transform.position = col.gameObject.transform.position;
+            rigidPlayer.constraints = RigidbodyConstraints2D.FreezePosition;
+           
+            // エフェクトを出す。（posでエフェクトの出現位置を調整する。）
+            Vector3 pos = col.transform.position;
+            GameObject effect = (GameObject)Instantiate(effectPrefab, new Vector3(pos.x, pos.y + 1, pos.z - 1), Quaternion.identity);
+
+            // エフェクトを２秒後に消す。
+            Destroy(effect, 1.0f);
+
+        }
+
+        if(col.gameObject.CompareTag("AwaCreate"))
+        {
+            awaCreate = false;
+        }
     }
 
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("AwaCreate"))
+        {
+            awaCreate = true;
+        }
+    }
     private IEnumerator Coroutine()
     {
         //処理１
@@ -356,10 +420,37 @@ public class PlayerMove : MonoBehaviour
         //コルーチンを終了
         yield break;
     }
-
+    public IEnumerator Warolocal()
+    {
+     
+        //処理１
+         warpcount++;
+        //１秒待機
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log("nnnnn");
+         warpcount++;
+        yield return new WaitForSeconds(1.0f);
+        warpcount = 0;
+        //コルーチンを終了
+        yield break;
+        
+    }
+    
     private void rotationStop()
     {
         transform.localRotation = new Quaternion(0, 0, 0, 0);
     }
 
+    private void Pause()
+    {
+        if (Input.GetKeyDown("joystick button 7") && currentPlayerState != PlayerState.Stop)
+        {
+            previousPlayerState = currentPlayerState;
+            SetCurrentState(PlayerState.Stop);          
+        }
+        else if(Input.GetKeyDown("joystick button 7") && currentPlayerState == PlayerState.Stop)
+        {
+            SetCurrentState(previousPlayerState);
+        }
+    }
 }

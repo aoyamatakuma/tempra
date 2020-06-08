@@ -43,6 +43,9 @@ public class MoveIcon : MonoBehaviour
     //泡破裂フラグ
     private static bool AwaExplosion;
 
+   
+    private GameRule gameRule;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +69,7 @@ public class MoveIcon : MonoBehaviour
         //awaFalse
         AwaExplosion = false;
 
+        gameRule = GameObject.Find("StageManager").GetComponent<GameRule>();
         //アイコンを取得
         Icon = GameObject.Find("PausableObjects/Canvas/Panel/Icon").GetComponent<Image>();
         Icon.enabled = false;
@@ -187,7 +191,7 @@ public class MoveIcon : MonoBehaviour
     public void Explosion()
     {
 
-        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion && CameraCO.isCameraPos2 == false)
+        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion && CameraCO.isCameraPos2 == false && gameRule.getIsPlay())
         {
             //配列処理
             foreach (var a in Stage.Bubblehub)

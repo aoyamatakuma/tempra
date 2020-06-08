@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: example
   m_EditorClassIdentifier: 
   StageObjList:
-  - {fileID: 941142824010496543, guid: 9a3110d281866cb4fa2f22ddf6a58414, type: 3}
-  - {fileID: 941142824010496543, guid: c07d4fc27ba22484c9e28548ac46f03a, type: 3}
+  - {fileID: 941142824010496543, guid: db7a549f77faa3a4f9e6640f6af2f2bc, type: 3}
+  - {fileID: 941142824010496543, guid: 121eff850db8fc847b1420cbec139546, type: 3}
   - {fileID: 941142824010496543, guid: c5d42a824e5b11b43af87cb3409247f5, type: 3}
   - {fileID: 941142824010496543, guid: 67d0ce7c32b923344a841c745ccaab8b, type: 3}
-  Number_S: 0
-  Xmax: 4
-  Ymax: 3
+  Number_S: 10
+  Xmax: 5
+  Ymax: 5

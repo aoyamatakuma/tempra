@@ -18,11 +18,12 @@ public enum StageState{
 }
 
 public class StageRule : MonoBehaviour {
-    [SerializeField]
-    private float speed =10f;
+
+    private float speed =15f;
     [SerializeField]
     private PlayerMove player;
-   
+    
+    
     public StageState currentStageState;
     public StageState previousStageState;
     [SerializeField]
@@ -186,6 +187,7 @@ public class StageRule : MonoBehaviour {
         if (limit_bubble <= current_bubble && !isGoal  && limit_touchBubble <= current_touchBubble && currentStageState != StageState.hit_up && currentStageState != StageState.Wind_hit && currentStageState != StageState.hit_bottom_up) {     
             flyBool = true;
             downBool = false;
+           
             SetCurrentState(StageState.Fly);
         }
 
@@ -202,37 +204,36 @@ public class StageRule : MonoBehaviour {
     }
 
     void FlyMove (Vector2 nextPos) {
-        if (!flyBool && currentStageState != StageState.Fly )return;
+        if ( currentStageState != StageState.Fly )return;
       //  if (currentStageState == StageState.hit_bottom_up) return;
         transform.position = Vector2.MoveTowards(transform.position, nextPos,Time.deltaTime*  speed);
        // transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);     
       if(transform.position.y >= nextPos.y || currentStageState != StageState.Fly)
-        {  
+        {    
             SetCurrentState(StageState.Normal);
         }
     }
 
     void DownMove (Vector2 nextPos) {
-        if (!downBool && currentStageState != StageState.Down ) return;
-       // if (currentStageState == StageState.hit_bottom_up) return;
+        if ( currentStageState != StageState.Down ) return;
+        // if (currentStageState == StageState.hit_bottom_up) return;
         transform.position = Vector2.MoveTowards(transform.position, nextPos, Time.deltaTime * speed);
         if (transform.position.y <= nextPos.y || currentStageState != StageState.Down)
-        { 
+        {
             SetCurrentState(StageState.Normal);
         }   
     }
 
     void LeftWindMove(Vector2 nextPos,GameObject target)
-    {
-        
-        if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit ) return;
+    {     
+        if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_right) return;
         target. transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
-        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit)
+        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit )
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
-            target.gameObject.GetComponent<StageRule>().SetCurrentState(target.gameObject.GetComponent<StageRule>().previousStageState);
-          //  Debug.Log(target.gameObject.GetComponent<StageRule>().currentStageState);
+            target.gameObject.GetComponent<StageRule>().SetCurrentState(StageState.Normal);
+            //  Debug.Log(target.gameObject.GetComponent<StageRule>().currentStageState);
             SetCurrentState(StageState.Normal);
         }
 
@@ -246,7 +247,7 @@ public class StageRule : MonoBehaviour {
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
-            target.gameObject.GetComponent<StageRule>().SetCurrentState(target.gameObject.GetComponent<StageRule>().previousStageState);
+            target.gameObject.GetComponent<StageRule>().SetCurrentState(StageState.Normal);
             SetCurrentState(StageState.Normal);
         }
     }
@@ -281,8 +282,8 @@ public class StageRule : MonoBehaviour {
                     
                 }
             }
-            else
-            {
+            if(currentStageState != StageState.Wind_hit)
+            { 
                 if (col.gameObject.CompareTag("Collsion_up") && currentStageState !=StageState.hit_bottom && currentStageState != StageState.hit_up && currentStageState != StageState.hit_bottom_up)
                 {
                   
@@ -334,11 +335,11 @@ public class StageRule : MonoBehaviour {
             }
             if (col.gameObject.CompareTag("Collsion_up") && currentStageState == StageState.hit_bottom_up)
             {
-                SetCurrentState(StageState.hit_bottom);
+                SetCurrentState(StageState.hit_up);
             }
             if (col.gameObject.CompareTag("Collision_bottom") && currentStageState == StageState.hit_bottom_up)
             {
-                SetCurrentState(StageState.hit_up);
+                SetCurrentState(StageState.hit_bottom);
             }
         }
 
@@ -404,8 +405,7 @@ public class StageRule : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col)
-    {
-       
+    {     
     }
     void OnTriggerStay2D(Collider2D col)
     {
@@ -414,25 +414,25 @@ public class StageRule : MonoBehaviour {
           
             if (currentStageState == StageState.Normal || currentStageState == StageState.hit_bottom || currentStageState == StageState.hit_up)
             {
-                //StageRule colStage = col.gameObject.transform.root.GetComponent<StageRule>();
-                //if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up)
-                {
+                StageRule colStage = col.gameObject.transform.root.GetComponent<StageRule>();
                     if (col.gameObject.CompareTag("Border_Left"))
-                    {
-                        Border_Bool(stage_Right, false);
-                        Border_Bool(light_Right, true);
+                    {                    
+                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up)
+                        {
+                            Border_Bool(stage_Right, false);
+                            Border_Bool(light_Right, true);
+                        }                       
                     }
                     if (col.gameObject.CompareTag("Border_Right"))
                     {
-                        Border_Bool(stage_Left, false);
-                        Border_Bool(light_Left, true);
+                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up)
+                        {
+                            Border_Bool(stage_Left, false);
+                            Border_Bool(light_Left, true);
+                        }
                     }
-                }
-              
-            }
-
-        }
-
+             }             
+          }       
     }
 
     void OnTriggerExit2D(Collider2D col)

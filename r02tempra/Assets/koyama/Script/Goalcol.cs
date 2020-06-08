@@ -14,10 +14,13 @@ public class Goalcol : MonoBehaviour
     [SerializeField]
     //プレイヤースクリプト取得
     private PlayerMove Player;
+   
+   
 
     // Start is called before the first frame update
     void Start()
     {
+       
         //フェードイン消去
         Destroy(fadeInInstance);
     }
@@ -34,6 +37,7 @@ public class Goalcol : MonoBehaviour
         {
             //スクリプト取得
             Player = col.GetComponent<PlayerMove>();
+            
             //コルーチン開始
             StartCoroutine("GoalCoroutine");
         }
@@ -50,6 +54,7 @@ public class Goalcol : MonoBehaviour
         if (fadeInInstance == null)
         {
           
+           
             //1秒停止
             yield return new WaitForSeconds(2f);
             //フェードイン処理

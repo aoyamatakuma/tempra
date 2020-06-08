@@ -43,7 +43,7 @@ public class Selectmanager : MonoBehaviour
 
     int cntMove;
     int cntnumber;
-    int cntStage;
+    int cntStage=1;
 
     int stageMax=10;//最大ステージ数
     int stageMin=1;//最小ステージ数
@@ -66,7 +66,7 @@ public class Selectmanager : MonoBehaviour
         }
 
 
-        cntStage = 1;
+        //cntStage = 1;
         cntnumber=0;
         cntMove = 0;
         rightMoveFlag = false;
@@ -215,39 +215,39 @@ public class Selectmanager : MonoBehaviour
         yield return new WaitForSeconds(2);
         if (cntStage == 1)
         {
-            SceneManager.LoadScene("stage01");
+            SceneManager.LoadScene("stage1");
         }
         if (cntStage == 2)
         {
-            SceneManager.LoadScene("stage02");
+            SceneManager.LoadScene("stage2");
         }
         if(cntStage == 3)
         {
-            SceneManager.LoadScene("stage03");
+            SceneManager.LoadScene("stage3");
         }
         if (cntStage == 4)
         {
-            SceneManager.LoadScene("stage04");
+            SceneManager.LoadScene("stage4");
         }
         if (cntStage == 5)
         {
-            SceneManager.LoadScene("stage05");
+            SceneManager.LoadScene("stage5");
         }
         if (cntStage == 6)
         {
-            SceneManager.LoadScene("stage06");
+            SceneManager.LoadScene("stage6");
         }
         if (cntStage == 7)
         {
-            SceneManager.LoadScene("stage07");
+            SceneManager.LoadScene("stage7");
         }
-        if (cntStage == 7)
+        if (cntStage == 8)
         {
-            SceneManager.LoadScene("stage08");
+            SceneManager.LoadScene("stage8");
         }
         if (cntStage == 9)
         {
-            SceneManager.LoadScene("stage09");
+            SceneManager.LoadScene("stage9");
         }
         if (cntStage == 10)
         {

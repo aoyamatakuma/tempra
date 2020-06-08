@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonSwich : MonoBehaviour {
+
+    [SerializeField]
+    //フェードイン処理
+    private GameObject fadeInPrefab;
+    private GameObject fadeInInstance;
     // Start is called before the first frame update
     void Start () {
         // 自分を選択状態にする
         Selectable sel = GetComponent<Selectable> ();
         sel.Select ();
+        //フェードイン消去
+        Destroy(fadeInInstance);
     }
 
     // Update is called once per frame
@@ -20,19 +27,64 @@ public class ButtonSwich : MonoBehaviour {
         //名前を取得して分岐
         switch (transform.name) {
             case "Button":
-                //Debug.Log ("リスタート");
-                SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+                //コルーチン開始
+                StartCoroutine("RestCoroutine");
                 break;
             case "Button1":
-                //Debug.Log ("ステージセレクト");
-                SceneManager.LoadScene ("select");
+                //コルーチン開始
+                StartCoroutine("SelectCoroutine");
                 break;
             case "Button2":
-                //Debug.Log ("タイトル");
-                SceneManager.LoadScene ("MasterTitle");
+                //コルーチン開始
+                StartCoroutine("MasterTitleCoroutine");
                 break;
             default:
                 break;
+
+        }
+
+    }
+    public IEnumerator RestCoroutine()
+    {
+
+        if (fadeInInstance == null)
+        {
+            yield return new WaitForSeconds(1f);
+            //フェードイン処理
+            fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
+            yield return new WaitForSeconds(1f);
+            //Debug.Log ("リスタート");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        }
+
+    }
+    public IEnumerator SelectCoroutine()
+    {
+
+        if (fadeInInstance == null)
+        {
+            yield return new WaitForSeconds(1f);
+            //フェードイン処理
+            fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
+            yield return new WaitForSeconds(1f);
+            //Debug.Log ("ステージセレクト");
+            SceneManager.LoadScene("select");
+
+        }
+
+    }
+    public IEnumerator MasterTitleCoroutine()
+    {
+
+        if (fadeInInstance == null)
+        {
+            yield return new WaitForSeconds(1f);
+            //フェードイン処理
+            fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
+            yield return new WaitForSeconds(1f);
+            //Debug.Log ("タイトル");
+            SceneManager.LoadScene("MasterTitle");
 
         }
 

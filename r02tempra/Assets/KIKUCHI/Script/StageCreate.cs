@@ -19,7 +19,7 @@ public class StageCreate : MonoBehaviour
     //Start
     //Awake
     //OnEnable
-    void Start()
+    void Awake()
     {
 
         width  = stageData.Xmax;
@@ -180,6 +180,15 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(4, 2, 4);
                 break;
             case 10:
+                ArraryNum(0, 0, 1);
+                ArraryNum(0, 1, 1);
+                ArraryNum(0, 2, 3);
+                ArraryNum(4, 1, 2);
+                ArraryNum(0, 4, 1);
+                ArraryNum(1, 0, 1);
+                ArraryNum(2, 0, 1);
+                ArraryNum(3, 0, 1);
+                ArraryNum(4, 0, 1);
                 break;
                 
               

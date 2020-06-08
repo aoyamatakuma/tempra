@@ -17,7 +17,7 @@ public class RigidbodyVelocity {
 public class Pause : MonoBehaviour {
 
   [SerializeField]
-    public GameObject manuCanvas;
+    private GameObject manuCanvas;
  
     //現在セーブ中か？
     public bool pausing;
