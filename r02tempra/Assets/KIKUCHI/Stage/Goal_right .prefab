@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 5917432530836589899}
   - component: {fileID: 8661638919536465351}
   m_Layer: 11
-  m_Name: Goal_right
+  m_Name: 'Goal_right '
   m_TagString: StageBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,11 +631,7 @@ Transform:
   m_GameObject: {fileID: 941142824010496543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 44, y: 44, z: 0}
-<<<<<<< HEAD
-  m_LocalScale: {x: 1, y: 1, z: 1}
-=======
   m_LocalScale: {x: 1, y: 0.9625, z: 1}
->>>>>>> 4a57e453675be0275afa1a8edb39ae5af3b9ede2
   m_Children:
   - {fileID: 941142823340866228}
   - {fileID: 941142822079175735}
@@ -993,7 +989,7 @@ Transform:
   m_GameObject: {fileID: 4505226505557546633}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.5, y: 1.5, z: 0}
-  m_LocalScale: {x: 8.201625, y: 8.128104, z: 8.168949}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 941142824010496528}
   m_RootOrder: 13
@@ -1011,7 +1007,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.25}
+  m_Offset: {x: 0, y: 10}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1022,7 +1018,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.3}
+  m_Size: {x: 10, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &754337830159679235
 MonoBehaviour:
@@ -1245,7 +1241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2658879334632623027
 Transform:
   m_ObjectHideFlags: 0
