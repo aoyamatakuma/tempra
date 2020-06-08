@@ -531,7 +531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b36716b0d1d8143a322338c0e1fb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   player: {fileID: 0}
   currentStageState: 0
   previousStageState: 0
@@ -1712,7 +1711,7 @@ PrefabInstance:
     - target: {fileID: 7938009886633615974, guid: cade6cdac5b280444a8bca85891a9960,
         type: 3}
       propertyPath: m_Offset.y
-      value: -1.25
+      value: -1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cade6cdac5b280444a8bca85891a9960, type: 3}
@@ -1737,7 +1736,7 @@ PrefabInstance:
     - target: {fileID: 2733799539119922889, guid: 785cfdf7ab861e848a7860d90e676389,
         type: 3}
       propertyPath: m_Offset.y
-      value: 1.25
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 5453934149370671554, guid: 785cfdf7ab861e848a7860d90e676389,
         type: 3}
