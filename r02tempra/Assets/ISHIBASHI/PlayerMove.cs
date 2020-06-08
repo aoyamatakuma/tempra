@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum PlayerState
@@ -22,6 +21,8 @@ public class PlayerMove : MonoBehaviour
     private AudioSource bubble;
     //現在の状態
     private PlayerState currentPlayerState;
+    //１つ前の状態
+    private PlayerState previousPlayerState;
 
     //追加　小野
     public GameObject HaretuEffect;
@@ -56,6 +57,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerHeadMove playerHead;
 
     private bool cameraCheck;
+    public bool isYcheck;
 
     //分裂体の初期値保管
     [SerializeField]
@@ -77,6 +79,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject effectPrefab;
     public bool warpscale;
     private int warpcount;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -101,6 +104,7 @@ public class PlayerMove : MonoBehaviour
         headvec = _playerHead.transform.localScale;
 
         cameraCheck = false;
+        isYcheck = false;
 
         SetCurrentState(PlayerState.Stop);
 
@@ -113,7 +117,7 @@ public class PlayerMove : MonoBehaviour
     {
       
         OnPlayerStateChanged(currentPlayerState);
-        if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head)
+        if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head && currentPlayerState != PlayerState.Stop)
         {
             shutter.clip = shutterSE;
             shutter.Play();
@@ -132,8 +136,10 @@ public class PlayerMove : MonoBehaviour
         {
             _playerHead.transform.localScale -= new Vector3(0.02f, 0.02f, 0);
         }
-       
-       
+        if (currentPlayerState != PlayerState.Head)
+        {
+            Pause();
+        }
     }
 
    
@@ -185,7 +191,7 @@ public class PlayerMove : MonoBehaviour
 
     void StopMove()
     {
-        //Debug.Log("停止中");
+        playerAnime.SetBool("Move", false);
     }
 
     //通常状態の処理
@@ -207,7 +213,7 @@ public class PlayerMove : MonoBehaviour
     //ズームアウト時の処理
     void DivisionMove()
     {
-
+        playerAnime.SetBool("Move", false);
         if (Input.GetButtonDown("B_BUTTON"))
         {
             SetCurrentState(PlayerState.Head);
@@ -223,13 +229,13 @@ public class PlayerMove : MonoBehaviour
     //分裂後の頭？のみの処理予定
     void HeadMove()
     {
-        if (rule.current_bubble < rule.limit_bubble)
+        if (rule.current_bubble < rule.limit_bubble  && !isYcheck)
         {
             Baburu();
         }
 
-        if (Input.GetButtonDown("Y_BUTTON"))
-        {           
+        if (Input.GetButtonDown("Y_BUTTON") && !isYcheck)
+        {
             CameraCheck();
         }
     }
@@ -427,4 +433,16 @@ public class PlayerMove : MonoBehaviour
         transform.localRotation = new Quaternion(0, 0, 0, 0);
     }
 
+    private void Pause()
+    {
+        if (Input.GetKeyDown("joystick button 7") && currentPlayerState != PlayerState.Stop)
+        {
+            previousPlayerState = currentPlayerState;
+            SetCurrentState(PlayerState.Stop);          
+        }
+        else if(Input.GetKeyDown("joystick button 7") && currentPlayerState == PlayerState.Stop)
+        {
+            SetCurrentState(previousPlayerState);
+        }
+    }
 }

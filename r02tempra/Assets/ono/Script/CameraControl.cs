@@ -43,6 +43,8 @@ public class CameraControl : MonoBehaviour
     private GameObject zoomOutNaviInstance;
     private Camera mainCam;
 
+    private bool stopflag;
+
 
     void Start()
     {
@@ -56,6 +58,8 @@ public class CameraControl : MonoBehaviour
         basePosition = playerTrans.position;
         transform.position = cameraPoint.transform.position;
         //   intA = 0;
+        stopflag = false;
+
         //始まったらズームアウト
         intA = 1;
         Invoke("StartTime", 2f);
@@ -70,6 +74,10 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         ChangeMode();
+        if (Input.GetKeyDown("joystick button 7"))
+        {
+            Stop();
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -114,10 +122,16 @@ public class CameraControl : MonoBehaviour
                 break;
         }
 
-        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON"))
+        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON") && !stopflag)
         {
             intA++;
             if (intA >= 2) { intA = 0; }
         }
+    }
+
+    void Stop()
+    {
+        stopflag = !stopflag;
+        player.isYcheck = !player.isYcheck;
     }
 }

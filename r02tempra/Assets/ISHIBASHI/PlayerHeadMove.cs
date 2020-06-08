@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+public enum HeadState
+{
+    Stop,
+    Move
+}
 public class PlayerHeadMove : MonoBehaviour
 {
     public float speed;
@@ -16,6 +21,9 @@ public class PlayerHeadMove : MonoBehaviour
 
     private bool moveflag;
 
+    //現在の状態
+    private HeadState currentHeadState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +32,46 @@ public class PlayerHeadMove : MonoBehaviour
         player = player.GetComponent<PlayerMove>();
         anim = GetComponent<Animator>();
         moveflag = false;
+        currentHeadState = HeadState.Move;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        OnHeadStateChanged(currentHeadState);
+        Pause();
+        if (headScale)
+        {
+            transform.localScale += new Vector3(0.05f, 0.05f, 0);
+        }
+    }
+
+    void OnHeadStateChanged(HeadState state)
+    {
+        switch (state)
+        {
+            case HeadState.Stop:
+                Stop();
+                break;
+            case HeadState.Move:
+                NormalMove();
+                break;
+        }
+    }
+
+    public void SetCurrentState(HeadState state)
+    {
+        currentHeadState = state;
+        OnHeadStateChanged(currentHeadState);
+    }
+
+    void Stop()
+    {
+        rigidPlayer.velocity = Vector2.zero;
+        anim.SetBool("Move", false);
+    }
+
+    void NormalMove()
     {
         if (moveflag)
         {
@@ -38,13 +82,7 @@ public class PlayerHeadMove : MonoBehaviour
             moveflag = !moveflag;
             rigidPlayer.velocity = Vector2.zero;
         }
-
-        if(headScale)
-        {
-            transform.localScale += new Vector3(0.05f, 0.05f, 0);
-        }
     }
-
     void Move()//移動系
     {
         float h = Input.GetAxis("Horizontal");
@@ -110,5 +148,17 @@ public class PlayerHeadMove : MonoBehaviour
         headScale = false;
         //コルーチンを終了
         yield break;
+    }
+
+    private void Pause()
+    {
+        if (Input.GetKeyDown("joystick button 7") && currentHeadState != HeadState.Stop)
+        {
+            SetCurrentState(HeadState.Stop);
+        }
+        else if (Input.GetKeyDown("joystick button 7") && currentHeadState == HeadState.Stop)
+        {
+            SetCurrentState(HeadState.Move);
+        }
     }
 }
