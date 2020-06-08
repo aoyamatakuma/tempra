@@ -9,6 +9,7 @@ public class ClearButton : MonoBehaviour
     GameObject buttonA;
     GameObject buttonB;
     GameObject buttonC;
+    GameObject buttonD;
     [SerializeField]
     //Scene スクリプト取得
     private SceneM gameManager;
@@ -30,6 +31,8 @@ public class ClearButton : MonoBehaviour
         buttonA = GameObject.Find("StageManu/Panel/Button");
         buttonB = GameObject.Find("StageManu/Panel/Button1");
         buttonC = GameObject.Find("StageManu/Panel/Button2");
+        buttonD = GameObject.Find("StageManu/Panel/Button3");
+        
         //フェードイン消去
         Destroy(fadeInInstance);
         OnButton();
@@ -38,7 +41,7 @@ public class ClearButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     public void OnClick()
     {
@@ -54,6 +57,10 @@ public class ClearButton : MonoBehaviour
                 StartCoroutine("StageSelectCoroutine");
                 break;
             case "Button2":
+                //コルーチン開始
+                StartCoroutine("MainCoroutine");
+                break;
+            case "Button3":
                 //コルーチン開始
                 StartCoroutine("MainCoroutine");
                 break;
@@ -79,15 +86,19 @@ public class ClearButton : MonoBehaviour
     {
         if (gameManager.currentStageNum == 11)
         {
+          
             buttonA.SetActive(false);
             buttonB.SetActive(false);
-            buttonC.SetActive(true);
+            buttonC.SetActive(false);
+            buttonD.SetActive(true);
+
         }
         else
         {
             buttonA.SetActive(true);
             buttonB.SetActive(true);
             buttonC.SetActive(true);
+            buttonD.SetActive(false);
 
         }
        
