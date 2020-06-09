@@ -397,7 +397,7 @@ public class PlayerMove : MonoBehaviour
 
         }
         //ワープ編集
-        if(col.gameObject.CompareTag("AwaCreate") || currentPlayerState != PlayerState.Warp)
+        if(col.gameObject.CompareTag("AwaCreate") )
         {
             awaCreate = false;
         }
