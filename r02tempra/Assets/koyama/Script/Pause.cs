@@ -33,10 +33,11 @@ public class Pause : MonoBehaviour {
     Rigidbody[] pausingRigidbodies;
     //ポーズ中のMonoBehaviourの配列
     MonoBehaviour[] pausingMonoBehaviours;
-   
-   void Start() {
-       
-   }
+    [SerializeField]
+    private PlayerMove player;
+    void Start() {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
+    }
     // Update is called once per frame
     void Update () {
         PauseandResumeCall ();
@@ -44,7 +45,7 @@ public class Pause : MonoBehaviour {
 
     void PauseandResumeCall () {
         // ポーズ状態が変更されていたら、Pause/Resumeを呼び出す。
-        if (Input.GetKeyDown ("joystick button 7") && pausing == false) {
+        if (Input.GetKeyDown ("joystick button 7") && pausing == false&&player.currentPlayerState != PlayerState.Warp) {
             //Debug.Log ("ウンコモラスメン");
             pausing = true;
             Pausing ();

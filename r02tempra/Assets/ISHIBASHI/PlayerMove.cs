@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour
     private AudioSource shutter;
     private AudioSource bubble;
     //現在の状態
-    private PlayerState currentPlayerState;
+  public PlayerState currentPlayerState;
     //１つ前の状態
     private PlayerState previousPlayerState;
 
@@ -117,7 +117,7 @@ public class PlayerMove : MonoBehaviour
     {
       
         OnPlayerStateChanged(currentPlayerState);
-        if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head && currentPlayerState != PlayerState.Stop)
+        if(Input.GetButtonDown("Y_BUTTON") && currentPlayerState != PlayerState.Head && currentPlayerState != PlayerState.Stop && currentPlayerState != PlayerState.Warp)
         {
             shutter.clip = shutterSE;
             shutter.Play();
@@ -200,13 +200,13 @@ public class PlayerMove : MonoBehaviour
         warpflag = false;//ワープ演出回転
         Jump();
         Move();
-        if (warpcount != 0)
-        {
-            WarpFlag();
-        }
         if (rule.current_bubble < rule.limit_bubble && !awaCreate)
         {
             Baburu();
+        }
+        if (warpcount != 0)
+        {
+            WarpFlag();
         }
     }
 
@@ -303,13 +303,14 @@ public class PlayerMove : MonoBehaviour
         if (warpflag == true)
         {
             //1秒間に回る
-            transform.Rotate(new Vector3(0, 0, 177) * Time.deltaTime, Space.World);
+            transform.Rotate(new Vector3(0, 0, 1080) * Time.deltaTime, Space.World);
             PlayerWarpScale();
            // StartCoroutine("Warolocal");
         }
         //ワープフラグ
         if (warpflag == false)
         {
+            awaCreate = false;
             transform.rotation=new Quaternion(0,0,0,0);
             transform.localScale = new Vector3(5.6752f, 5.6752f, 5.6752f);//追加
             rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -396,8 +397,8 @@ public class PlayerMove : MonoBehaviour
             Destroy(effect, 1.0f);
 
         }
-
-        if(col.gameObject.CompareTag("AwaCreate"))
+  
+        if(col.gameObject.CompareTag("AwaCreate") )
         {
             awaCreate = false;
         }
@@ -443,7 +444,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Pause()
     {
-        if (Input.GetKeyDown("joystick button 7") && currentPlayerState != PlayerState.Stop)
+        if (Input.GetKeyDown("joystick button 7") && currentPlayerState != PlayerState.Stop && currentPlayerState != PlayerState.Warp)
         {
             previousPlayerState = currentPlayerState;
             SetCurrentState(PlayerState.Stop);          
