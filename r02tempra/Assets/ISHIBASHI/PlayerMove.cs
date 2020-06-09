@@ -310,6 +310,7 @@ public class PlayerMove : MonoBehaviour
         //ワープフラグ
         if (warpflag == false)
         {
+            awaCreate = false;
             transform.rotation=new Quaternion(0,0,0,0);
             transform.localScale = new Vector3(5.6752f, 5.6752f, 5.6752f);//追加
             rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -396,7 +397,7 @@ public class PlayerMove : MonoBehaviour
             Destroy(effect, 1.0f);
 
         }
-        //ワープ編集
+  
         if(col.gameObject.CompareTag("AwaCreate") )
         {
             awaCreate = false;
