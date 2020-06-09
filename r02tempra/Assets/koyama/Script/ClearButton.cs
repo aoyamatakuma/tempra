@@ -107,7 +107,7 @@ public class ClearButton : StandaloneInputModule
 
         if (fadeInInstance == null)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             //フェードイン処理
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);
@@ -123,7 +123,7 @@ public class ClearButton : StandaloneInputModule
 
         if (fadeInInstance == null)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             //フェードイン処理
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);
@@ -139,7 +139,7 @@ public class ClearButton : StandaloneInputModule
 
         if (fadeInInstance == null)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             //フェードイン処理
             fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             yield return new WaitForSeconds(1f);

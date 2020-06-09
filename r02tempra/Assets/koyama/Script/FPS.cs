@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FPS : StandaloneInputModule
+public class FPS : MonoBehaviour
 {
 
 
