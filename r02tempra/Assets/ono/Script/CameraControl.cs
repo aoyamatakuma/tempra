@@ -74,7 +74,7 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         ChangeMode();
-        if (Input.GetKeyDown("joystick button 7"))
+        if (Input.GetKeyDown("joystick button 7") && player.currentPlayerState != PlayerState.Warp)
         {
             Stop();
         }
@@ -122,7 +122,7 @@ public class CameraControl : MonoBehaviour
                 break;
         }
 
-        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON") && !stopflag)
+        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON") && !stopflag && player.currentPlayerState != PlayerState.Warp)
         {
             intA++;
             if (intA >= 2) { intA = 0; }

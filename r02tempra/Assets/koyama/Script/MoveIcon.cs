@@ -45,7 +45,8 @@ public class MoveIcon : MonoBehaviour
 
    
     private GameRule gameRule;
-
+    [SerializeField]
+    private PlayerMove player;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +76,7 @@ public class MoveIcon : MonoBehaviour
         Icon.enabled = false;
 
         //プレイヤーを取得
-        //m_Player = GameObject.Find ("Player");
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
@@ -130,7 +131,7 @@ public class MoveIcon : MonoBehaviour
     {
 
         //アイコンの表示非表示のフラグ設定
-        if (Input.GetButtonDown("Y_BUTTON") && CameraCO.isCameraPos2)
+        if (Input.GetButtonDown("Y_BUTTON") && CameraCO.isCameraPos2 && player.currentPlayerState != PlayerState.Warp)
         {
             //MoveFlag =true;
             //Debug.Log(MoveFlag);
