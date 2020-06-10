@@ -14,6 +14,9 @@ public class Selectmanager : MonoBehaviour
     private GameObject fadeInPrefab;
     private GameObject fadeInInstance;
 
+    [SerializeField]
+    private GameObject LoadingPrefab;
+    private GameObject LoadingInstance;
 
     public Animator targetAnimator;
     public Animator targetAnimatorLeft;
@@ -57,6 +60,7 @@ public class Selectmanager : MonoBehaviour
         stage2.GetComponent<Image>().color = SelectOff;
         Destroy(fadeOutInstance);
         Destroy(fadeInInstance);
+        Destroy(LoadingInstance);
         endFlag = true;
         
 
@@ -212,7 +216,7 @@ public class Selectmanager : MonoBehaviour
     }
     public IEnumerator End()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         if (cntStage == 1)
         {
             SceneManager.LoadScene("stage1");
@@ -253,6 +257,8 @@ public class Selectmanager : MonoBehaviour
         {
             SceneManager.LoadScene("stage10");
         }
+
+        //LoadingInstance = GameObject.Instantiate(LoadingPrefab) as GameObject;
         //SceneManager.LoadScene("GameMain");
     }
 
