@@ -312,7 +312,7 @@ public class PlayerMove : MonoBehaviour
         {
             awaCreate = false;
             transform.rotation=new Quaternion(0,0,0,0);
-            transform.localScale = new Vector3(5.6752f, 5.6752f, 5.6752f);//追加
+            transform.localScale = new Vector3(8.0f, 8.0f, 5.6752f);//追加
             rigidPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }

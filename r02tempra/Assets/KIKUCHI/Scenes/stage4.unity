@@ -223,6 +223,7 @@ MonoBehaviour:
   manuCanvas: {fileID: 2092462844}
   pausing: 0
   ignoreGameObjects: []
+  player: {fileID: 0}
 --- !u!4 &213407400
 Transform:
   m_ObjectHideFlags: 0
@@ -1280,7 +1281,7 @@ MonoBehaviour:
   posZ: -100
   playerTrans: {fileID: 493604273}
   player: {fileID: 936554639}
-  offset: {x: 0, y: 7, z: -10}
+  offset: {x: 0, y: 6, z: -10}
   cameraVec: {x: 0, y: 2, z: -2}
   isCameraPos1: 1
   isCameraPos2: 0
