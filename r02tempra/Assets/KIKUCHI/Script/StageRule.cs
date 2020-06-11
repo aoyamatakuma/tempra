@@ -228,9 +228,9 @@ public class StageRule : MonoBehaviour {
 
     void LeftWindMove(Vector2 nextPos,GameObject target)
     {     
-        if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_right || target.gameObject.GetComponent<StageRule>().touch_left) return;
+        if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_left || target.gameObject.GetComponent<StageRule>().touch_left) return;
         target. transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
-        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().touch_left)
+        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().touch_right)
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
@@ -243,7 +243,7 @@ public class StageRule : MonoBehaviour {
  
     void RightWindMove(Vector2 nextPos, GameObject target)
     {
-        if (currentStageState != StageState.Wind_Right && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().touch_right) return;
+        if (currentStageState != StageState.Wind_Right && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit|| target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_right || target.gameObject.GetComponent<StageRule>().touch_right) return;
         target.transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
         if (target.transform.position.x >= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().touch_right)
         {

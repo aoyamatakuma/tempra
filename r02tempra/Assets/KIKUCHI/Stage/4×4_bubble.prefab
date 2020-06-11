@@ -1681,12 +1681,12 @@ PrefabInstance:
     - target: {fileID: 3661191647333749819, guid: 516582ed4a90a0a4cb9ab25f6e9af424,
         type: 3}
       propertyPath: m_Offset.x
-      value: 1.27
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3661191647333749819, guid: 516582ed4a90a0a4cb9ab25f6e9af424,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4097014553208303307, guid: 516582ed4a90a0a4cb9ab25f6e9af424,
         type: 3}
@@ -2278,6 +2278,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Border_Left (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2905622724269427168, guid: c152faf6457aef0499718857b682e19c,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c152faf6457aef0499718857b682e19c, type: 3}
 --- !u!4 &9050509163812129646 stripped
@@ -2445,12 +2450,12 @@ PrefabInstance:
     - target: {fileID: 3970702061524828797, guid: 792bd450a4890d846b552b71d63557a8,
         type: 3}
       propertyPath: m_Offset.x
-      value: -1.27
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3970702061524828797, guid: 792bd450a4890d846b552b71d63557a8,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5851394799191874690, guid: 792bd450a4890d846b552b71d63557a8,
         type: 3}
