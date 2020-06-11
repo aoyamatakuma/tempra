@@ -402,6 +402,14 @@ public class PlayerMove : MonoBehaviour
         {
             awaCreate = false;
         }
+
+        if(col.gameObject.CompareTag("Goal"))
+        {
+            Vector3 pos = col.transform.position;
+            pos.y = transform.position.y;
+            transform.position = pos;
+            rigidPlayer.velocity = Vector2.zero;
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
