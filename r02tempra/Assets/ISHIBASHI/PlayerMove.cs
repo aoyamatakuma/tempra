@@ -229,7 +229,7 @@ public class PlayerMove : MonoBehaviour
     //分裂後の頭？のみの処理予定
     void HeadMove()
     {
-        if (rule.current_bubble < rule.limit_bubble  && !isYcheck && !awaCreate)
+        if (rule.current_bubble < rule.limit_bubble  && !isYcheck && !playerHead.headAwaCreate)
         {
             Baburu();
         }

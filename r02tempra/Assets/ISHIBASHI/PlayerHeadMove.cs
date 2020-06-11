@@ -21,6 +21,8 @@ public class PlayerHeadMove : MonoBehaviour
 
     private bool moveflag;
 
+    public bool headAwaCreate;
+
     //現在の状態
     private HeadState currentHeadState;
 
@@ -32,6 +34,7 @@ public class PlayerHeadMove : MonoBehaviour
         player = player.GetComponent<PlayerMove>();
         anim = GetComponent<Animator>();
         moveflag = false;
+        headAwaCreate = false;
         currentHeadState = HeadState.Move;
     }
 
@@ -119,6 +122,19 @@ public class PlayerHeadMove : MonoBehaviour
         if (col.gameObject.CompareTag("StageBox"))
         {
             player.GetStage(col.gameObject.GetComponent<StageRule>());
+        }
+
+        if (col.gameObject.CompareTag("AwaCreate"))
+        {
+            headAwaCreate = false;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("AwaCreate"))
+        {
+            headAwaCreate = true;
         }
     }
 
