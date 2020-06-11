@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5864375511551379689}
   - component: {fileID: 114804930127420420}
   - component: {fileID: 5799882444182306258}
+  - component: {fileID: 8881294754491310925}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Goal
@@ -97,6 +98,7 @@ MonoBehaviour:
   fadeInPrefab: {fileID: 5155085804432139170, guid: c5406cace481d5648affb4711b634cec,
     type: 3}
   Player: {fileID: 6426227439522401391, guid: 312ed1033e3830949bd1ff870cf44845, type: 3}
+  sprite: {fileID: 0}
 --- !u!61 &5799882444182306258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123,6 +125,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 8.5}
   m_EdgeRadius: 0
+--- !u!95 &8881294754491310925
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864375511551379690}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 05f55b18e53f711449a643b4b8cd608f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8444364948268560538
 GameObject:
   m_ObjectHideFlags: 0
