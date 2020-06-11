@@ -166,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09fedfe4750a0954b866f0c91b99df2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22a0b5a05ae43f14d90c2cd12d8e49cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1671,6 +1671,24 @@ PrefabInstance:
       propertyPath: CameraCO
       value: 
       objectReference: {fileID: 1706672786}
+    - target: {fileID: 4952159136346418907, guid: 7d1c4198b857e754197d02195f4b3e00,
+        type: 3}
+      propertyPath: TeleportOffImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 43ccdb1b87425b84aaf85051ef0138cd,
+        type: 3}
+    - target: {fileID: 4952159136346418907, guid: 7d1c4198b857e754197d02195f4b3e00,
+        type: 3}
+      propertyPath: TeleportOnImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 336352ba7bfee2c4ca25b1b3b0912c5f,
+        type: 3}
+    - target: {fileID: 4952159136353674161, guid: 7d1c4198b857e754197d02195f4b3e00,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 336352ba7bfee2c4ca25b1b3b0912c5f,
+        type: 3}
     - target: {fileID: 4952159136739077546, guid: 7d1c4198b857e754197d02195f4b3e00,
         type: 3}
       propertyPath: m_Camera

@@ -1547,6 +1547,18 @@ PrefabInstance:
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 493604272}
+    - target: {fileID: 3833698321390499548, guid: 98f4e1824cd13eb45a0e9310caee6ff8,
+        type: 3}
+      propertyPath: TeleportOnImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 336352ba7bfee2c4ca25b1b3b0912c5f,
+        type: 3}
+    - target: {fileID: 3833698321390499548, guid: 98f4e1824cd13eb45a0e9310caee6ff8,
+        type: 3}
+      propertyPath: TeleportOffImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 43ccdb1b87425b84aaf85051ef0138cd,
+        type: 3}
     - target: {fileID: 3833698321393871095, guid: 98f4e1824cd13eb45a0e9310caee6ff8,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -1562,6 +1574,12 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3833698321395825590, guid: 98f4e1824cd13eb45a0e9310caee6ff8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 336352ba7bfee2c4ca25b1b3b0912c5f,
+        type: 3}
     - target: {fileID: 3833698321395825591, guid: 98f4e1824cd13eb45a0e9310caee6ff8,
         type: 3}
       propertyPath: m_AnchoredPosition.y

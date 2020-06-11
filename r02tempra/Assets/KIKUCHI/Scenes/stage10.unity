@@ -208,6 +208,24 @@ PrefabInstance:
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 493604272}
+    - target: {fileID: 141464927947531260, guid: 51429483549ee974aa76a5f5d91db960,
+        type: 3}
+      propertyPath: TeleportOnImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 336352ba7bfee2c4ca25b1b3b0912c5f,
+        type: 3}
+    - target: {fileID: 141464927947531260, guid: 51429483549ee974aa76a5f5d91db960,
+        type: 3}
+      propertyPath: TeleportOffImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 43ccdb1b87425b84aaf85051ef0138cd,
+        type: 3}
+    - target: {fileID: 141464927952957078, guid: 51429483549ee974aa76a5f5d91db960,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 336352ba7bfee2c4ca25b1b3b0912c5f,
+        type: 3}
     - target: {fileID: 141464928040953646, guid: 51429483549ee974aa76a5f5d91db960,
         type: 3}
       propertyPath: m_LocalPosition.x
