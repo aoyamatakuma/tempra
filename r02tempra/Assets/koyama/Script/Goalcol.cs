@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.UI;
 
 public class Goalcol : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Goalcol : MonoBehaviour
     [SerializeField]
     //プレイヤースクリプト取得
     private PlayerMove Player;
+    [SerializeField]
+    private SpriteRenderer sprite;
    
    
 
@@ -37,9 +40,22 @@ public class Goalcol : MonoBehaviour
         {
             //スクリプト取得
             Player = col.GetComponent<PlayerMove>();
-            
+                   
             //コルーチン開始
-            StartCoroutine("GoalCoroutine");
+            StartCoroutine("GoalCoroutine");       
+        }
+        if(col.gameObject.tag == "PlayerHead")
+        {
+            Debug.Log("aaaaaaaaaaaaaaaaa");
+            sprite.enabled = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "PlayerHead")
+        {                 
+            sprite.enabled = false;       
         }
     }
     public IEnumerator GoalCoroutine()
