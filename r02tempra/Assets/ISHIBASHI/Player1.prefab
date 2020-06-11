@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 6426227439522401377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.6, y: -36.3, z: 0}
-  m_LocalScale: {x: 5.6752, y: 5.6752, z: 5.6752}
+  m_LocalScale: {x: 8, y: 8, z: 5.6752}
   m_Children:
   - {fileID: 6426227440305533282}
   m_Father: {fileID: 0}
@@ -144,6 +144,7 @@ MonoBehaviour:
   jumpSE: {fileID: 8300000, guid: 869d3e1c35e006c4bbb4f48342b27255, type: 3}
   shutterSE: {fileID: 8300000, guid: 4703335d3225a8b4197a81a4e089faea, type: 3}
   bubbleSE: {fileID: 8300000, guid: 2ebd21f8ede6e3143bd11b54425ef775, type: 3}
+  currentPlayerState: 0
   HaretuEffect: {fileID: 0}
   jumpForce: 1000
   speed: 8
@@ -154,12 +155,14 @@ MonoBehaviour:
   stageParent: {fileID: 0}
   _playerHead: {fileID: 6426227440305533282}
   playerHead: {fileID: 6426227440305533281}
+  isYcheck: 0
   headPosition: {x: 0, y: 0, z: 0}
   rule: {fileID: 0}
   warpangle: 10
   warpflag: 0
   effectPrefab: {fileID: 1567760881137220, guid: e97c6b7349199b846855f26cca4e65e6,
     type: 3}
+  warpscale: 0
 --- !u!70 &6426227439522401376
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

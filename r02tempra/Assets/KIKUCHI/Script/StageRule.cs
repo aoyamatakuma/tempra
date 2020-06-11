@@ -46,6 +46,8 @@ public class StageRule : MonoBehaviour {
     bool flyBool;
     bool downBool;
     bool colBool;
+    bool touch_left;
+    bool touch_right;
     [SerializeField]
     private bool isGoal;
     [SerializeField]
@@ -226,9 +228,9 @@ public class StageRule : MonoBehaviour {
 
     void LeftWindMove(Vector2 nextPos,GameObject target)
     {     
-        if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_right) return;
+        if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_right || target.gameObject.GetComponent<StageRule>().touch_left) return;
         target. transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
-        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit )
+        if (target.transform.position.x <= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().touch_left)
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
@@ -241,9 +243,9 @@ public class StageRule : MonoBehaviour {
  
     void RightWindMove(Vector2 nextPos, GameObject target)
     {
-        if (currentStageState != StageState.Wind_Right && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit ) return;
+        if (currentStageState != StageState.Wind_Right && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().touch_right) return;
         target.transform.position = Vector2.MoveTowards(target.transform.position, nextPos, Time.deltaTime * speed);
-        if (target.transform.position.x >= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit)
+        if (target.transform.position.x >= nextPos.x || target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().touch_right)
         {
             target.gameObject.GetComponent<StageRule>().SetPosition_Up();
             target.gameObject.GetComponent<StageRule>().SetPosition_Dawn();
@@ -282,7 +284,7 @@ public class StageRule : MonoBehaviour {
                     
                 }
             }
-            if(currentStageState != StageState.Wind_hit)
+            else
             { 
                 if (col.gameObject.CompareTag("Collsion_up") && currentStageState !=StageState.hit_bottom && currentStageState != StageState.hit_up && currentStageState != StageState.hit_bottom_up)
                 {
@@ -304,7 +306,21 @@ public class StageRule : MonoBehaviour {
                     SetCurrentState(StageState.hit_bottom_up);
                 }
             }
-            
+
+            if (col.gameObject.CompareTag("Collision_left"))
+            {
+
+                touch_right = true;
+
+            }
+
+            if (col.gameObject.CompareTag("Collision_right"))
+            {
+
+                touch_left = true;
+
+            }
+
         }   
     }
 
@@ -343,6 +359,14 @@ public class StageRule : MonoBehaviour {
             }
         }
 
+        if (col.gameObject.CompareTag("Collision_left"))
+        {
+            touch_right = false;
+        }
+        if (col.gameObject.CompareTag("Collision_right"))
+        {
+            touch_left = false;
+        }
     }
 
     public void Wind_Col(Collider2D col)
@@ -431,8 +455,8 @@ public class StageRule : MonoBehaviour {
                             Border_Bool(light_Left, true);
                         }
                     }
-             }             
-          }       
+             }
+        }       
     }
 
     void OnTriggerExit2D(Collider2D col)
