@@ -52,6 +52,7 @@ public class GameClear : MonoBehaviour
     
     public void TimeScene()
     {
+        if (gameManager.currentStageNum == 11) return;
         //経過時間をカウント
         time_KO +=Time.deltaTime;
 
