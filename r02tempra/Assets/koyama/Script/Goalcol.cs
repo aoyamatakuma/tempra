@@ -17,6 +17,8 @@ public class Goalcol : MonoBehaviour
     private PlayerMove Player;
     [SerializeField]
     private SpriteRenderer sprite;
+
+    Animator anim;
    
    
 
@@ -26,6 +28,7 @@ public class Goalcol : MonoBehaviour
        
         //フェードイン消去
         Destroy(fadeInInstance);
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class Goalcol : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            anim.SetBool("Open", true);
             //スクリプト取得
             Player = col.GetComponent<PlayerMove>();
                    
@@ -46,7 +50,6 @@ public class Goalcol : MonoBehaviour
         }
         if(col.gameObject.tag == "PlayerHead")
         {
-            Debug.Log("aaaaaaaaaaaaaaaaa");
             sprite.enabled = true;
         }
     }
