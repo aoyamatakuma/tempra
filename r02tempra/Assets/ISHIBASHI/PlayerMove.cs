@@ -181,7 +181,8 @@ public class PlayerMove : MonoBehaviour
 
     void GoalMove()
     {
-
+        if(transform.localScale.x >= 2)
+        transform.localScale -= new Vector3(0.05f, 0.05f, 0);
     }
     //ワープフラグ
     void WarpMove()
@@ -409,6 +410,8 @@ public class PlayerMove : MonoBehaviour
             pos.y = transform.position.y;
             transform.position = pos;
             rigidPlayer.velocity = Vector2.zero;
+            playerAnime.SetTrigger("Goal");
+            headAnime.SetTrigger("Goal");
         }
     }
 
