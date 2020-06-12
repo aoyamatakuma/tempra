@@ -442,7 +442,7 @@ public class StageRule : MonoBehaviour {
                 StageRule colStage = col.gameObject.transform.root.GetComponent<StageRule>();
                     if (col.gameObject.CompareTag("Border_Left"))
                     {                    
-                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up || currentStageState == StageState.hit_bottom_up)
+                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up || colStage.currentStageState == StageState.hit_bottom_up)
                         {
                             Border_Bool(stage_Right, false);
                             Border_Bool(light_Right, true);
@@ -450,7 +450,7 @@ public class StageRule : MonoBehaviour {
                     }
                     if (col.gameObject.CompareTag("Border_Right"))
                     {
-                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up || currentStageState == StageState.hit_bottom_up)
+                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up || colStage.currentStageState == StageState.hit_bottom_up)
                         {
                             Border_Bool(stage_Left, false);
                             Border_Bool(light_Left, true);
