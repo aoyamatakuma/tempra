@@ -16,6 +16,9 @@ public class Goalcol : MonoBehaviour
     //プレイヤースクリプト取得
     private PlayerMove Player;
     [SerializeField]
+    //Scene スクリプト取得
+    private SceneM gameManager;
+    [SerializeField]
     private SpriteRenderer sprite;
 
     Animator anim;
@@ -29,6 +32,9 @@ public class Goalcol : MonoBehaviour
         //フェードイン消去
         Destroy(fadeInInstance);
         anim = gameObject.GetComponent<Animator>();
+        //読み込む
+        gameManager = GameObject.Find("GameManager").GetComponent<SceneM>();
+        gameManager = gameManager.GetComponent<SceneM>();
     }
 
     // Update is called once per frame
@@ -45,8 +51,16 @@ public class Goalcol : MonoBehaviour
             //スクリプト取得
             Player = col.GetComponent<PlayerMove>();
                    
-            //コルーチン開始
-            StartCoroutine("GoalCoroutine");       
+            if (gameManager.currentStageNum == 10)
+            {
+                StartCoroutine("GoalEndCoroutine");
+            }
+            else
+            {
+                //コルーチン開始
+                StartCoroutine("GoalCoroutine");
+
+            }
         }
         if(col.gameObject.tag == "PlayerHead")
         {
@@ -81,6 +95,30 @@ public class Goalcol : MonoBehaviour
             yield return new WaitForSeconds(1f);
             //ゴールシーンに飛ぶ
             SceneManager.LoadScene("MasterGoal");
+
+        }
+
+    }
+    public IEnumerator GoalEndCoroutine()
+    {
+
+        //無効化
+        Player.SetCurrentState(PlayerState.Goal);
+
+        Debug.Log("コルーチン");
+
+
+        if (fadeInInstance == null)
+        {
+
+
+            //1秒停止
+            yield return new WaitForSeconds(2f);
+            //フェードイン処理
+            fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
+            yield return new WaitForSeconds(1f);
+            //ゴールシーンに飛ぶ
+            SceneManager.LoadScene("MasterEnd");
 
         }
 
