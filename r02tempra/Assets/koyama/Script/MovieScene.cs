@@ -50,7 +50,7 @@ public class MovieScene : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         videoPlayer = GameObject.Find("VideoPlane").GetComponent<VideoPlayer>();
         videoPlayer.Play();
-        yield return new WaitForSeconds(10.8f);
+        yield return new WaitForSeconds(11f);
         SceneManager.LoadScene("MasterTitle");
 
     }
