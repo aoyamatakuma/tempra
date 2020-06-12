@@ -237,6 +237,7 @@ public class StageRule : MonoBehaviour {
             target.gameObject.GetComponent<StageRule>().SetCurrentState(StageState.Normal);
             //  Debug.Log(target.gameObject.GetComponent<StageRule>().currentStageState);
             SetCurrentState(StageState.Normal);
+
         }
 
     }
@@ -436,12 +437,12 @@ public class StageRule : MonoBehaviour {
         if (!isWind)
         {
           
-            if (currentStageState == StageState.Normal || currentStageState == StageState.hit_bottom || currentStageState == StageState.hit_up)
+            if (currentStageState == StageState.Normal || currentStageState == StageState.hit_bottom || currentStageState == StageState.hit_up || currentStageState == StageState.hit_bottom_up)
             {
                 StageRule colStage = col.gameObject.transform.root.GetComponent<StageRule>();
                     if (col.gameObject.CompareTag("Border_Left"))
                     {                    
-                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up)
+                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up || currentStageState == StageState.hit_bottom_up)
                         {
                             Border_Bool(stage_Right, false);
                             Border_Bool(light_Right, true);
@@ -449,7 +450,7 @@ public class StageRule : MonoBehaviour {
                     }
                     if (col.gameObject.CompareTag("Border_Right"))
                     {
-                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up)
+                        if (colStage.currentStageState == StageState.Normal || colStage.currentStageState == StageState.hit_bottom || colStage.currentStageState == StageState.hit_up || currentStageState == StageState.hit_bottom_up)
                         {
                             Border_Bool(stage_Left, false);
                             Border_Bool(light_Left, true);
