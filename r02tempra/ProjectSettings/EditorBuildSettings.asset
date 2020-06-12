@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/titleao.unity
     guid: 4061ca41fe9a2be46bb5f1769f52ea5e
   - enabled: 1
+    path: Assets/Master/MasterOP.unity
+    guid: ce0e523043763cd41b24b64a1d534afe
+  - enabled: 1
     path: Assets/Master/MasterTitle.unity
     guid: fa6b78826cdef5d4ea4d553d1fa51118
   - enabled: 0
