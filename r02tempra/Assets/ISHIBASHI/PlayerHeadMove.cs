@@ -34,7 +34,7 @@ public class PlayerHeadMove : MonoBehaviour
         player = player.GetComponent<PlayerMove>();
         anim = GetComponent<Animator>();
         moveflag = false;
-        headAwaCreate = false;
+        headAwaCreate = true;
         currentHeadState = HeadState.Move;
     }
 

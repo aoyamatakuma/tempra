@@ -74,7 +74,7 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         ChangeMode();
-        if (Input.GetKeyDown("joystick button 7") && player.currentPlayerState != PlayerState.Warp)
+        if (Input.GetKeyDown("joystick button 7") && player.currentPlayerState != PlayerState.Warp && player.currentPlayerState != PlayerState.Stop)
         {
             Stop();
         }
