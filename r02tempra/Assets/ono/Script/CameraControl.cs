@@ -122,7 +122,7 @@ public class CameraControl : MonoBehaviour
                 break;
         }
 
-        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON") && !stopflag && player.currentPlayerState != PlayerState.Warp)
+        if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Y_BUTTON") && !stopflag && player.currentPlayerState != PlayerState.Warp && player.currentPlayerState != PlayerState.Stop)
         {
             intA++;
             if (intA >= 2) { intA = 0; }
