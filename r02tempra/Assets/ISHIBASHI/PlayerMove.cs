@@ -45,6 +45,9 @@ public class PlayerMove : MonoBehaviour
     [HideInInspector]
     public bool awaCreate;
 
+    [HideInInspector]
+    public bool goalAwaDelete;
+
     //泡の生成場所
     GameObject stage;
     [SerializeField] Transform stageParent;
@@ -90,6 +93,7 @@ public class PlayerMove : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
         awaCreate = false;
+        goalAwaDelete = true;
         warpflag = false; //ワープフラグ
         playerHeadCollider = _playerHead.GetComponent<CircleCollider2D>();
         playerHead = _playerHead.GetComponent<PlayerHeadMove>();
@@ -404,7 +408,12 @@ public class PlayerMove : MonoBehaviour
             awaCreate = false;
         }
 
-        if(col.gameObject.CompareTag("Goal"))
+        if (col.gameObject.CompareTag("GoalAwaDelete"))
+        {
+            goalAwaDelete = false;
+        }
+
+        if (col.gameObject.CompareTag("Goal"))
         {
             Vector3 pos = col.transform.position;
             pos.y = transform.position.y;
@@ -420,6 +429,10 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.CompareTag("AwaCreate"))
         {
             awaCreate = true;
+        }
+        if (col.gameObject.CompareTag("GoalAwaDelete"))
+        {
+            goalAwaDelete = true;
         }
     }
     private IEnumerator Coroutine()

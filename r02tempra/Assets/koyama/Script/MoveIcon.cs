@@ -47,6 +47,8 @@ public class MoveIcon : MonoBehaviour
     private GameRule gameRule;
     [SerializeField]
     private PlayerMove player;
+    [SerializeField]
+    private PlayerHeadMove playerhead;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,7 @@ public class MoveIcon : MonoBehaviour
 
         //プレイヤーを取得
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
+        playerhead = GameObject.FindGameObjectWithTag("PlayerHead").GetComponent<PlayerHeadMove>();
     }
 
     // Update is called once per frame
@@ -192,26 +195,54 @@ public class MoveIcon : MonoBehaviour
     public void Explosion()
     {
 
-        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion && CameraCO.isCameraPos2 == false && gameRule.getIsPlay())
+        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion && CameraCO.isCameraPos2 == false && gameRule.getIsPlay() && player.currentPlayerState == PlayerState.Division)
         {
-            //配列処理
-            foreach (var a in Stage.Bubblehub)
+            if (!player.awaCreate || !player.goalAwaDelete)
             {
-                //nullチェック
-                if (a != null)
+                //配列処理
+                foreach (var a in Stage.Bubblehub)
                 {
-                    Instantiate(explosionEffect, transform.position, Quaternion.identity);
-                    Destroy(a);
+                    //nullチェック
+                    if (a != null)
+                    {
+                        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+                        Destroy(a);
+                    }
                 }
+                //要素削除
+                for (int i = 0; i < Stage.Bubblehub.Count; i++)
+                {
+                    Stage.Bubblehub.RemoveAt(i);
+                }
+                //ステージのバブルのカウント表示
+                Stage.Minus();
+
             }
-            //要素削除
-            for (int i = 0; i < Stage.Bubblehub.Count; i++)
+        }
+
+        if (Input.GetButtonDown("A_BUTTON") && AwaExplosion && CameraCO.isCameraPos2 == false && gameRule.getIsPlay() && player.currentPlayerState == PlayerState.Head)
+        {
+            if (!playerhead.headAwaCreate || !playerhead.headGoalAwaDelete)
             {
-                Stage.Bubblehub.RemoveAt(i);
+                //配列処理
+                foreach (var a in Stage.Bubblehub)
+                {
+                    //nullチェック
+                    if (a != null)
+                    {
+                        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+                        Destroy(a);
+                    }
+                }
+                //要素削除
+                for (int i = 0; i < Stage.Bubblehub.Count; i++)
+                {
+                    Stage.Bubblehub.RemoveAt(i);
+                }
+                //ステージのバブルのカウント表示
+                Stage.Minus();
+
             }
-            //ステージのバブルのカウント表示
-            Stage.Minus();
         }
     }
-
 }

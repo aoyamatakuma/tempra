@@ -21,7 +21,10 @@ public class PlayerHeadMove : MonoBehaviour
 
     private bool moveflag;
 
+    [HideInInspector]
     public bool headAwaCreate;
+    [HideInInspector]
+    public bool headGoalAwaDelete;
 
     //現在の状態
     private HeadState currentHeadState;
@@ -35,6 +38,7 @@ public class PlayerHeadMove : MonoBehaviour
         anim = GetComponent<Animator>();
         moveflag = false;
         headAwaCreate = true;
+        headGoalAwaDelete = true;
         currentHeadState = HeadState.Move;
     }
 
@@ -128,6 +132,11 @@ public class PlayerHeadMove : MonoBehaviour
         {
             headAwaCreate = false;
         }
+
+        if (col.gameObject.CompareTag("GoalAwaDelete"))
+        {
+            headGoalAwaDelete = false;
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -135,6 +144,11 @@ public class PlayerHeadMove : MonoBehaviour
         if (col.gameObject.CompareTag("AwaCreate"))
         {
             headAwaCreate = true;
+        }
+
+        if (col.gameObject.CompareTag("GoalAwaDelete"))
+        {
+            headGoalAwaDelete = true;
         }
     }
 
@@ -147,6 +161,7 @@ public class PlayerHeadMove : MonoBehaviour
             anim.SetTrigger("StopTrigger");
             moveflag = false;
             headAwaCreate = true;
+            headGoalAwaDelete = true;
             rigidPlayer.simulated = false;
             playerHeadCollider.enabled = false;
             transform.parent = col.gameObject.transform;
