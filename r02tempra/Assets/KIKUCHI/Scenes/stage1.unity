@@ -299,6 +299,7 @@ MonoBehaviour:
   pausing: 0
   ignoreGameObjects: []
   player: {fileID: 0}
+  manu: {fileID: 893027000}
 --- !u!4 &213407400
 Transform:
   m_ObjectHideFlags: 0
@@ -1201,6 +1202,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a343de5a3391058439bc85879ac71a59, type: 3}
+--- !u!114 &893027000 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3893398310286713728, guid: b348c401217b3b349bb9522da0fd473d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3893398311592277330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1521ea8913babdb4d8bfa53b10a0e6a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &925334862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,6 +1978,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8353670408892859327, guid: b348c401217b3b349bb9522da0fd473d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353670408892859327, guid: b348c401217b3b349bb9522da0fd473d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353670409718337346, guid: b348c401217b3b349bb9522da0fd473d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353670409718337346, guid: b348c401217b3b349bb9522da0fd473d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8353670410235934881, guid: b348c401217b3b349bb9522da0fd473d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2074,6 +2107,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120141478671416591, guid: b348c401217b3b349bb9522da0fd473d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120141478671416591, guid: b348c401217b3b349bb9522da0fd473d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b348c401217b3b349bb9522da0fd473d, type: 3}

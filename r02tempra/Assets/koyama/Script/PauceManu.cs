@@ -6,13 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauceManu : MonoBehaviour
 {
     int cntNum;
-    [SerializeField]
-    private GameObject Button1;
-    [SerializeField]
-    private GameObject Button2;
-    [SerializeField]
-    private GameObject Button3;
-
+   
 
  
     [SerializeField]
@@ -20,7 +14,7 @@ public class PauceManu : MonoBehaviour
     private GameObject fadeInPrefab;
     private GameObject fadeInInstance;
 
-    bool cntFlag;
+    public bool cntFlag;
 
 
     // Start is called before the first frame update
