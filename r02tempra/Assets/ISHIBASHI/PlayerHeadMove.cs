@@ -146,6 +146,7 @@ public class PlayerHeadMove : MonoBehaviour
             anim.SetBool("Move", false);
             anim.SetTrigger("StopTrigger");
             moveflag = false;
+            headAwaCreate = true;
             rigidPlayer.simulated = false;
             playerHeadCollider.enabled = false;
             transform.parent = col.gameObject.transform;
