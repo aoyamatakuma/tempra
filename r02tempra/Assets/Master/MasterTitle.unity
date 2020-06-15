@@ -2071,6 +2071,7 @@ MonoBehaviour:
     type: 3}
   aButtonPrefab: {fileID: 6858881057679761465, guid: 59cb28ae58a56ef428fa4388265d4ba7,
     type: 3}
+  decision1: {fileID: 8300000, guid: a22f272a1ad2bc44ba17bb8697f82f44, type: 3}
 --- !u!4 &1884697368
 Transform:
   m_ObjectHideFlags: 0
