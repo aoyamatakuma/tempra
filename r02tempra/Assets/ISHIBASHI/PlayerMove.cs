@@ -16,9 +16,11 @@ public class PlayerMove : MonoBehaviour
     public AudioClip jumpSE;
     public AudioClip shutterSE;
     public AudioClip bubbleSE;
+    public AudioClip BunriSE;
     private AudioSource jump;
     private AudioSource shutter;
     private AudioSource bubble;
+    private AudioSource Bunri;
     //現在の状態
   public PlayerState currentPlayerState;
     //１つ前の状態
@@ -89,6 +91,7 @@ public class PlayerMove : MonoBehaviour
         jump = gameObject.GetComponent<AudioSource>();
         shutter = gameObject.GetComponent<AudioSource>();
         bubble = gameObject.GetComponent<AudioSource>();
+        Bunri = gameObject.GetComponent<AudioSource>(); 
         rigidPlayer = GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
         jumpFlag = false;
@@ -360,11 +363,14 @@ public class PlayerMove : MonoBehaviour
             if (cameraCheck == false)
             {
                 SetCurrentState(PlayerState.Division);
+               
             }
             else if(cameraCheck == true)
             {
                 CameraCheck();
                 SetCurrentState(PlayerState.Normal);
+                Bunri.clip = BunriSE;
+                Bunri.Play();
             }
 
             StartCoroutine("Coroutine");

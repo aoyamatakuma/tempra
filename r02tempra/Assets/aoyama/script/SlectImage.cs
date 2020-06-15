@@ -10,6 +10,11 @@ public class SlectImage : MonoBehaviour
     private GameObject fadeInPrefab;
     private GameObject fadeInInstance;
     int sselect = 1;
+    //se
+    public AudioClip select1;
+    public AudioClip decision1;
+    private AudioSource select;
+    private AudioSource decision;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +23,8 @@ public class SlectImage : MonoBehaviour
         {
             transform.localPosition = new Vector3(-304, -280, 0);
         }
-
+        select = gameObject.GetComponent<AudioSource>();
+        decision = gameObject.GetComponent<AudioSource>();
 
     }
 
@@ -30,11 +36,15 @@ public class SlectImage : MonoBehaviour
         {
             transform.localPosition = new Vector3(-304,-390, 0);
             sselect = sselect + 1;
+            select.clip = select1;
+            select.Play();
         }
         if (Input.GetAxis("Vertical") > 0.1f && sselect == 2)
         {
             transform.localPosition = new Vector3(-304, -280, 0);
             sselect = sselect - 1;
+            select.clip = select1;
+            select.Play();
         }
         if (Input.GetButtonDown("A_BUTTON"))
         {
@@ -47,6 +57,8 @@ public class SlectImage : MonoBehaviour
                 
             UnityEngine.Application.Quit();
             }
+            decision.clip = decision1;
+            decision.Play();
         }
     }
     public IEnumerator GameStart()

@@ -17,6 +17,9 @@ public class MovieScene : MonoBehaviour
     private GameObject fadeoutInstance;
 
     bool Button;
+    //se
+    public AudioClip decision1;
+    private AudioSource decision;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class MovieScene : MonoBehaviour
         Destroy(fadeInInstance);
         StartCoroutine("MovieStartCole");
         Button = false;
+        decision = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,8 @@ public class MovieScene : MonoBehaviour
         if (Input.GetButtonDown("A_BUTTON")&&!Button)
         {
             StartCoroutine("MovieButtonSceneCole");
+            decision.clip = decision1;
+            decision.Play();
         }
 
     }

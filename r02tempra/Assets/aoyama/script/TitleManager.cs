@@ -28,7 +28,8 @@ public class TitleManager : MonoBehaviour {
 
     public static int Bgm;
 
-
+    public AudioClip decision1;
+    private AudioSource decision;
 
     // Use this for initialization
     void Start()
@@ -50,6 +51,7 @@ public class TitleManager : MonoBehaviour {
         {
             aButtonInstance = GameObject.Instantiate(aButtonPrefab) as GameObject;
         }
+        decision = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -59,16 +61,20 @@ public class TitleManager : MonoBehaviour {
         {
             ////Debug.Log("tes");
             Destroy(aButtonInstance);
+          
             if (deleteInstance == null)
             {
                 deleteInstance = GameObject.Instantiate(deletePrefab) as GameObject;
                 StartCoroutine("Select");
             }
+            decision.clip = decision1;
+            decision.Play();
             //if (fadeInInstance == null)
             //{
             //    fadeInInstance = GameObject.Instantiate(fadeInPrefab) as GameObject;
             //    StartCoroutine("End");
             //}
+           
         }
 
     }

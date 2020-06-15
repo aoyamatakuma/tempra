@@ -22,7 +22,10 @@ public class Goalcol : MonoBehaviour
     private SpriteRenderer sprite;
 
     Animator anim;
+
    
+    public AudioClip goalse1;
+    private AudioSource goalse;
    
 
     // Start is called before the first frame update
@@ -35,6 +38,7 @@ public class Goalcol : MonoBehaviour
         //読み込む
         gameManager = GameObject.Find("GameManager").GetComponent<SceneM>();
         gameManager = gameManager.GetComponent<SceneM>();
+        goalse = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,6 +52,8 @@ public class Goalcol : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             anim.SetBool("Open", true);
+            goalse.clip = goalse1;
+            goalse.Play();
             //スクリプト取得
             Player = col.GetComponent<PlayerMove>();
                    

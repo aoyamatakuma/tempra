@@ -16,7 +16,11 @@ public class PauceManu : MonoBehaviour
 
     public bool cntFlag;
 
-
+    //se
+    public AudioClip select1;
+    public AudioClip decision1;
+    private AudioSource select;
+    private AudioSource decision;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,9 @@ public class PauceManu : MonoBehaviour
         cntFlag = true;
         //フェードイン消去
         Destroy(fadeInInstance);
+
+        select = gameObject.GetComponent<AudioSource>();
+        decision = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -58,12 +65,15 @@ public class PauceManu : MonoBehaviour
     {
         if (Input.GetAxis("Vertical") < -0.1f && cntNum != 2 && cntFlag)
         {
-
             StartCoroutine(CountNum(1));
+            select.clip = select1;
+            select.Play();
         }
         if (Input.GetAxis("Vertical") > 0.1f && cntNum != 0 && cntFlag)
         {
             StartCoroutine(CountNum(-1));
+            select.clip = select1;
+            select.Play();
         }
 
         if (Input.GetButtonDown("A_BUTTON"))
@@ -80,6 +90,8 @@ public class PauceManu : MonoBehaviour
             {
                 StartCoroutine("MainCoroutine");
             }
+            decision.clip = decision1;
+            decision.Play();
         }
     }
 

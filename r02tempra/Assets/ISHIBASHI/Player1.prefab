@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 5705349305214238505}
   - component: {fileID: 5911723622484652493}
   - component: {fileID: 6238908091221008612}
+  - component: {fileID: 82953412480550164}
   m_Layer: 9
   m_Name: Player1
   m_TagString: Player
@@ -145,6 +146,7 @@ MonoBehaviour:
   jumpSE: {fileID: 8300000, guid: 869d3e1c35e006c4bbb4f48342b27255, type: 3}
   shutterSE: {fileID: 8300000, guid: 4703335d3225a8b4197a81a4e089faea, type: 3}
   bubbleSE: {fileID: 8300000, guid: 2ebd21f8ede6e3143bd11b54425ef775, type: 3}
+  BunriSE: {fileID: 8300000, guid: d87d95b868d8d9a4588a28c81d10ee4e, type: 3}
   currentPlayerState: 0
   HaretuEffect: {fileID: 0}
   jumpForce: 1000
@@ -153,6 +155,7 @@ MonoBehaviour:
   babulimit: 8
   foam: {fileID: 8176581596981492173, guid: 24b839b193a39444e930b191bb49cbb9, type: 3}
   awaCreate: 0
+  goalAwaDelete: 0
   stageParent: {fileID: 0}
   _playerHead: {fileID: 6426227440305533282}
   playerHead: {fileID: 6426227440305533281}
@@ -897,6 +900,102 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &82953412480550164
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426227439522401377}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d87d95b868d8d9a4588a28c81d10ee4e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6426227440305533283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1116,7 @@ MonoBehaviour:
   stageParent: {fileID: 0}
   player: {fileID: 6426227439522401391}
   headAwaCreate: 0
+  headGoalAwaDelete: 0
 --- !u!58 &3672823615876402352
 CircleCollider2D:
   m_ObjectHideFlags: 0
