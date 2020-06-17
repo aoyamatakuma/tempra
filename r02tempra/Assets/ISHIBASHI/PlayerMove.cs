@@ -369,6 +369,7 @@ public class PlayerMove : MonoBehaviour
             {
                 CameraCheck();
                 SetCurrentState(PlayerState.Normal);
+                //se
                 Bunri.clip = BunriSE;
                 Bunri.Play();
             }

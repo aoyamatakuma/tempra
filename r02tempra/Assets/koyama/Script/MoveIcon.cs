@@ -49,6 +49,10 @@ public class MoveIcon : MonoBehaviour
     private PlayerMove player;
     [SerializeField]
     private PlayerHeadMove playerhead;
+
+    //se
+    public AudioClip decision1;
+    private AudioSource decision;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +84,9 @@ public class MoveIcon : MonoBehaviour
         //プレイヤーを取得
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
         playerhead = GameObject.FindGameObjectWithTag("PlayerHead").GetComponent<PlayerHeadMove>();
+
+        //se
+        decision = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -176,6 +183,7 @@ public class MoveIcon : MonoBehaviour
             if (Input.GetButtonDown("B_BUTTON") && TeleportFlag)
             {
                 Teleport();
+               
             }
         }
     }
@@ -189,7 +197,9 @@ public class MoveIcon : MonoBehaviour
         //アイコンの位置にプレイヤーの位置を移動させる
         m_Player.transform.position = IconPos;
         //Debug.Log (m_Player.transform.position);
-
+        //se　頭とくっついたとき
+        decision.clip = decision1;
+        decision.Play();
     }
     //爆発
     public void Explosion()

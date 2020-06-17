@@ -146,7 +146,7 @@ MonoBehaviour:
   jumpSE: {fileID: 8300000, guid: 869d3e1c35e006c4bbb4f48342b27255, type: 3}
   shutterSE: {fileID: 8300000, guid: 4703335d3225a8b4197a81a4e089faea, type: 3}
   bubbleSE: {fileID: 8300000, guid: 2ebd21f8ede6e3143bd11b54425ef775, type: 3}
-  BunriSE: {fileID: 8300000, guid: d87d95b868d8d9a4588a28c81d10ee4e, type: 3}
+  BunriSE: {fileID: 8300000, guid: a22f272a1ad2bc44ba17bb8697f82f44, type: 3}
   currentPlayerState: 0
   HaretuEffect: {fileID: 0}
   jumpForce: 1000

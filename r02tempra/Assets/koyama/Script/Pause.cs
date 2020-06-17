@@ -36,11 +36,16 @@ public class Pause : MonoBehaviour {
     [SerializeField]
     private PlayerMove player;
     public PauceManu manu;
-   
-   
+    //se
+    public AudioClip select1;
+    public AudioClip decision1;
+    private AudioSource select;
+    private AudioSource decision;
+
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
-      
+        select = gameObject.GetComponent<AudioSource>();
+        decision = gameObject.GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update () {
@@ -54,13 +59,19 @@ public class Pause : MonoBehaviour {
             pausing = true;
             Pausing ();
             manuCanvas.SetActive (true);
-            
+            //se
+            select.clip = select1;
+            select.Play();
+
         } else if (Input.GetKeyDown ("joystick button 7") && pausing == true) {
             //Debug.Log ("ウンコモラサナイメン");     
             pausing = false;
             manu.cntFlag = true;
             Resume ();
             manuCanvas.SetActive (false);
+            //se
+            decision.clip = decision1;
+            decision.Play();
         }
 
     }
