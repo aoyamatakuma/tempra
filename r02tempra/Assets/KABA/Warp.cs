@@ -15,8 +15,10 @@ public class Warp : MonoBehaviour
     
     // 歩行速度
     public float walkSpeed = 3f;
-  
-   
+    //se
+    public AudioClip decision1;
+    private AudioSource decision;
+
     void Start()
     {
         warp = GameObject.FindGameObjectsWithTag("WarpPoint");
@@ -24,6 +26,8 @@ public class Warp : MonoBehaviour
         //  transVec = transObj.transform.position;
         //初期では移動可能なためTrue
         moveStatus = true;
+        //se
+        decision = gameObject.GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -47,10 +51,16 @@ public class Warp : MonoBehaviour
                 if (gameObject != warp[0])
                 {
                     StartCoroutine("Warp1");
+                    //se
+                    decision.clip = decision1;
+                    decision.Play();
                 }
                 else if (gameObject != warp[1])
                 {
                     StartCoroutine("Warp2");
+                    //se　
+                    decision.clip = decision1;
+                    decision.Play();
                 }
             }
         }

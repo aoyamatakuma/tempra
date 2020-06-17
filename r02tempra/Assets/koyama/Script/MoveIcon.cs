@@ -197,7 +197,7 @@ public class MoveIcon : MonoBehaviour
         //アイコンの位置にプレイヤーの位置を移動させる
         m_Player.transform.position = IconPos;
         //Debug.Log (m_Player.transform.position);
-        //se　頭とくっついたとき
+        //se　
         decision.clip = decision1;
         decision.Play();
     }

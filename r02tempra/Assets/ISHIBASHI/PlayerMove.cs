@@ -369,7 +369,7 @@ public class PlayerMove : MonoBehaviour
             {
                 CameraCheck();
                 SetCurrentState(PlayerState.Normal);
-                //se
+                //se 頭とくっついた時
                 Bunri.clip = BunriSE;
                 Bunri.Play();
             }
