@@ -163,7 +163,7 @@ public class StageCreate : MonoBehaviour
                 ArraryNum(3, 3, 6);
                 ArraryNum(3, 2, 3);
                 ArraryNum(3, 0, 4);
-                ArraryNum(4, 3, 4);
+                ArraryNum(4, 2, 4);
                 ArraryNum(4, 1, 6);
                 ArraryNum(4, 0, 7);
                 break;

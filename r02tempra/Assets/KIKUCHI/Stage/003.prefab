@@ -910,7 +910,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.25}
+  m_Offset: {x: 0, y: -1.22}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1447,11 +1447,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Block
-      objectReference: {fileID: 0}
-    - target: {fileID: 2141240716113044186, guid: 46d7f21e75c53db4bbbe324f377baf2d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 8533929375761777170, guid: 46d7f21e75c53db4bbbe324f377baf2d,
         type: 3}
@@ -2203,7 +2198,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4200773535180777530, guid: 85d3c99d3e32a7b4c9bfb59e9e3abc22, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 85d3c99d3e32a7b4c9bfb59e9e3abc22, type: 3}
 --- !u!4 &1814830894592498365 stripped
 Transform:
