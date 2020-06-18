@@ -52,8 +52,6 @@ MonoBehaviour:
   speedY: 0.2
   explosionEffect: {fileID: 1844462047755244, guid: 570da0b04e69fe94dbee58611240c857,
     type: 3}
-  vibrationTime: 1
-  vibrationScale: 10
 --- !u!114 &114842132120052256
 MonoBehaviour:
   m_ObjectHideFlags: 0

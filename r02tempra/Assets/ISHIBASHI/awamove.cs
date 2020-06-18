@@ -14,33 +14,26 @@ public class awamove : MonoBehaviour
     [SerializeField]
     private GameObject explosionEffect;
 
-    GameObject camera;
-    vibrationScript vib;
-
-    public float vibrationTime;
-    public float vibrationScale;
+    //停止フラグ
+    private bool stop;
    
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.Find("Main Camera");
-        vib = camera.GetComponent<vibrationScript>();
+        stop = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        Vector2 sin = transform.position;
-        sin.x += Mathf.Sin(angle) * range;
-        sin.y += speedY;
-        angle += speed;
-        transform.position = sin;
-
-        if (Input.GetKey(KeyCode.Q))
+        if (!stop)
         {
-            Explosions();
+            Vector2 sin = transform.position;
+            sin.x += Mathf.Sin(angle) * range;
+            sin.y += speedY;
+            angle += speed;
+            transform.position = sin;
         }
     }
 
@@ -50,5 +43,21 @@ public class awamove : MonoBehaviour
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
        // vib.vibration(vibrationTime, vibrationScale);
+    }
+
+    //void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    if (col.gameObject.CompareTag("Collision"))
+    //    {
+    //        stop = true;
+    //    }
+    //}
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.transform.Find("stage_soto"))
+        {
+            stop = true;
+        }
     }
 }
