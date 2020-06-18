@@ -178,12 +178,7 @@ public class StageRule : MonoBehaviour {
         
     }
 
-    void hitMove()
-    {
-        //SetCurrentState(StageState.Normal);
-    }
-
-    //浮く
+    //ステージのステート変更ルール
     void FlyRule () {
 
         if (limit_bubble <= current_bubble && !isGoal  && limit_touchBubble <= current_touchBubble && currentStageState != StageState.hit_up && currentStageState != StageState.Wind_hit && currentStageState != StageState.hit_bottom_up) {     
@@ -205,20 +200,18 @@ public class StageRule : MonoBehaviour {
         }
     }
 
+    //ステージがnextPosまで上がる処理
     void FlyMove (Vector2 nextPos) {
-        if ( currentStageState != StageState.Fly )return;
-      //  if (currentStageState == StageState.hit_bottom_up) return;
+        if ( currentStageState != StageState.Fly )return;  
         transform.position = Vector2.MoveTowards(transform.position, nextPos,Time.deltaTime*  speed);
-       // transform.position = Vector2.Lerp (transform.position, nextPos, Time.deltaTime * 1f);     
       if(transform.position.y >= nextPos.y || currentStageState != StageState.Fly)
         {    
             SetCurrentState(StageState.Normal);
         }
     }
-
+    //ステージがnextPosまで下がる処理
     void DownMove (Vector2 nextPos) {
-        if ( currentStageState != StageState.Down ) return;
-        // if (currentStageState == StageState.hit_bottom_up) return;
+        if ( currentStageState != StageState.Down ) return;    
         transform.position = Vector2.MoveTowards(transform.position, nextPos, Time.deltaTime * speed);
         if (transform.position.y <= nextPos.y || currentStageState != StageState.Down)
         {
@@ -226,6 +219,7 @@ public class StageRule : MonoBehaviour {
         }   
     }
 
+    //左方向への風移動処理
     void LeftWindMove(Vector2 nextPos,GameObject target)
     {     
         if (currentStageState != StageState.Wind_Left && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit || target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_left || target.gameObject.GetComponent<StageRule>().touch_left) return;
@@ -242,6 +236,7 @@ public class StageRule : MonoBehaviour {
 
     }
  
+    //右方向への風の移動処理
     void RightWindMove(Vector2 nextPos, GameObject target)
     {
         if (currentStageState != StageState.Wind_Right && target.gameObject.GetComponent<StageRule>().currentStageState != StageState.Wind_hit|| target.gameObject.GetComponent<StageRule>().currentStageState == StageState.hit_right || target.gameObject.GetComponent<StageRule>().touch_right) return;
@@ -264,7 +259,7 @@ public class StageRule : MonoBehaviour {
         firstPos = transform.position;
         firstPos.y = 0;
     }
-
+    //ステージの衝突判定
     public void HitStage(Collider2D col)
     {
         if (!isWind)
@@ -325,6 +320,7 @@ public class StageRule : MonoBehaviour {
         }   
     }
 
+    //ステージの衝突判定(Exit)
     public void ExitStage(Collider2D col)
     {
        
@@ -370,6 +366,7 @@ public class StageRule : MonoBehaviour {
         }
     }
 
+    //風の衝突判定
     public void Wind_Col(Collider2D col)
     {
         if (currentStageState == StageState.Wind_Left || currentStageState == StageState.Wind_Right || !isWind ) return;
