@@ -431,6 +431,14 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("AwaCreate"))
+        {
+            awaCreate = false;
+        }
+    }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("AwaCreate"))
